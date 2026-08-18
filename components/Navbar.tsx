@@ -51,7 +51,7 @@ export function Navbar() {
       )}
     >
       <Container className="relative z-[60] flex h-16 items-center justify-between lg:h-[4.35rem]">
-        <Logo light={!solid} />
+        <Logo light={!solid} size="lg" />
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
           {desktopNav.map((item) => (
@@ -72,7 +72,7 @@ export function Navbar() {
           <Button
             href="/contact"
             variant={solid ? "gold" : "light"}
-            className="hidden px-5 py-2.5 sm:inline-flex"
+            className="hidden px-4 py-2 text-[0.7rem] tracking-[0.14em] sm:inline-flex"
           >
             Get a Quote
           </Button>

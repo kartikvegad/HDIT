@@ -30,10 +30,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <p className="mt-24 font-display text-[18vw] leading-none tracking-tight text-white/5 lg:text-[11rem]">
-          HDIT
-        </p>
-        <div className="mt-10 flex flex-col justify-between gap-5 border-t border-white/10 pt-8 text-sm text-stone sm:flex-row">
+        <div className="mt-16 flex flex-col justify-between gap-5 border-t border-white/10 pt-8 text-sm text-stone sm:flex-row">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/contact" className="transition-colors hover:text-paper">

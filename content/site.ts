@@ -57,7 +57,7 @@ export const hero = {
   headlineAccent: "with the sun.",
   body: "HDIT designs and delivers custom solar energy systems that help companies reduce operational costs and move toward cleaner, more independent power.",
   primaryCta: { label: "Get a Free Quote", href: "/contact" },
-  secondaryCta: { label: "Explore Our Solutions", href: "/#solutions" },
+  secondaryCta: { label: "Explore Solutions", href: "/#solutions" },
 } as const;
 
 export const intro = {

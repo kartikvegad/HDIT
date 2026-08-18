@@ -64,12 +64,21 @@ export function SectionLabel({
   );
 }
 
-export function Logo({ light = false }: { light?: boolean }) {
+export function Logo({
+  light = false,
+  size = "md",
+}: {
+  light?: boolean;
+  size?: "md" | "lg";
+}) {
+  const large = size === "lg";
+
   return (
     <Link href="/" className="group flex items-center gap-3" aria-label="HDIT home">
       <span
         className={cn(
-          "relative grid h-8 w-8 place-items-center border transition-colors duration-300",
+          "relative grid place-items-center border transition-colors duration-300",
+          large ? "h-9 w-9" : "h-8 w-8",
           light ? "border-amber" : "border-ink/80 group-hover:border-amber",
         )}
       >
@@ -78,7 +87,8 @@ export function Logo({ light = false }: { light?: boolean }) {
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            "font-display text-[1.2rem] tracking-[0.18em]",
+            "font-display tracking-[0.18em]",
+            large ? "text-[1.35rem]" : "text-[1.2rem]",
             light ? "text-paper" : "text-ink",
           )}
         >
@@ -86,7 +96,8 @@ export function Logo({ light = false }: { light?: boolean }) {
         </span>
         <span
           className={cn(
-            "mt-1 text-[0.62rem] tracking-[0.22em] text-muted uppercase",
+            "mt-1 tracking-[0.22em] text-muted uppercase",
+            large ? "text-[0.68rem]" : "text-[0.62rem]",
             light && "text-amber-bright/80",
           )}
         >
