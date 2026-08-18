@@ -37,8 +37,10 @@ export const site = {
   description:
     "Commercial and industrial solar — designed around the site, installed with care.",
   url: "https://hdit.example",
-  emailPlaceholder: "Email to be provided",
-  phonePlaceholder: "Phone to be provided",
+  email: "info@hdit.in",
+  phone: "+91 98733 42407",
+  phoneTel: "+919873342407",
+  whatsapp: "919873342407",
   addressPlaceholder: "Address to be provided",
   hoursPlaceholder: "Operating hours to be provided",
 } as const;

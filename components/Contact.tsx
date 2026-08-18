@@ -72,11 +72,19 @@ export function Contact({
                   </div>
                   <div>
                     <dt className="eyebrow">Email</dt>
-                    <dd className="mt-2 text-muted">{site.emailPlaceholder}</dd>
+                    <dd className="mt-2">
+                      <a href={`mailto:${site.email}`} className="text-muted transition-colors duration-300 hover:text-ink">
+                        {site.email}
+                      </a>
+                    </dd>
                   </div>
                   <div>
                     <dt className="eyebrow">Telephone</dt>
-                    <dd className="mt-2 text-muted">{site.phonePlaceholder}</dd>
+                    <dd className="mt-2">
+                      <a href={`tel:${site.phoneTel}`} className="text-muted transition-colors duration-300 hover:text-ink">
+                        {site.phone}
+                      </a>
+                    </dd>
                   </div>
                   <div>
                     <dt className="eyebrow">Hours</dt>

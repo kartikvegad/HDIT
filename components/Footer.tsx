@@ -23,8 +23,16 @@ export function Footer() {
             <div>
               <p className="eyebrow">Contact</p>
               <ul className="mt-6 space-y-4 text-base text-paper/70">
-                <li>{site.emailPlaceholder}</li>
-                <li>{site.phonePlaceholder}</li>
+                <li>
+                  <a href={`mailto:${site.email}`} className="transition-colors duration-300 hover:text-paper">
+                    {site.email}
+                  </a>
+                </li>
+                <li>
+                  <a href={`tel:${site.phoneTel}`} className="transition-colors duration-300 hover:text-paper">
+                    {site.phone}
+                  </a>
+                </li>
                 <li>{site.addressPlaceholder}</li>
               </ul>
             </div>
