@@ -4,9 +4,8 @@ export type Solution = {
   category: string;
   title: string;
   description: string;
-  href: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 export type Project = {
@@ -27,6 +26,8 @@ export type ProcessStep = {
   number: string;
   title: string;
   description: string;
+  image: string;
+  imageAlt: string;
 };
 
 export const site = {
@@ -34,7 +35,7 @@ export const site = {
   legalName: "HDIT",
   tagline: "Commercial Solar Installation Experts",
   description:
-    "HDIT designs and installs custom solar energy systems for businesses — reducing energy costs and supporting a cleaner, more independent operation.",
+    "Commercial and industrial solar — designed around the site, installed with care.",
   url: "https://hdit.example",
   emailPlaceholder: "Email to be provided",
   phonePlaceholder: "Phone to be provided",
@@ -43,9 +44,9 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: "Solutions", href: "/solutions" },
-  { label: "Projects", href: "/projects" },
-  { label: "About", href: "/about" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Projects", href: "/#projects" },
+  { label: "About", href: "/#about" },
   { label: "Why HDIT", href: "/#why-hdit" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -63,12 +64,6 @@ export const intro = {
   eyebrow: "Smarter energy. Stronger business.",
   statement:
     "Solar is not simply an environmental decision. It is a business decision — one that can lower costs, strengthen operations, and future-proof the way a company uses energy.",
-  points: [
-    { title: "Lower energy costs", body: "Custom systems designed to reduce the operational cost of power." },
-    { title: "Greater independence", body: "Generate on-site energy and take more control of your supply." },
-    { title: "Long-term value", body: "Infrastructure built to perform reliably for years, not seasons." },
-    { title: "A cleaner operation", body: "Move toward renewable energy without compromising commercial performance." },
-  ],
 } as const;
 
 export const solutions: Solution[] = [
@@ -78,10 +73,9 @@ export const solutions: Solution[] = [
     category: "Business",
     title: "Commercial Solar",
     description:
-      "Custom solar installations for offices, warehouses, and commercial facilities — engineered around how your business actually uses energy.",
-    href: "/solutions/commercial-solar",
-    image: "/images/team.jpg",
-    imageAlt: "Inspectors walking a large commercial rooftop solar array",
+      "Arrays for offices, warehouses and commercial roofs, sized to the way the building actually draws power.",
+    image: "/images/project-01.jpg",
+    imageAlt: "Technician wiring a solar panel on a commercial rooftop",
   },
   {
     id: "industrial-solar",
@@ -89,10 +83,9 @@ export const solutions: Solution[] = [
     category: "Industry",
     title: "Industrial Solar",
     description:
-      "High-capacity solar for industrial sites that need dependable generation, careful engineering, and installation that respects live operations.",
-    href: "/solutions/industrial-solar",
+      "Higher-capacity plant for factories and industrial sites that cannot pause operations for a careless install.",
     image: "/images/project-05.jpg",
-    imageAlt: "Technician aligning solar modules on an industrial metal roof",
+    imageAlt: "Installer aligning modules on an industrial metal roof",
   },
   {
     id: "custom-design",
@@ -100,8 +93,7 @@ export const solutions: Solution[] = [
     category: "Engineering",
     title: "Custom System Design",
     description:
-      "Every HDIT system is designed around the site, load profile, and commercial objective — not a catalogue template.",
-    href: "/solutions/custom-design",
+      "Engineering around site, load profile and commercial objective — not a layout copied from the last job.",
     image: "/images/project-04.jpg",
     imageAlt: "Engineers reviewing a solar module sample during system design",
   },
@@ -111,10 +103,9 @@ export const solutions: Solution[] = [
     category: "Delivery",
     title: "Precision Installation",
     description:
-      "From mounting to commissioning, installation is handled with the care required of infrastructure that must last.",
-    href: "/solutions/installation",
-    image: "/images/project-06.jpg",
-    imageAlt: "Installation team placing a solar panel on a commercial rooftop",
+      "Mounting, electrical fit-out and commissioning handled as infrastructure that has to last.",
+    image: "/images/project-02.jpg",
+    imageAlt: "Installation crew setting racking and safety lines",
   },
 ];
 
@@ -122,85 +113,63 @@ export const why = [
   {
     number: "01",
     title: "Custom, not catalogue",
-    body: "We specialise in designing solar energy systems around the specific needs of each business — the site, the load, and the outcome.",
+    body: "Each system is drawn around the site, the load, and the outcome — not a package applied from another project.",
   },
   {
     number: "02",
     title: "Design through installation",
-    body: "HDIT takes projects from engineering through to installed, working systems so the work stays coherent from first drawing to final handover.",
+    body: "Engineering and installation stay in one sequence, so the drawing and the array on the roof still agree at handover.",
   },
   {
     number: "03",
     title: "Commercial discipline",
-    body: "Our focus is business energy: reducing operational costs while delivering reliable, cost-efficient solar that stands the test of time.",
+    body: "The brief is business energy: reliable generation and a lower cost of power, specified to stand the test of time.",
   },
   {
     number: "04",
     title: "Present until the job is done",
-    body: "We stay in constant communication with our customers until the installation is complete — available for questions, special requests, and a free quote.",
+    body: "We stay in constant communication with our customers until the installation is complete.",
   },
 ] as const;
 
 export const projects: Project[] = [
   {
-    id: "featured-installation",
+    id: "module-alignment",
     number: "01",
-    category: "Commercial",
-    title: "Featured Solar Installation",
-    subtitle: "Solar Installation",
+    category: "Rooftop",
+    title: "Module Alignment",
+    subtitle: "Installation",
     location: "Location to be provided",
     capacity: "Capacity to be provided",
     description:
-      "A large-scale commercial solar installation from the HDIT project gallery. Full project name, location, and capacity will be added from client records.",
-    image: "/images/team.jpg",
-    imageAlt: "Three inspectors reviewing a large commercial rooftop solar farm",
+      "A commercial rooftop installation photographed during module alignment. Project name, location and capacity will be added from HDIT records.",
+    image: "/images/project-05.jpg",
+    imageAlt: "Installer measuring and aligning a solar module on a metal roof",
     featured: true,
   },
   {
-    id: "rooftop-array",
-    number: "02",
-    category: "Rooftop",
-    title: "Module Alignment",
-    subtitle: "Solar Installation",
-    location: "Location to be provided",
-    capacity: "Capacity to be provided",
-    description: "Project name, location and capacity to be provided by HDIT.",
-    image: "/images/project-05.jpg",
-    imageAlt: "Installer measuring and aligning a solar module on a metal roof",
-  },
-  {
-    id: "facility-installation",
-    number: "03",
-    category: "Commercial",
-    title: "Panel Placement",
-    subtitle: "Solar Installation",
-    location: "Location to be provided",
-    capacity: "Capacity to be provided",
-    description: "Project name, location and capacity to be provided by HDIT.",
-    image: "/images/project-06.jpg",
-    imageAlt: "Three technicians placing a solar panel during rooftop installation",
-  },
-  {
     id: "electrical-fit",
-    number: "04",
+    number: "02",
     category: "Installation",
     title: "Electrical Fit-Out",
-    subtitle: "Solar Installation",
+    subtitle: "Installation",
     location: "Location to be provided",
     capacity: "Capacity to be provided",
-    description: "Project name, location and capacity to be provided by HDIT.",
+    description:
+      "Electrical connection of a module into rooftop rails. Specification and site details to be provided by HDIT.",
     image: "/images/project-01.jpg",
     imageAlt: "Technician wiring a solar panel into rooftop mounting rails",
   },
   {
     id: "racking-works",
-    number: "05",
+    number: "03",
     category: "Installation",
     title: "Racking Works",
-    subtitle: "Solar Installation",
+    subtitle: "Installation",
     location: "Location to be provided",
     capacity: "Capacity to be provided",
-    description: "Project name, location and capacity to be provided by HDIT.",
+    description:
+      "Racking and safety lines being set before modules go down. Client, location and capacity to be provided.",
     image: "/images/project-02.jpg",
     imageAlt: "Installation crew fixing solar racking and safety lines on a roof",
   },
@@ -218,73 +187,79 @@ export const process: ProcessStep[] = [
     number: "01",
     title: "Consultation",
     description:
-      "A conversation about energy use, commercial objectives, and whether solar is the right infrastructure decision for the site.",
+      "A first conversation about energy use, commercial objectives, and whether solar belongs on this site.",
+    image: "/images/hero.jpg",
+    imageAlt: "Consultation around a solar module sample",
   },
   {
     number: "02",
     title: "Site Assessment",
     description:
-      "We study the building, available area, and operating conditions so the system is designed for the place it will actually live.",
+      "Structure, available area and operating conditions are read so the system is drawn for the place it will live.",
+    image: "/images/project-02.jpg",
+    imageAlt: "Crew assessing a roof and setting racking lines",
   },
   {
     number: "03",
     title: "System Design",
     description:
-      "A custom solar energy system is engineered around your business needs — not a generic layout applied from another project.",
+      "Modules, electrics and layout are specified against the assessed load — not borrowed from a previous drawing.",
+    image: "/images/project-04.jpg",
+    imageAlt: "Engineers reviewing a solar module during system design",
   },
   {
     number: "04",
     title: "Installation",
     description:
-      "The system is installed with the precision required of long-life energy infrastructure, with communication held until the job is done.",
+      "The array is built, commissioned and handed over as working plant.",
+    image: "/images/project-06.jpg",
+    imageAlt: "Installation team placing a solar panel on a rooftop",
   },
 ];
 
 export const value = [
   {
     title: "Reduce energy costs",
-    body: "Solar is specified as a commercial asset: designed to lower the cost of power as a line on the operating statement.",
+    body: "Specified as a commercial asset: a lower cost of power on the operating statement.",
   },
   {
     title: "Increase energy independence",
-    body: "On-site generation gives businesses more control over a cost that is otherwise fully exposed to the grid.",
+    body: "On-site generation takes a share of supply off a tariff the business does not control.",
   },
   {
     title: "Long-term savings",
-    body: "A well-designed installation is built to deliver value across years of operation, not a single billing cycle.",
+    body: "Value is measured across years of operation, not a single billing cycle.",
   },
   {
     title: "Lower environmental impact",
-    body: "Cleaner energy follows the business case — a more sustainable operation without treating sustainability as the only argument.",
+    body: "Cleaner energy follows the business case, rather than replacing it.",
   },
 ] as const;
 
 export const about = {
   eyebrow: "About HDIT",
   statement: "Building a cleaner energy future, one project at a time.",
-  body: "HDIT specialises in designing and installing custom solar energy systems for businesses. We exist to make the transition to renewable energy practical, reliable, and commercially sound — reducing operational costs and environmental impact with systems that stand the test of time.",
+  body: "We exist to make the move to renewable energy practical and commercially sound — systems specified for the building they serve, not for a brochure.",
   approach: [
     {
       title: "Expertise",
-      body: "Commercial solar installation, with systems tailored to the way each business uses energy.",
+      body: "Commercial and industrial installation, always tailored to the load on the site.",
     },
     {
       title: "Approach",
-      body: "Custom design first. Then careful installation. Then presence until handover is complete.",
+      body: "Assess, design, install, handover. One sequence, one conversation.",
     },
     {
       title: "Values",
-      body: "Reliability, cost-efficiency, and communication. Infrastructure should be as considered as the businesses it powers.",
+      body: "Reliability and cost-efficiency. Infrastructure should be as considered as the businesses it powers.",
     },
   ],
 } as const;
 
-export const testimonialsNote =
-  "Client testimonials from live projects will be published here. The current HDIT website does not yet include verified customer quotes.";
-
 export const cta = {
-  headline: "Ready to make your energy work harder?",
-  body: "Request a free quote and we will look at how a custom solar system can serve your site, your costs, and your long-term energy position.",
+  headlineLead: "Ready to make your energy",
+  headlineAccent: "work harder?",
+  body: "Share the site and the load. We will look at whether a custom array belongs there.",
   primary: { label: "Get a Free Quote", href: "/contact" },
   secondary: { label: "Talk to Our Team", href: "/contact" },
 } as const;

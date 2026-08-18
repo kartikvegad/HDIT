@@ -8,10 +8,8 @@ import { VisualBreak } from "@/components/VisualBreak";
 import { Impact } from "@/components/Impact";
 import { Process } from "@/components/Process";
 import { Value } from "@/components/Value";
-import { Testimonials } from "@/components/Testimonials";
 import { About } from "@/components/About";
 import { CTA } from "@/components/CTA";
-import { Contact } from "@/components/Contact";
 
 export default function HomePage() {
   return (
@@ -24,13 +22,11 @@ export default function HomePage() {
       <VisualBreak />
       <Impact />
       <Process />
-      <Value />
-      <Testimonials />
+      <Suspense>
+        <Value />
+      </Suspense>
       <About />
       <CTA />
-      <Suspense>
-        <Contact />
-      </Suspense>
     </main>
   );
 }

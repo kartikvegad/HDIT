@@ -26,33 +26,34 @@ export function Impact() {
   }, []);
 
   return (
-    <section className="bg-ink py-24 text-paper sm:py-32">
+    <section className="bg-ink py-28 text-paper sm:py-36 lg:py-44">
       <Container>
         <Reveal>
           <SectionLabel index="05" label="Impact" />
-          <h2 className="mt-6 max-w-2xl font-display text-4xl tracking-tight sm:text-5xl">
-            Scale, once the numbers are in.
-          </h2>
-          <p className="mt-5 max-w-lg text-sm leading-relaxed text-paper/60">
-            Installed capacity, project count, years and clients will be published here from HDIT records. Until
-            then these remain placeholders — nothing is invented.
+          <h2 className="type-display mt-8 max-w-3xl">Scale, once the numbers are in.</h2>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/65 sm:text-lg">
+            Installed capacity, project count, years and clients will be published here from HDIT records. Until then
+            these remain placeholders — nothing is invented.
           </p>
         </Reveal>
-        <div ref={ref} className="mt-16 grid grid-cols-2 gap-px bg-line-dark lg:grid-cols-4">
+        <div ref={ref} className="mt-20 grid grid-cols-2 lg:grid-cols-4">
           {impact.map((item, index) => (
-            <div key={item.label} className="bg-ink px-4 py-10 sm:px-8 sm:py-14">
+            <div
+              key={item.label}
+              className="border-t border-line-dark px-2 py-10 sm:px-8 sm:py-16 lg:border-l lg:first:border-l-0"
+            >
               <p
-                className="font-display text-5xl tracking-tight text-amber-bright sm:text-6xl lg:text-7xl"
+                className="font-display text-6xl tracking-tight text-amber-bright sm:text-7xl lg:text-8xl"
                 style={{
                   opacity: visible ? 1 : 0,
-                  transform: visible ? "none" : "translateY(18px)",
+                  transform: visible ? "none" : "translateY(16px)",
                   transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 90}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 90}ms`,
                 }}
               >
                 {item.value}
               </p>
-              <p className="mt-4 text-[0.68rem] uppercase tracking-[0.24em] text-paper/80">{item.label}</p>
-              <p className="mt-2 text-xs text-stone">{item.note}</p>
+              <p className="mt-5 text-[0.8rem] tracking-[0.16em] text-paper/85 uppercase">{item.label}</p>
+              <p className="mt-2 text-sm text-stone">{item.note}</p>
             </div>
           ))}
         </div>

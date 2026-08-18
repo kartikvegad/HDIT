@@ -14,8 +14,8 @@ export function Hero() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const onScroll = () => {
-      const offset = Math.min(window.scrollY, 700);
-      node.style.transform = `translate3d(0, ${offset * 0.18}px, 0) scale(1.08)`;
+      const offset = Math.min(window.scrollY, 640);
+      node.style.transform = `translate3d(0, ${offset * 0.12}px, 0) scale(1.06)`;
     };
 
     onScroll();
@@ -24,28 +24,27 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative isolate flex min-h-svh items-end overflow-hidden bg-ink text-paper">
-      <div ref={imageRef} className="absolute inset-0 origin-center scale-[1.08] will-change-transform">
+    <section className="relative isolate flex min-h-[88svh] items-end overflow-hidden bg-ink text-paper lg:min-h-svh">
+      <div ref={imageRef} className="absolute inset-0 origin-center scale-[1.06] will-change-transform">
         <Image
           src="/images/team.jpg"
           alt="Engineers inspecting a commercial rooftop solar installation"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_35%]"
+          className="object-cover object-[center_30%]"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
-      <div className="absolute inset-0 bg-ink/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/20" />
 
-      <Container className="relative z-10 w-full pb-16 pt-32 sm:pb-20 lg:pb-24">
+      <Container className="relative z-10 w-full pb-12 pt-28 sm:pb-16 lg:pb-20">
         <p className="eyebrow text-amber-bright">{hero.eyebrow}</p>
-        <h1 className="mt-6 max-w-5xl font-display text-[2.7rem] leading-[0.95] tracking-tight text-paper sm:text-6xl lg:text-[5.4rem]">
+        <h1 className="type-hero mt-6 max-w-6xl text-paper">
           {hero.headlineLead}
           <br />
           <em className="italic text-amber-bright">{hero.headlineAccent}</em>
         </h1>
-        <p className="mt-8 max-w-xl text-base leading-relaxed text-paper/78 sm:text-lg">
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-paper/80 sm:text-xl">
           {hero.body}
         </p>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -55,17 +54,14 @@ export function Hero() {
           </Button>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-white/15 pt-6 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-md text-sm leading-relaxed text-paper/60">
-            Commercial solar installation experts. Custom systems designed for the way businesses use energy.
-          </p>
+        <div className="mt-14 flex justify-end border-t border-white/15 pt-6">
           <a
             href="#intro"
-            className="group inline-flex items-center gap-3 text-[0.65rem] tracking-[0.28em] uppercase text-paper/70"
+            className="inline-flex items-center gap-4 text-[0.75rem] tracking-[0.18em] text-paper/70 uppercase"
           >
             Scroll
-            <span className="block h-10 w-px overflow-hidden bg-white/20">
-              <span className="block h-full w-full origin-top animate-pulse bg-amber" />
+            <span className="relative block h-12 w-px bg-white/20">
+              <span className="scroll-line absolute inset-0 bg-amber" />
             </span>
           </a>
         </div>
