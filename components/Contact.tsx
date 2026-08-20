@@ -1,7 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useActionState, useState } from "react";
 import { projectTypes, site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Container, SectionLabel } from "@/components/ui";
@@ -17,21 +16,9 @@ export function Contact({
   tone?: "paper" | "ink";
   compact?: boolean;
 }) {
-  const searchParams = useSearchParams();
   const [state, action, pending] = useActionState(submitQuote, initial);
   const [message, setMessage] = useState("");
   const dark = tone === "ink";
-
-  useEffect(() => {
-    const spend = searchParams.get("spend");
-    const area = searchParams.get("area");
-    if (!spend && !area) return;
-    const lines = [
-      spend ? `Monthly electricity spend: ${spend}` : null,
-      area ? `Available roof / site area: ${area}` : null,
-    ].filter(Boolean);
-    setMessage(lines.join("\n"));
-  }, [searchParams]);
 
   const fieldClass = dark
     ? "mt-2 w-full border-b border-white/20 bg-transparent py-3 text-paper outline-none placeholder:text-stone focus:border-amber"
@@ -45,31 +32,27 @@ export function Contact({
   return (
     <Wrapper
       id={compact ? "quote" : "contact"}
-      className={cn(dark ? "bg-ink text-paper" : "bg-paper", compact ? "pt-6 pb-28 sm:pb-36" : "py-28 sm:py-36 lg:py-44")}
+      className={cn(dark ? "bg-ink text-paper" : "bg-paper", compact ? "pt-6 pb-16 sm:pb-20" : "py-16 sm:py-20 lg:py-24")}
     >
       <Container>
-        <div className={cn("grid gap-16", compact ? "lg:grid-cols-12" : "lg:grid-cols-12")}>
-          <Reveal className={compact ? "lg:col-span-5" : "lg:col-span-5"}>
+        <div className="grid gap-16 lg:grid-cols-12">
+          <Reveal className="lg:col-span-5">
             {compact ? (
               <>
                 <p className="eyebrow">Enquire</p>
-                <h2 className="type-display mt-6">Let’s talk about your energy.</h2>
+                <h2 className="type-display mt-6">Let’s specify the requirement.</h2>
                 <p className={cn("mt-6 max-w-md text-lg leading-relaxed", dark ? "text-paper/70" : "text-muted")}>
-                  Tell us about your energy requirements. We will look at the site with you.
+                  Tell us about the environment and the outcome. We will look at the right capability with you.
                 </p>
               </>
             ) : (
               <>
-                <SectionLabel index="09" label="Contact" />
-                <h2 className="type-display mt-8">Request a free quote.</h2>
+                <SectionLabel label="Contact" />
+                <h2 className="type-display mt-8">Talk to our team.</h2>
                 <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-                  Questions or special requests can go in the same note.
+                  Enterprise, government and institutional enquiries can begin here.
                 </p>
                 <dl className="mt-14 space-y-7 text-base">
-                  <div>
-                    <dt className="eyebrow">Studio</dt>
-                    <dd className="mt-2 text-muted">{site.addressPlaceholder}</dd>
-                  </div>
                   <div>
                     <dt className="eyebrow">Email</dt>
                     <dd className="mt-2">
@@ -86,10 +69,6 @@ export function Contact({
                       </a>
                     </dd>
                   </div>
-                  <div>
-                    <dt className="eyebrow">Hours</dt>
-                    <dd className="mt-2 text-muted">{site.hoursPlaceholder}</dd>
-                  </div>
                 </dl>
               </>
             )}
@@ -101,21 +80,20 @@ export function Contact({
                 <p className="eyebrow">Received</p>
                 <h3 className="type-title mt-4">Thank you. We have your request.</h3>
                 <p className={cn("mt-4 max-w-md text-base leading-relaxed", dark ? "text-paper/70" : "text-muted")}>
-                  This first version stores the enquiry locally for demonstration. Connect HDIT’s email or CRM next to
-                  send it to the team.
+                  The team will review the enquiry and respond using the details provided.
                 </p>
               </div>
             ) : (
               <form action={action} className="grid gap-7 sm:grid-cols-2">
                 <Field label="Name" name="name" required autoComplete="name" className={fieldClass} labelClass={labelClass} />
-                <Field label="Company" name="company" autoComplete="organization" className={fieldClass} labelClass={labelClass} />
+                <Field label="Organisation" name="company" autoComplete="organization" className={fieldClass} labelClass={labelClass} />
                 <Field label="Email" name="email" type="email" required autoComplete="email" className={fieldClass} labelClass={labelClass} />
                 <Field label="Phone" name="phone" type="tel" autoComplete="tel" className={fieldClass} labelClass={labelClass} />
                 <label className="block sm:col-span-2">
-                  <span className={labelClass}>Project type</span>
+                  <span className={labelClass}>Capability</span>
                   <select name="projectType" defaultValue="" className={fieldClass}>
                     <option value="" disabled>
-                      Select a project type
+                      Select a capability
                     </option>
                     {projectTypes.map((type) => (
                       <option key={type} value={type}>
@@ -128,11 +106,11 @@ export function Contact({
                   <span className={labelClass}>Message</span>
                   <textarea
                     name="message"
-                    rows={5}
+                    rows={3}
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     className={fieldClass}
-                    placeholder="Tell us about your energy requirements."
+                    placeholder="Tell us about the requirement and the environment."
                   />
                 </label>
                 {state.error ? (
@@ -147,12 +125,12 @@ export function Contact({
                     className={cn(
                       "group inline-flex items-center gap-3 px-8 py-4 text-[0.78rem] tracking-[0.16em] uppercase transition-colors duration-300",
                       dark
-                        ? "bg-amber text-ink hover:bg-amber-bright"
-                        : "bg-ink text-paper hover:bg-amber hover:text-ink",
+                        ? "bg-amber text-paper hover:bg-amber-bright hover:text-ink"
+                        : "bg-ink text-paper hover:bg-amber",
                       pending && "opacity-70",
                     )}
                   >
-                    {pending ? "Sending…" : "Request a Quote"}
+                    {pending ? "Sending…" : "Send enquiry"}
                     <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>

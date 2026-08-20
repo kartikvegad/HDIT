@@ -1,4 +1,4 @@
-export type Solution = {
+export type Capability = {
   id: string;
   number: string;
   category: string;
@@ -13,10 +13,6 @@ export type Project = {
   number: string;
   category: string;
   title: string;
-  subtitle: string;
-  location: string;
-  capacity: string;
-  description: string;
   image: string;
   imageAlt: string;
   featured?: boolean;
@@ -32,244 +28,344 @@ export type ProcessStep = {
 
 export const site = {
   name: "HDIT",
-  legalName: "HDIT",
-  tagline: "Commercial Solar Installation Experts",
+  legalName: "HDIT Display Solutions Pvt. Ltd.",
+  tagline: "Technology and smart infrastructure",
   description:
-    "Commercial and industrial solar — designed around the site, installed with care.",
+    "Technology and smart infrastructure for a connected, scalable future.",
   url: "https://hdit.example",
   email: "info@hdit.in",
   phone: "+91 98733 42407",
   phoneTel: "+919873342407",
   whatsapp: "919873342407",
-  addressPlaceholder: "Address to be provided",
-  hoursPlaceholder: "Operating hours to be provided",
+} as const;
+
+export const gem = {
+  name: "Government e-Marketplace (GeM)",
+  href: "https://gem.gov.in/",
+  logo: "/images/gem-logo.jpg",
 } as const;
 
 export const nav = [
-  { label: "Solutions", href: "/#solutions" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Capabilities", href: "/#capabilities" },
   { label: "Projects", href: "/#projects" },
-  { label: "About", href: "/#about" },
-  { label: "Why HDIT", href: "/#why-hdit" },
+  { label: "Approach", href: "/#approach" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
 export const hero = {
-  eyebrow: "Commercial Solar Energy",
-  headlineLead: "Powering businesses",
-  headlineAccent: "with the sun.",
-  body: "HDIT designs and delivers custom solar energy systems that help companies reduce operational costs and move toward cleaner, more independent power.",
-  primaryCta: { label: "Get a Free Quote", href: "/contact" },
-  secondaryCta: { label: "Explore Solutions", href: "/#solutions" },
+  eyebrow: "Technology · Infrastructure · Execution",
+  headlineLead: "Engineering the infrastructure",
+  headlineAccent: "of tomorrow.",
+  body: "HDIT delivers integrated technology and smart infrastructure across AV/IT systems, intelligent surveillance and sustainable solar solutions.",
+  primaryCta: { label: "Talk to Our Team", href: "/contact" },
+  secondaryCta: { label: "Explore Our Capabilities", href: "/#capabilities" },
 } as const;
 
 export const intro = {
-  eyebrow: "Smarter energy. Stronger business.",
-  statement:
-    "Solar is not simply an environmental decision. It is a business decision — one that can lower costs, strengthen operations, and future-proof the way a company uses energy.",
+  index: "01",
+  label: "Who we are",
+  headline: "Technology. Infrastructure. Progress.",
+  paragraphs: [
+    "HDIT Display Solutions Pvt. Ltd. is a pan India technology and smart infrastructure organisation delivering integrated solutions across advanced AV/IT systems, smart surveillance infrastructure and sustainable solar solutions.",
+    "With more than 25 years of industry experience at its leadership level, HDIT combines international technology sourcing with local engineering, procurement and execution capabilities.",
+    "Through a robust ecosystem of channel partners and system integrators, alongside direct enterprise and government engagements, HDIT delivers reliable infrastructure designed for long term performance — including integrated command and control centres where display, communication and surveillance come together.",
+  ],
+  cta: { label: "Discover HDIT", href: "/about" },
 } as const;
 
-export const solutions: Solution[] = [
+export const capabilities: Capability[] = [
   {
-    id: "commercial-solar",
+    id: "av-it",
     number: "01",
-    category: "Business",
-    title: "Commercial Solar",
+    category: "AV / IT",
+    title: "Advanced AV / IT Systems",
     description:
-      "Arrays for offices, warehouses and commercial roofs, sized to the way the building actually draws power.",
-    image: "/images/project-01.jpg",
-    imageAlt: "Technician wiring a solar panel on a commercial rooftop",
+      "Transforming corporate, institutional and public spaces through next generation display, communication and integrated technology systems.",
+    image: "/images/project-03.jpg",
+    imageAlt: "Technology briefing for an integrated AV and IT environment",
   },
   {
-    id: "industrial-solar",
+    id: "surveillance",
     number: "02",
-    category: "Industry",
-    title: "Industrial Solar",
+    category: "Security",
+    title: "Smart Surveillance Infrastructure",
     description:
-      "Higher-capacity plant for factories and industrial sites that cannot pause operations for a careless install.",
-    image: "/images/project-05.jpg",
-    imageAlt: "Installer aligning modules on an industrial metal roof",
-  },
-  {
-    id: "custom-design",
-    number: "03",
-    category: "Engineering",
-    title: "Custom System Design",
-    description:
-      "Engineering around site, load profile and commercial objective — not a layout copied from the last job.",
+      "Designing and deploying high definition CCTV and intelligent surveillance infrastructure for secure, connected environments.",
     image: "/images/project-04.jpg",
-    imageAlt: "Engineers reviewing a solar module sample during system design",
+    imageAlt: "Engineering review for a connected infrastructure deployment",
   },
   {
-    id: "installation",
-    number: "04",
-    category: "Delivery",
-    title: "Precision Installation",
-    description:
-      "Mounting, electrical fit-out and commissioning handled as infrastructure that has to last.",
-    image: "/images/project-02.jpg",
-    imageAlt: "Installation crew setting racking and safety lines",
-  },
-];
-
-export const why = [
-  {
-    number: "01",
-    title: "Custom, not catalogue",
-    body: "Each system is drawn around the site, the load, and the outcome — not a package applied from another project.",
-  },
-  {
-    number: "02",
-    title: "Design through installation",
-    body: "Engineering and installation stay in one sequence, so the drawing and the array on the roof still agree at handover.",
-  },
-  {
+    id: "solar",
     number: "03",
-    title: "Commercial discipline",
-    body: "The brief is business energy: reliable generation and a lower cost of power, specified to stand the test of time.",
-  },
-  {
-    number: "04",
-    title: "Present until the job is done",
-    body: "We stay in constant communication with our customers until the installation is complete.",
-  },
-] as const;
-
-export const projects: Project[] = [
-  {
-    id: "module-alignment",
-    number: "01",
-    category: "Rooftop",
-    title: "Module Alignment",
-    subtitle: "Installation",
-    location: "Location to be provided",
-    capacity: "Capacity to be provided",
+    category: "Energy",
+    title: "Sustainable Solar Solutions",
     description:
-      "A commercial rooftop installation photographed during module alignment. Project name, location and capacity will be added from HDIT records.",
+      "Delivering precision engineered commercial and industrial solar systems designed for long term energy performance.",
     image: "/images/project-05.jpg",
-    imageAlt: "Installer measuring and aligning a solar module on a metal roof",
-    featured: true,
-  },
-  {
-    id: "electrical-fit",
-    number: "02",
-    category: "Installation",
-    title: "Electrical Fit-Out",
-    subtitle: "Installation",
-    location: "Location to be provided",
-    capacity: "Capacity to be provided",
-    description:
-      "Electrical connection of a module into rooftop rails. Specification and site details to be provided by HDIT.",
-    image: "/images/project-01.jpg",
-    imageAlt: "Technician wiring a solar panel into rooftop mounting rails",
-  },
-  {
-    id: "racking-works",
-    number: "03",
-    category: "Installation",
-    title: "Racking Works",
-    subtitle: "Installation",
-    location: "Location to be provided",
-    capacity: "Capacity to be provided",
-    description:
-      "Racking and safety lines being set before modules go down. Client, location and capacity to be provided.",
-    image: "/images/project-02.jpg",
-    imageAlt: "Installation crew fixing solar racking and safety lines on a roof",
+    imageAlt: "Commercial solar installation during module alignment",
   },
 ];
 
-export const impact = [
-  { value: "XX+", label: "MW Installed", note: "Figure to be provided" },
-  { value: "XX+", label: "Projects", note: "Figure to be provided" },
-  { value: "XX+", label: "Years", note: "Figure to be provided" },
-  { value: "XX+", label: "Clients", note: "Figure to be provided" },
-] as const;
+export const commandCentre = {
+  index: "03",
+  label: "Command centre",
+  headline: "Command and control, in one room.",
+  body: "HDIT delivers integrated command and control centres that bring large-format display, live operational dashboards and surveillance into a single working environment.",
+  supporting:
+    "These rooms are specified for cities, campuses and enterprises that need a clear operational picture — from video walls and operator consoles through to the systems that feed them.",
+  points: [
+    "Large-format video walls",
+    "Operator consoles and workstations",
+    "Live operational dashboards",
+    "Integrated surveillance and communications",
+  ],
+  image: "/images/command-centre.png",
+  imageAlt:
+    "Integrated command and control centre with video wall, city dashboard, map view and operator workstations",
+  cta: { label: "Discuss a Command Centre", href: "/contact" },
+} as const;
 
-export const process: ProcessStep[] = [
-  {
-    number: "01",
-    title: "Consultation",
-    description:
-      "A first conversation about energy use, commercial objectives, and whether solar belongs on this site.",
-    image: "/images/hero.jpg",
-    imageAlt: "Consultation around a solar module sample",
-  },
-  {
-    number: "02",
-    title: "Site Assessment",
-    description:
-      "Structure, available area and operating conditions are read so the system is drawn for the place it will live.",
-    image: "/images/project-02.jpg",
-    imageAlt: "Crew assessing a roof and setting racking lines",
-  },
-  {
-    number: "03",
-    title: "System Design",
-    description:
-      "Modules, electrics and layout are specified against the assessed load — not borrowed from a previous drawing.",
-    image: "/images/project-04.jpg",
-    imageAlt: "Engineers reviewing a solar module during system design",
-  },
-  {
-    number: "04",
-    title: "Installation",
-    description:
-      "The array is built, commissioned and handed over as working plant.",
-    image: "/images/project-06.jpg",
-    imageAlt: "Installation team placing a solar panel on a rooftop",
-  },
-];
-
-export const value = [
-  {
-    title: "Reduce energy costs",
-    body: "Specified as a commercial asset: a lower cost of power on the operating statement.",
-  },
-  {
-    title: "Increase energy independence",
-    body: "On-site generation takes a share of supply off a tariff the business does not control.",
-  },
-  {
-    title: "Long-term savings",
-    body: "Value is measured across years of operation, not a single billing cycle.",
-  },
-  {
-    title: "Lower environmental impact",
-    body: "Cleaner energy follows the business case, rather than replacing it.",
-  },
-] as const;
-
-export const about = {
-  eyebrow: "About HDIT",
-  statement: "Building a cleaner energy future, one project at a time.",
-  body: "We exist to make the move to renewable energy practical and commercially sound — systems specified for the building they serve, not for a brochure.",
-  approach: [
+export const globalTech = {
+  index: "04",
+  label: "Sourcing",
+  headline: "Global technology. Local precision.",
+  body: "HDIT combines international technology partnerships and sourcing with Indian engineering, procurement and project execution.",
+  supporting:
+    "Selected components and technology are sourced from established markets including Korea and Japan, enabling HDIT to bring advanced solutions together with local expertise and project specific execution.",
+  nodes: [
     {
-      title: "Expertise",
-      body: "Commercial and industrial installation, always tailored to the load on the site.",
+      region: "Korea",
+      lines: ["Technology & Components"],
+      emphasis: false,
     },
     {
-      title: "Approach",
-      body: "Assess, design, install, handover. One sequence, one conversation.",
+      region: "Japan",
+      lines: ["Technology & Components"],
+      emphasis: false,
     },
     {
-      title: "Values",
-      body: "Reliability and cost-efficiency. Infrastructure should be as considered as the businesses it powers.",
+      region: "India",
+      lines: ["Engineering", "Procurement", "Execution", "Support"],
+      emphasis: true,
     },
   ],
 } as const;
 
+export const approach = {
+  index: "05",
+  label: "Approach",
+  headline: "From specification to lifecycle support.",
+  body: "We do not simply supply technology. We engineer, deploy and support infrastructure for the long term.",
+  pipeline: ["Source", "Engineer", "Install", "Support"],
+} as const;
+
+export const process: ProcessStep[] = [
+  {
+    number: "01",
+    title: "Strategic Sourcing & Compliance",
+    description:
+      "Leveraging global technology partnerships alongside strict adherence to local procurement requirements and Make in India considerations.",
+    image: "/images/hero.jpg",
+    imageAlt: "Technical consultation around specified system components",
+  },
+  {
+    number: "02",
+    title: "Turnkey Precision Installation",
+    description:
+      "Executing robust, secure engineering layouts tailored to government standards, departmental guidelines and project specific requirements.",
+    image: "/images/project-02.jpg",
+    imageAlt: "Installation crew executing a precision infrastructure layout",
+  },
+  {
+    number: "03",
+    title: "Comprehensive Lifecycle Support",
+    description:
+      "Providing dedicated Annual Maintenance Contract (AMC) frameworks and responsive technical support designed to minimise operational downtime.",
+    image: "/images/project-01.jpg",
+    imageAlt: "Technical commissioning of installed infrastructure",
+  },
+];
+
+export const environments = {
+  index: "06",
+  label: "Clients",
+  headline: "Built for complex environments.",
+  body: "HDIT works across enterprise, government, institutional and partner channels — each with its own technical and procurement reality.",
+  items: [
+    {
+      title: "Enterprise",
+      body: "Integrated technology infrastructure for modern organisations.",
+      gem: false,
+    },
+    {
+      title: "Government",
+      body: "Solutions aligned with public sector requirements and procurement frameworks, including delivery through the Government e-Marketplace (GeM) portal.",
+      gem: true,
+    },
+    {
+      title: "Institutions",
+      body: "Reliable infrastructure for high usage environments.",
+      gem: false,
+    },
+    {
+      title: "Channel Partners",
+      body: "Technology and execution support for system integrators and partners.",
+      gem: false,
+    },
+  ],
+} as const;
+
+export const projects: Project[] = [
+  {
+    id: "project-showcase",
+    number: "01",
+    category: "Showcase",
+    title: "Project Showcase",
+    image: "/images/project-05.jpg",
+    imageAlt: "Infrastructure installation photographed during system deployment",
+    featured: true,
+  },
+  {
+    id: "installation-detail",
+    number: "02",
+    category: "Execution",
+    title: "Installation Detail",
+    image: "/images/project-01.jpg",
+    imageAlt: "Close detail of installation and electrical fit-out",
+  },
+  {
+    id: "system-deployment",
+    number: "03",
+    category: "Deployment",
+    title: "System Deployment",
+    image: "/images/project-02.jpg",
+    imageAlt: "Field team preparing a site for system deployment",
+  },
+];
+
+export const impact = {
+  index: "08",
+  label: "Experience",
+  headline: "Scale across technology and infrastructure.",
+  items: [
+    { value: 200, suffix: "+", label: "Projects" },
+    { value: 25, suffix: "+", label: "Years" },
+    { value: 100, suffix: "+", label: "Clients" },
+  ],
+} as const;
+
+export const certifications = {
+  index: "09",
+  label: "Assurance",
+  headline: "Certified for quality. Built for operational excellence.",
+  items: [
+    {
+      code: "ISO 9001",
+      title: "Quality Management System",
+      href: "https://www.iso.org/home/insights-news/resources/iso-9001-explained.html",
+      logo: "/images/iso-logo.svg",
+    },
+    {
+      code: "ISO 41001",
+      title: "Facility Management System",
+      href: "https://www.iso.org/standard/68021.html",
+      logo: "/images/iso-logo.svg",
+    },
+  ],
+} as const;
+
+export const philosophy = {
+  index: "10",
+  label: "Purpose",
+  headline: "Driven by a clear purpose.",
+  vision: {
+    title: "Vision",
+    body: "Scaling connectivity with innovative solutions.",
+  },
+  mission: {
+    title: "Mission",
+    body: "Empowering digital infrastructure for global progress.",
+  },
+  slogan: {
+    title: "Official slogan",
+    body: "Connect. Innovate. Scale.",
+  },
+  values: [
+    {
+      number: "01",
+      title: "Connectivity First",
+      meaning: "We build bridges, not silos.",
+      description:
+        "We prioritise seamless integration, interoperability and collaboration to bring people, technologies and organisations closer together.",
+    },
+    {
+      number: "02",
+      title: "Fearless Innovation",
+      meaning: "We challenge the status quo.",
+      description:
+        "We continuously explore advanced technologies and creative engineering approaches to solve real world infrastructure challenges.",
+    },
+    {
+      number: "03",
+      title: "Impactful Scalability",
+      meaning: "We build for sustainable growth.",
+      description:
+        "We engineer resilient systems designed to scale from individual deployments to larger communities, organisations and infrastructure networks.",
+    },
+  ],
+} as const;
+
+export const about = {
+  eyebrow: "About HDIT",
+  headline: "A pan India technology and smart infrastructure organisation.",
+  who: {
+    title: "Who we are",
+    paragraphs: [
+      "HDIT Display Solutions Pvt. Ltd. is a premier pan India technology and smart infrastructure provider.",
+      "Operating through a robust hybrid ecosystem, HDIT works alongside trusted channel partners and system integrators while directly executing enterprise projects and government requirements through the Government e-Marketplace (GeM) portal — including integrated command and control centres that bring display, communication and surveillance into one operational environment.",
+      "By combining global technology sourcing with high quality local procurement, engineering and execution, HDIT delivers tailored infrastructure solutions built around the specific requirements of every project.",
+      "With more than 25 years of experience at founder level, HDIT brings international sourcing together with Indian engineering — serving enterprise clients, government organisations, institutions and a network of channel partners and system integrators across the country.",
+    ],
+  },
+  team: {
+    headline: "Built around expertise. Driven by execution.",
+    body: "HDIT brings together experienced leadership, engineering, project execution, procurement and customer support. The work is organised around the project, not around internal silos.",
+    close:
+      "The customer works with one accountable team across the complete project lifecycle, from consultation and sourcing to installation, commissioning and long term support.",
+  },
+  service: {
+    headline: "Built around the customer.",
+    body: "HDIT does not operate as a simple product vendor. Each engagement is specified, sourced and delivered as infrastructure.",
+    steps: [
+      "Understanding requirements",
+      "Engineering the right solution",
+      "Sourcing appropriate technology",
+      "Executing installation",
+      "Commissioning",
+      "Providing ongoing support",
+    ],
+  },
+  founder: {
+    headline: "Experience that spans generations of technology.",
+    body: "With more than 25 years of experience in the field, HDIT's founder brings deep industry knowledge across technology, infrastructure, sourcing and project execution.",
+  },
+} as const;
+
 export const cta = {
-  headlineLead: "Ready to make your energy",
-  headlineAccent: "work harder?",
-  body: "Share the site and the load. We will look at whether a custom array belongs there.",
-  primary: { label: "Get a Free Quote", href: "/contact" },
-  secondary: { label: "Talk to Our Team", href: "/contact" },
+  headlineLead: "Infrastructure, specified",
+  headlineAccent: "for the long term.",
+  body: "Tell us about the environment, the requirement and the outcome. We will look at the right capability with you.",
+  primary: { label: "Talk to Our Team", href: "/contact" },
+  secondary: { label: "Explore Our Capabilities", href: "/#capabilities" },
 } as const;
 
 export const projectTypes = [
-  "Commercial Solar",
-  "Industrial Solar",
-  "Custom System Design",
-  "Installation",
+  "Advanced AV / IT Systems",
+  "Smart Surveillance Infrastructure",
+  "Command and Control Centre",
+  "Sustainable Solar Solutions",
+  "Integrated infrastructure",
   "Not sure yet",
 ] as const;

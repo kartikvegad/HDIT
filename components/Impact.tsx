@@ -3,10 +3,58 @@
 import { useEffect, useRef, useState } from "react";
 import { impact } from "@/content/site";
 import { Container, SectionLabel } from "@/components/ui";
-import { Reveal } from "@/components/Reveal";
+
+function CountUp({
+  value,
+  suffix,
+  active,
+  delay,
+}: {
+  value: number;
+  suffix: string;
+  active: boolean;
+  delay: number;
+}) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!active) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(value);
+      return;
+    }
+
+    let frame = 0;
+    let start: number | null = null;
+    const duration = 1200;
+
+    const tick = (time: number) => {
+      if (start === null) start = time;
+      const elapsed = time - start - delay;
+      if (elapsed < 0) {
+        frame = requestAnimationFrame(tick);
+        return;
+      }
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - (1 - progress) ** 3;
+      setCount(Math.round(value * eased));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [active, delay, value]);
+
+  return (
+    <>
+      {count}
+      {suffix}
+    </>
+  );
+}
 
 export function Impact() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -19,43 +67,35 @@ export function Impact() {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 },
+      { threshold: 0.35 },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="bg-ink py-28 text-paper sm:py-36 lg:py-44">
+    <section className="bg-ink py-10 text-paper sm:py-12 lg:py-14">
       <Container>
-        <Reveal>
-          <SectionLabel index="05" label="Impact" />
-          <h2 className="type-display mt-8 max-w-3xl">Scale, once the numbers are in.</h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/65 sm:text-lg">
-            Installed capacity, project count, years and clients will be published here from HDIT records. Until then
-            these remain placeholders — nothing is invented.
-          </p>
-        </Reveal>
-        <div ref={ref} className="mt-20 grid grid-cols-2 lg:grid-cols-4">
-          {impact.map((item, index) => (
-            <div
-              key={item.label}
-              className="border-t border-line-dark px-2 py-10 sm:px-8 sm:py-16 lg:border-l lg:first:border-l-0"
-            >
-              <p
-                className="font-display text-6xl tracking-tight text-amber-bright sm:text-7xl lg:text-8xl"
-                style={{
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "none" : "translateY(16px)",
-                  transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 90}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 90}ms`,
-                }}
+        <div className="grid items-end gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-4">
+            <SectionLabel index={impact.index} label={impact.label} />
+            <h2 className="mt-4 font-display text-2xl leading-tight tracking-tight sm:text-3xl">
+              {impact.headline}
+            </h2>
+          </div>
+          <div className="grid grid-cols-3 lg:col-span-8">
+            {impact.items.map((item, index) => (
+              <div
+                key={item.label}
+                className="border-l border-line-dark px-4 first:border-l-0 first:pl-0 sm:px-6 lg:px-8"
               >
-                {item.value}
-              </p>
-              <p className="mt-5 text-[0.8rem] tracking-[0.16em] text-paper/85 uppercase">{item.label}</p>
-              <p className="mt-2 text-sm text-stone">{item.note}</p>
-            </div>
-          ))}
+                <p className="font-display text-4xl tracking-tight text-amber-bright sm:text-5xl lg:text-6xl">
+                  <CountUp value={item.value} suffix={item.suffix} active={visible} delay={index * 120} />
+                </p>
+                <p className="mt-2 text-[0.72rem] tracking-[0.16em] text-paper/80 uppercase">{item.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

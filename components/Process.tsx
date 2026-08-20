@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { process } from "@/content/site";
+import { approach, process } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Container, SectionLabel } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
@@ -34,14 +34,30 @@ export function Process() {
   const progress = ((active + 1) / process.length) * 100;
 
   return (
-    <section id="process" className="bg-paper py-28 sm:py-36 lg:py-44">
+    <section id="approach" className="bg-paper py-16 sm:py-20 lg:py-24">
       <Container>
         <Reveal>
-          <SectionLabel index="06" label="How it works" />
-          <h2 className="type-display mt-8 max-w-3xl">From first conversation to a working system.</h2>
+          <SectionLabel index={approach.index} label={approach.label} />
+          <h2 className="type-display mt-8 max-w-4xl">{approach.headline}</h2>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{approach.body}</p>
         </Reveal>
 
-        <div className="mt-16 hidden lg:grid lg:grid-cols-12 lg:gap-16">
+        <Reveal delay={80}>
+          <p className="mt-14 flex flex-wrap items-center gap-x-4 gap-y-3 font-display text-2xl tracking-tight text-ink sm:text-3xl lg:text-4xl">
+            {approach.pipeline.map((stage, index) => (
+              <span key={stage} className="inline-flex items-center gap-4">
+                <span>{stage}</span>
+                {index < approach.pipeline.length - 1 ? (
+                  <span aria-hidden className="text-amber">
+                    →
+                  </span>
+                ) : null}
+              </span>
+            ))}
+          </p>
+        </Reveal>
+
+        <div className="mt-20 hidden lg:grid lg:grid-cols-12 lg:gap-16">
           <div className="sticky top-28 col-span-5 h-[62vh]">
             {process.map((step, index) => (
               <div

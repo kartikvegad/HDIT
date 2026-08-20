@@ -7,7 +7,7 @@ export default function NotFound() {
       <p className="eyebrow">404</p>
       <h1 className="mt-6 font-display text-5xl tracking-tight">This page is not here.</h1>
       <p className="mt-4 max-w-md text-sm text-paper/70">
-        The link may be out of date. Return to the HDIT homepage or request a quote.
+        The link may be out of date. Return to the HDIT homepage or talk to our team.
       </p>
       <div className="mt-10 flex gap-4">
         <Button href="/">Home</Button>

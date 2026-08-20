@@ -7,11 +7,10 @@ const nextConfig: NextConfig = {
   agentRules: false,
   async redirects() {
     return [
-      { source: "/solutions", destination: "/", permanent: false },
-      { source: "/solutions/:slug", destination: "/", permanent: false },
-      { source: "/projects", destination: "/", permanent: false },
-      { source: "/projects/:slug", destination: "/", permanent: false },
-      { source: "/about", destination: "/", permanent: false },
+      { source: "/solutions", destination: "/#capabilities", permanent: false },
+      { source: "/solutions/:slug", destination: "/#capabilities", permanent: false },
+      { source: "/projects", destination: "/#projects", permanent: false },
+      { source: "/projects/:slug", destination: "/#projects", permanent: false },
     ];
   },
 };

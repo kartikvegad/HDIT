@@ -1,14 +1,15 @@
-import { Suspense } from "react";
 import { Hero } from "@/components/Hero";
 import { Intro } from "@/components/Intro";
-import { Solutions } from "@/components/Solutions";
-import { WhyHDIT } from "@/components/WhyHDIT";
+import { Capabilities } from "@/components/Capabilities";
+import { CommandCentre } from "@/components/CommandCentre";
+import { GlobalTech } from "@/components/GlobalTech";
+import { Process } from "@/components/Process";
+import { Environments } from "@/components/Environments";
 import { Projects } from "@/components/Projects";
 import { VisualBreak } from "@/components/VisualBreak";
 import { Impact } from "@/components/Impact";
-import { Process } from "@/components/Process";
-import { Value } from "@/components/Value";
-import { About } from "@/components/About";
+import { Certifications } from "@/components/Certifications";
+import { Philosophy } from "@/components/Philosophy";
 import { CTA } from "@/components/CTA";
 
 export default function HomePage() {
@@ -16,16 +17,16 @@ export default function HomePage() {
     <main>
       <Hero />
       <Intro />
-      <Solutions />
-      <WhyHDIT />
+      <Capabilities />
+      <CommandCentre />
+      <GlobalTech />
+      <Process />
+      <Environments />
       <Projects />
       <VisualBreak />
       <Impact />
-      <Process />
-      <Suspense>
-        <Value />
-      </Suspense>
-      <About />
+      <Certifications />
+      <Philosophy />
       <CTA />
     </main>
   );

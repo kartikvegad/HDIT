@@ -40,7 +40,7 @@ export function HoverLabel({
         <span
           aria-hidden
           className={cn(
-            "pointer-events-none absolute z-20 hidden whitespace-nowrap bg-amber px-3 py-2 text-[0.68rem] tracking-[0.16em] text-ink uppercase transition-opacity duration-300 lg:block",
+            "pointer-events-none absolute z-20 hidden whitespace-nowrap bg-amber px-3 py-2 text-[0.68rem] tracking-[0.16em] text-paper uppercase transition-opacity duration-300 lg:block",
             visible ? "opacity-100" : "opacity-0",
           )}
           style={{ left: point.x, top: point.y, transform: "translate(-50%, -130%)" }}

@@ -30,19 +30,19 @@ export function VisualBreak() {
       <div ref={imageRef} className="absolute inset-0 origin-center scale-105 will-change-transform">
         <Image
           src="/images/project-06.jpg"
-          alt="Installation team placing a solar panel on a commercial rooftop"
+          alt="Field team executing an infrastructure installation"
           fill
           sizes="100vw"
           className="object-cover object-center"
         />
       </div>
-      <div className="absolute inset-0 bg-ink/50" />
+      <div className="absolute inset-0 bg-ink/55" />
       <div className="relative z-10 flex h-full items-center justify-center px-6 text-center">
         <Reveal>
           <h2 className="type-hero max-w-5xl text-paper">
-            The future of energy
+            Connect. Innovate.
             <br />
-            <em className="italic text-amber-bright">is already here.</em>
+            <em className="italic text-amber-bright">Scale.</em>
           </h2>
         </Reveal>
       </div>

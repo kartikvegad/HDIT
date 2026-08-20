@@ -8,16 +8,16 @@ export function Projects() {
   const supporting = projects.filter((project) => project.id !== featured.id);
 
   return (
-    <section id="projects" className="bg-cream py-28 sm:py-36 lg:py-44">
+    <section id="projects" className="bg-cream py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <Reveal>
-            <SectionLabel index="04" label="Selected work" />
-            <h2 className="type-display mt-8">The project gallery.</h2>
+            <SectionLabel index="07" label="Selected work" />
+            <h2 className="type-display mt-8">Engineering in the field.</h2>
           </Reveal>
           <Reveal delay={80}>
             <p className="max-w-sm text-base leading-relaxed text-muted">
-              Photographs from the current HDIT site. Names, locations and capacities will be added from client records.
+              A view of installation and deployment work across HDIT capabilities.
             </p>
           </Reveal>
         </div>

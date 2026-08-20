@@ -3,17 +3,17 @@
 @theme {
   --font-display: var(--font-playfair), "Times New Roman", serif;
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --color-ink: #0c0b09;
-  --color-ink-soft: #161410;
-  --color-paper: #f3efe6;
-  --color-paper-2: #e7e1d4;
-  --color-cream: #faf7f1;
-  --color-amber: #c9a227;
-  --color-amber-bright: #e4c45a;
-  --color-muted: #6e685c;
-  --color-stone: #9a9386;
-  --color-line: #d8d1c3;
-  --color-line-dark: #2a261f;
+  --color-ink: #0a1628;
+  --color-ink-soft: #12233d;
+  --color-paper: #f3f6fa;
+  --color-paper-2: #e4ebf3;
+  --color-cream: #e8eef6;
+  --color-amber: #2f5f9a;
+  --color-amber-bright: #8fb4e0;
+  --color-muted: #5a6b80;
+  --color-stone: #8a99ab;
+  --color-line: #d0dae6;
+  --color-line-dark: #1e3450;
 }
 
 html {
@@ -47,7 +47,7 @@ body {
 
 ::selection {
   background: var(--color-amber);
-  color: var(--color-ink);
+  color: var(--color-paper);
 }
 
 :focus-visible {
@@ -84,10 +84,10 @@ body {
 .hero-overlay {
   background: linear-gradient(
     90deg,
-    rgba(12, 11, 9, 0.78) 0%,
-    rgba(12, 11, 9, 0.48) 38%,
-    rgba(12, 11, 9, 0.18) 68%,
-    rgba(12, 11, 9, 0.08) 100%
+    rgba(10, 22, 40, 0.82) 0%,
+    rgba(10, 22, 40, 0.52) 38%,
+    rgba(10, 22, 40, 0.2) 68%,
+    rgba(10, 22, 40, 0.08) 100%
   );
 }
 

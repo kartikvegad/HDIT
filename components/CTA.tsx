@@ -5,7 +5,7 @@ import { HoverLabel } from "@/components/HoverLabel";
 
 export function CTA() {
   return (
-    <section className="relative isolate overflow-hidden bg-ink py-32 text-paper sm:py-40 lg:py-48">
+    <section className="relative isolate overflow-hidden bg-ink py-20 text-paper sm:py-24 lg:py-28">
       <Image
         src="/images/team.jpg"
         alt=""

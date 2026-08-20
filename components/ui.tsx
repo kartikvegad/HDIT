@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
@@ -10,7 +11,7 @@ type ButtonProps = {
 
 export function Button({ href, children, variant = "gold", className }: ButtonProps) {
   const styles = {
-    gold: "bg-amber text-ink hover:bg-amber-bright",
+    gold: "bg-amber text-paper hover:bg-amber-bright hover:text-ink",
     ghost: "border border-current bg-transparent hover:bg-white/8",
     light: "border border-white/30 text-white hover:border-white hover:bg-white/8",
     dark: "border border-ink/20 text-ink hover:border-ink hover:bg-ink hover:text-paper",
@@ -74,36 +75,15 @@ export function Logo({
   const large = size === "lg";
 
   return (
-    <Link href="/" className="group flex items-center gap-3" aria-label="HDIT home">
-      <span
-        className={cn(
-          "relative grid place-items-center border transition-colors duration-300",
-          large ? "h-9 w-9" : "h-8 w-8",
-          light ? "border-amber" : "border-ink/80 group-hover:border-amber",
-        )}
-      >
-        <span className="block h-1.5 w-1.5 rotate-45 bg-amber" />
-      </span>
-      <span className="flex flex-col leading-none">
-        <span
-          className={cn(
-            "font-display tracking-[0.18em]",
-            large ? "text-[1.35rem]" : "text-[1.2rem]",
-            light ? "text-paper" : "text-ink",
-          )}
-        >
-          HDIT
-        </span>
-        <span
-          className={cn(
-            "mt-1 tracking-[0.22em] text-muted uppercase",
-            large ? "text-[0.68rem]" : "text-[0.62rem]",
-            light && "text-amber-bright/80",
-          )}
-        >
-          Solar
-        </span>
-      </span>
+    <Link href="/" className="inline-flex items-center" aria-label="HDIT home">
+      <Image
+        src={light ? "/images/hdit-logo-light.png" : "/images/hdit-logo.png"}
+        alt="HDIT — Connect. Innovate. Scale."
+        width={978}
+        height={395}
+        priority
+        className={cn("w-auto", large ? "h-9 sm:h-10 lg:h-11" : "h-12 sm:h-[3.75rem]")}
+      />
     </Link>
   );
 }

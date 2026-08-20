@@ -1,25 +1,18 @@
-import Image from "next/image";
 import Link from "next/link";
 import { hero } from "@/content/site";
 import { Button, Container } from "@/components/ui";
+import { HeroMedia } from "@/components/HeroMedia";
 
 export function Hero() {
   return (
     <section className="relative isolate min-h-[88svh] overflow-hidden bg-ink text-paper lg:min-h-svh">
-      <div className="hero-image absolute inset-0">
-        <Image
-          src="/images/team.jpg"
-          alt="Engineers inspecting a commercial rooftop solar installation"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_30%] contrast-[0.92]"
-        />
+      <div className="absolute inset-0">
+        <HeroMedia />
       </div>
       <div className="hero-overlay absolute inset-0" />
 
       <Container className="relative z-10 flex min-h-[88svh] flex-col justify-center pb-28 pt-32 lg:min-h-svh lg:pb-32 lg:pt-40">
-        <p className="hero-in hero-in-1 eyebrow text-amber-bright">{hero.eyebrow}</p>
+        <p className="hero-in hero-in-1 eyebrow !text-white">{hero.eyebrow}</p>
         <h1 className="hero-in hero-in-2 hero-headline mt-7 max-w-5xl text-paper">
           {hero.headlineLead}
           <br />

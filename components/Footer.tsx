@@ -1,15 +1,17 @@
 import Link from "next/link";
-import { nav, site, solutions } from "@/content/site";
+import { capabilities, gem, nav, site } from "@/content/site";
 import { Container, Logo } from "@/components/ui";
+import { GemLink } from "@/components/GemLink";
 
 export function Footer() {
   return (
     <footer className="bg-ink text-paper">
-      <Container className="py-24 lg:py-32">
+      <Container className="py-16 lg:py-20">
         <div className="grid gap-20 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Logo light />
-            <p className="mt-10 max-w-sm text-lg leading-relaxed text-paper/70">{site.description}</p>
+            <p className="mt-4 text-[0.75rem] tracking-[0.14em] text-stone uppercase">{site.legalName}</p>
+            <p className="mt-8 max-w-sm text-lg leading-relaxed text-paper/70">{site.description}</p>
           </div>
           <div className="grid gap-12 sm:grid-cols-3 lg:col-span-7">
             <FooterCol
@@ -17,8 +19,11 @@ export function Footer() {
               items={nav.map((item) => ({ label: item.label, href: item.href }))}
             />
             <FooterCol
-              title="Solutions"
-              items={solutions.map((item) => ({ label: item.title, href: `/#${item.id}` }))}
+              title="Capabilities"
+              items={[
+                ...capabilities.map((item) => ({ label: item.title, href: `/#${item.id}` })),
+                { label: "Command and Control Centre", href: "/#command-centre" },
+              ]}
             />
             <div>
               <p className="eyebrow">Contact</p>
@@ -33,13 +38,16 @@ export function Footer() {
                     {site.phone}
                   </a>
                 </li>
-                <li>{site.addressPlaceholder}</li>
+                <li className="pt-2">
+                  <p className="mb-4 text-[0.75rem] tracking-[0.16em] text-stone uppercase">{gem.name}</p>
+                  <GemLink compact />
+                </li>
               </ul>
             </div>
           </div>
         </div>
         <div className="mt-16 flex flex-col justify-between gap-5 border-t border-white/10 pt-8 text-sm text-stone sm:flex-row">
-          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {site.legalName}. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/contact" className="transition-colors hover:text-paper">
               Privacy

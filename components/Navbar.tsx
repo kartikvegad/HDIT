@@ -53,7 +53,7 @@ export function Navbar() {
       <Container className="relative z-[60] flex h-16 items-center justify-between lg:h-[4.35rem]">
         <Logo light={!solid} size="lg" />
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 xl:gap-8 lg:flex" aria-label="Primary">
           {desktopNav.map((item) => (
             <Link
               key={item.href}
@@ -74,7 +74,7 @@ export function Navbar() {
             variant={solid ? "gold" : "light"}
             className="hidden px-4 py-2 text-[0.7rem] tracking-[0.14em] sm:inline-flex"
           >
-            Get a Quote
+            Talk to Us
           </Button>
           <button
             type="button"
@@ -129,7 +129,7 @@ export function Navbar() {
           </div>
           <div className="border-t border-white/10 pt-8">
             <Button href="/contact" className="w-full">
-              Get a Free Quote
+              Talk to Our Team
             </Button>
           </div>
         </nav>

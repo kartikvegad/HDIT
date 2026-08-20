@@ -21,29 +21,31 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://hdit.example"),
   title: {
-    default: "HDIT | Commercial Solar Energy",
+    default: "HDIT | Technology and Smart Infrastructure",
     template: "%s | HDIT",
   },
   description: site.description,
   keywords: [
     "HDIT",
-    "Solar Energy",
-    "Commercial Solar",
-    "Industrial Solar",
-    "Solar Installation",
-    "Custom Solar Systems",
+    "HDIT Display Solutions",
+    "AV IT systems",
+    "Smart surveillance",
+    "Solar infrastructure",
+    "Government e-Marketplace",
+    "GeM",
+    "Enterprise technology",
   ],
   openGraph: {
-    title: "HDIT | Commercial Solar Energy",
+    title: "HDIT | Technology and Smart Infrastructure",
     description: site.description,
     type: "website",
-    images: [{ url: "/images/team.jpg", width: 2400, height: 1600, alt: "Commercial rooftop solar installation" }],
+    images: [{ url: "/images/visual.jpg", width: 2400, height: 1600, alt: "HDIT technology and infrastructure briefing" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HDIT | Commercial Solar Energy",
+    title: "HDIT | Technology and Smart Infrastructure",
     description: site.description,
-    images: ["/images/team.jpg"],
+    images: ["/images/visual.jpg"],
   },
 };
 
@@ -53,7 +55,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-svh bg-paper font-sans text-ink antialiased">
         <a
           href="#content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-amber focus:px-4 focus:py-3 focus:text-ink"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-amber focus:px-4 focus:py-3 focus:text-paper"
         >
           Skip to content
         </a>
