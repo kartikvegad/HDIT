@@ -34,9 +34,9 @@ export const site = {
     "Technology and smart infrastructure for a connected, scalable future.",
   url: "https://hdit.example",
   email: "info@hdit.in",
-  phone: "+91 98733 42407",
-  phoneTel: "+919873342407",
-  whatsapp: "919873342407",
+  phone: "+91 98732 42407",
+  phoneTel: "+919873242407",
+  whatsapp: "919873242407",
 } as const;
 
 export const gem = {
