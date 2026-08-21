@@ -6,7 +6,6 @@ import { capabilities } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Container, SectionLabel } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
-import { GemBanner } from "@/components/GemLink";
 
 export function Capabilities() {
   return (
@@ -59,10 +58,6 @@ export function Capabilities() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={120} className="mt-8">
-          <GemBanner tone="dark" />
-        </Reveal>
       </Container>
     </section>
   );

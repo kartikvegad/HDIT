@@ -4,7 +4,7 @@ import { Container, SectionLabel } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { Certifications } from "@/components/Certifications";
 import { Philosophy } from "@/components/Philosophy";
-import { GemBanner, GemLink } from "@/components/GemLink";
+import { GemBanner } from "@/components/GemLink";
 
 export function AboutPageContent() {
   return (
@@ -38,9 +38,6 @@ export function AboutPageContent() {
                   <p className="text-lg leading-relaxed text-muted">{paragraph}</p>
                 </Reveal>
               ))}
-              <Reveal delay={240}>
-                <GemLink className="mt-4" />
-              </Reveal>
             </div>
           </div>
         </Container>

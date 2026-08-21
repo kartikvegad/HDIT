@@ -45,6 +45,9 @@ export const gem = {
   href: "https://gem.gov.in/",
   logo: "/images/gem-logo.jpg",
   tagline: "All products and solutions are available on GeM",
+  eyebrow: "Government e-Marketplace",
+  headline: "All HDIT products and solutions are available on GeM.",
+  body: "Government and public-sector requirements are specified, procured and delivered through the official GeM portal — so the work stays inside the framework departments already use.",
 } as const;
 
 export const makeInIndia = {

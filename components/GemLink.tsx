@@ -48,14 +48,17 @@ export function GemBanner({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:p-8",
+        "flex flex-col gap-8 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-12 sm:p-8 lg:p-10",
         dark ? "border border-white/15 bg-white/5" : "border border-line bg-cream",
       )}
     >
-      <div className="max-w-xl">
-        <p className="eyebrow">Government e-Marketplace</p>
-        <p className={cn("mt-3 text-base leading-relaxed sm:text-lg", dark ? "text-paper/75" : "text-muted")}>
-          Government requirements are delivered through the {gem.name} portal.
+      <div className="max-w-2xl">
+        <p className="eyebrow">{gem.eyebrow}</p>
+        <p className={cn("mt-4 font-display text-2xl leading-snug tracking-tight sm:text-3xl", dark ? "text-paper" : "text-ink")}>
+          {gem.headline}
+        </p>
+        <p className={cn("mt-4 max-w-xl text-base leading-relaxed sm:text-lg", dark ? "text-paper/75" : "text-muted")}>
+          {gem.body}
         </p>
       </div>
       <GemLink />
