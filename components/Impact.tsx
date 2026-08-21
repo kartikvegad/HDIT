@@ -18,7 +18,10 @@ function CountUp({
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setCount(0);
+      return;
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setCount(value);
       return;
@@ -26,7 +29,7 @@ function CountUp({
 
     let frame = 0;
     let start: number | null = null;
-    const duration = 1200;
+    const duration = 1400;
 
     const tick = (time: number) => {
       if (start === null) start = time;
@@ -46,35 +49,41 @@ function CountUp({
   }, [active, delay, value]);
 
   return (
-    <>
+    <span className="tabular-nums">
       {count}
       {suffix}
-    </>
+    </span>
   );
 }
 
 export function Impact() {
   const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    const start = () => setActive(true);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          start();
           observer.disconnect();
         }
       },
-      { threshold: 0.35 },
+      { threshold: 0, rootMargin: "80px 0px" },
     );
     observer.observe(node);
+
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) start();
+
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="bg-ink py-10 text-paper sm:py-12 lg:py-14">
+    <section ref={ref} className="overflow-hidden bg-ink py-10 text-paper sm:py-12 lg:py-14">
       <Container>
         <div className="grid items-end gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
@@ -87,12 +96,15 @@ export function Impact() {
             {impact.items.map((item, index) => (
               <div
                 key={item.label}
-                className="border-l border-line-dark px-4 first:border-l-0 first:pl-0 sm:px-6 lg:px-8"
+                className="overflow-hidden border-l border-line-dark px-4 first:border-l-0 first:pl-0 sm:px-6 lg:px-8"
               >
-                <p className="font-display text-4xl tracking-tight text-amber-bright sm:text-5xl lg:text-6xl">
-                  <CountUp value={item.value} suffix={item.suffix} active={visible} delay={index * 120} />
+                <p
+                  className="font-display text-4xl leading-none tracking-tight text-amber-bright sm:text-5xl lg:text-6xl"
+                  aria-label={`${item.value}${item.suffix} ${item.label}`}
+                >
+                  <CountUp value={item.value} suffix={item.suffix} active={active} delay={index * 160} />
                 </p>
-                <p className="mt-2 text-[0.72rem] tracking-[0.16em] text-paper/80 uppercase">{item.label}</p>
+                <p className="mt-3 text-[0.72rem] tracking-[0.16em] text-paper/80 uppercase">{item.label}</p>
               </div>
             ))}
           </div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { capabilities } from "@/content/site";
+import { cn } from "@/lib/cn";
 import { Container, SectionLabel } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { GemBanner } from "@/components/GemLink";
@@ -26,7 +27,11 @@ export function Capabilities() {
                     alt={capability.imageAlt ?? capability.title}
                     fill
                     sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                    quality={85}
+                    className={cn(
+                      "object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105",
+                      capability.id === "solar" ? "object-bottom" : "object-center",
+                    )}
                   />
                 ) : null}
                 <div className="absolute inset-0 bg-ink/45 transition-colors duration-500 group-hover:bg-ink/35" />

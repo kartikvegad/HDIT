@@ -23,8 +23,8 @@ export function AboutPageContent() {
 
           <Reveal className="img-clip relative mt-16 aspect-[16/8] min-h-[260px]">
             <Image
-              src="/images/visual.jpg"
-              alt="Leadership discussion around infrastructure planning"
+              src="/images/team.jpg"
+              alt="HDIT team discussion around infrastructure planning"
               fill
               sizes="100vw"
               className="object-cover"

@@ -33,6 +33,7 @@ export function VisualBreak() {
           alt="Field team executing an infrastructure installation"
           fill
           sizes="100vw"
+          quality={85}
           className="object-cover object-center"
         />
       </div>

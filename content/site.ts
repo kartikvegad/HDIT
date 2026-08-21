@@ -8,22 +8,23 @@ export type Capability = {
   imageAlt?: string;
 };
 
-export type Project = {
-  id: string;
-  number: string;
-  category: string;
-  title: string;
-  image: string;
-  imageAlt: string;
-  featured?: boolean;
-};
-
 export type ProcessStep = {
   number: string;
   title: string;
   description: string;
   image: string;
   imageAlt: string;
+};
+
+export type ProjectItem = {
+  id: string;
+  tags: Array<"solar" | "surveillance" | "av">;
+  category: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  imageAlt: string;
+  imagePosition?: "center" | "bottom" | "top";
 };
 
 export const site = {
@@ -43,13 +44,28 @@ export const gem = {
   name: "Government e-Marketplace (GeM)",
   href: "https://gem.gov.in/",
   logo: "/images/gem-logo.jpg",
+  tagline: "All products and solutions are available on GeM",
 } as const;
+
+export const makeInIndia = {
+  name: "Make in India",
+  href: "https://www.makeinindia.com/",
+  logo: "/images/make-in-india.png",
+  tagline: "Proudly Make in India Brand",
+} as const;
+
+export const social = [
+  { label: "LinkedIn", href: "#", icon: "linkedin" as const },
+  { label: "Facebook", href: "#", icon: "facebook" as const },
+  { label: "Instagram", href: "#", icon: "instagram" as const },
+  { label: "X", href: "#", icon: "x" as const },
+];
 
 export const nav = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Capabilities", href: "/#capabilities" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Work", href: "/#projects" },
   { label: "Approach", href: "/#approach" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -58,7 +74,7 @@ export const hero = {
   eyebrow: "Technology · Infrastructure · Execution",
   headlineLead: "Engineering the infrastructure",
   headlineAccent: "of tomorrow.",
-  body: "HDIT delivers integrated technology and smart infrastructure across AV/IT systems, intelligent surveillance and sustainable solar solutions.",
+  body: "HDIT delivers integrated technology and smart infrastructure across sustainable solar solutions, intelligent surveillance and AV/IT systems.",
   primaryCta: { label: "Talk to Our Team", href: "/contact" },
   secondaryCta: { label: "Explore Our Capabilities", href: "/#capabilities" },
 } as const;
@@ -68,7 +84,7 @@ export const intro = {
   label: "Who we are",
   headline: "Technology. Infrastructure. Progress.",
   paragraphs: [
-    "HDIT Display Solutions Pvt. Ltd. is a pan India technology and smart infrastructure organisation delivering integrated solutions across advanced AV/IT systems, smart surveillance infrastructure and sustainable solar solutions.",
+    "HDIT Display Solutions Pvt. Ltd. is a pan India technology and smart infrastructure organisation delivering integrated solutions across sustainable solar solutions, smart surveillance infrastructure and advanced AV/IT systems.",
     "With more than 25 years of industry experience at its leadership level, HDIT combines international technology sourcing with local engineering, procurement and execution capabilities.",
     "Through a robust ecosystem of channel partners and system integrators, alongside direct enterprise and government engagements, HDIT delivers reliable infrastructure designed for long term performance — including integrated command and control centres where display, communication and surveillance come together.",
   ],
@@ -77,14 +93,14 @@ export const intro = {
 
 export const capabilities: Capability[] = [
   {
-    id: "av-it",
+    id: "solar",
     number: "01",
-    category: "AV / IT",
-    title: "Advanced AV / IT Systems",
+    category: "Energy",
+    title: "Sustainable Solar Solutions",
     description:
-      "Transforming corporate, institutional and public spaces through next generation display, communication and integrated technology systems.",
-    image: "/images/project-03.jpg",
-    imageAlt: "Technology briefing for an integrated AV and IT environment",
+      "Delivering precision engineered commercial and industrial solar systems designed for long term energy performance.",
+    image: "/images/solar-farm.jpg",
+    imageAlt: "Commercial solar array installed across an open site",
   },
   {
     id: "surveillance",
@@ -97,14 +113,14 @@ export const capabilities: Capability[] = [
     imageAlt: "Engineering review for a connected infrastructure deployment",
   },
   {
-    id: "solar",
+    id: "av-it",
     number: "03",
-    category: "Energy",
-    title: "Sustainable Solar Solutions",
+    category: "AV / IT",
+    title: "Advanced AV / IT Systems",
     description:
-      "Delivering precision engineered commercial and industrial solar systems designed for long term energy performance.",
-    image: "/images/project-05.jpg",
-    imageAlt: "Commercial solar installation during module alignment",
+      "Transforming corporate, institutional and public spaces through next generation display, communication and integrated technology systems.",
+    image: "/images/project-03.jpg",
+    imageAlt: "Technology briefing for an integrated AV and IT environment",
   },
 ];
 
@@ -133,20 +149,25 @@ export const globalTech = {
   headline: "Global technology. Local precision.",
   body: "HDIT combines international technology partnerships and sourcing with Indian engineering, procurement and project execution.",
   supporting:
-    "Selected components and technology are sourced from established markets including Korea and Japan, enabling HDIT to bring advanced solutions together with local expertise and project specific execution.",
+    "Selected components — not complete product lines — are sourced from Korea and Japan. Engineering, procurement and delivery remain in India.",
+  sourcesLabel: "Selected components",
+  operationsLabel: "Built and delivered in India",
   nodes: [
     {
       region: "Korea",
-      lines: ["Technology & Components"],
+      role: "Selected sourcing",
+      lines: ["Technology & components"],
       emphasis: false,
     },
     {
       region: "Japan",
-      lines: ["Technology & Components"],
+      role: "Selected sourcing",
+      lines: ["Technology & components"],
       emphasis: false,
     },
     {
       region: "India",
+      role: "Operations",
       lines: ["Engineering", "Procurement", "Execution", "Support"],
       emphasis: true,
     },
@@ -217,33 +238,104 @@ export const environments = {
   ],
 } as const;
 
-export const projects: Project[] = [
-  {
-    id: "project-showcase",
-    number: "01",
-    category: "Showcase",
-    title: "Project Showcase",
-    image: "/images/project-05.jpg",
-    imageAlt: "Infrastructure installation photographed during system deployment",
-    featured: true,
-  },
-  {
-    id: "installation-detail",
-    number: "02",
-    category: "Execution",
-    title: "Installation Detail",
-    image: "/images/project-01.jpg",
-    imageAlt: "Close detail of installation and electrical fit-out",
-  },
-  {
-    id: "system-deployment",
-    number: "03",
-    category: "Deployment",
-    title: "System Deployment",
-    image: "/images/project-02.jpg",
-    imageAlt: "Field team preparing a site for system deployment",
-  },
-];
+export const projects = {
+  index: "07",
+  label: "Work",
+  headline: "Projects",
+  body: "Representative environments across solar, surveillance and AV/IT. Named references are shared against the requirement.",
+  filters: [
+    { id: "all", label: "All" },
+    { id: "solar", label: "Solar" },
+    { id: "surveillance", label: "CCTV" },
+    { id: "av", label: "AV / IT" },
+  ],
+  items: [
+    {
+      id: "solar-rooftop",
+      tags: ["solar"],
+      category: "Solar",
+      title: "Commercial rooftops specified for long-term solar output",
+      excerpt:
+        "Precision engineered arrays for factories, warehouses and campuses — structured for performance over the life of the asset.",
+      image: "/images/work-solar-roof.jpg",
+      imageAlt: "Industrial rooftop solar array across a commercial facility",
+      imagePosition: "bottom",
+    },
+    {
+      id: "solar-ground",
+      tags: ["solar"],
+      category: "Solar",
+      title: "Ground-mount solar for industrial energy programmes",
+      excerpt:
+        "Site-wide systems where structure, output and lifecycle support have to be specified together.",
+      image: "/images/work-solar-ground.jpg",
+      imageAlt: "Ground-mounted solar array across an open industrial site",
+      imagePosition: "bottom",
+    },
+    {
+      id: "cctv-building",
+      tags: ["surveillance"],
+      category: "CCTV",
+      title: "High-definition CCTV for campuses and commercial sites",
+      excerpt:
+        "Camera layouts specified for coverage, lighting and recording — not a box of devices left for someone else to aim.",
+      image: "/images/work-cctv-building.jpg",
+      imageAlt: "Dome and bullet cameras mounted on a commercial building facade",
+      imagePosition: "top",
+    },
+    {
+      id: "cctv-perimeter",
+      tags: ["surveillance"],
+      category: "CCTV",
+      title: "Perimeter surveillance for industrial and public environments",
+      excerpt:
+        "Weather-rated outdoor cameras for roads, perimeters and open sites, wired into the same operational picture.",
+      image: "/images/work-cctv-outdoor.jpg",
+      imageAlt: "Outdoor bullet camera covering a landscaped perimeter under open sky",
+    },
+    {
+      id: "solar-signage",
+      tags: ["solar", "av"],
+      category: "Solar",
+      title: "Solar-assisted passenger information, off the grid",
+      excerpt:
+        "Outdoor displays that can run on adaptive power — including solar and battery where cabling is thin.",
+      image: "/images/work-bus.jpg",
+      imageAlt: "Solar-powered outdoor passenger information display at a transit stop",
+    },
+    {
+      id: "wayfinding",
+      tags: ["av"],
+      category: "AV / IT",
+      title: "Wayfinding displays for civic and campus environments",
+      excerpt:
+        "Public information systems specified for weather, readability and long hours outdoors.",
+      image: "/images/work-zurich.jpg",
+      imageAlt: "Outdoor wayfinding pylons and digital information display in a civic landscape",
+    },
+    {
+      id: "transit-info",
+      tags: ["av"],
+      category: "AV / IT",
+      title: "Real-time information at the stop",
+      excerpt:
+        "Passenger-facing displays for transit shelters and high-traffic public spaces.",
+      image: "/images/work-riga.jpg",
+      imageAlt: "Digital passenger information display integrated into a transit shelter",
+    },
+    {
+      id: "led-interiors",
+      tags: ["av"],
+      category: "AV / IT",
+      title: "Large-format LED for retail and public interiors",
+      excerpt:
+        "Seamless video walls and architectural displays specified into the room, not added afterwards.",
+      image: "/images/work-led.jpg",
+      imageAlt: "Curved LED video wall and digital pillar in a premium retail interior",
+    },
+  ] satisfies ProjectItem[],
+  cta: { label: "Request a briefing", href: "/contact" },
+} as const;
 
 export const impact = {
   index: "08",
@@ -362,10 +454,10 @@ export const cta = {
 } as const;
 
 export const projectTypes = [
-  "Advanced AV / IT Systems",
-  "Smart Surveillance Infrastructure",
-  "Command and Control Centre",
   "Sustainable Solar Solutions",
+  "Smart Surveillance Infrastructure",
+  "Advanced AV / IT Systems",
+  "Command and Control Centre",
   "Integrated infrastructure",
   "Not sure yet",
 ] as const;
