@@ -13,8 +13,18 @@ export function Projects() {
   const [filter, setFilter] = useState<FilterId>("all");
 
   const items = useMemo(() => {
-    if (filter === "all") return projects.items;
-    return projects.items.filter((item) => item.tags.includes(filter));
+    switch (filter) {
+      case "all":
+        return projects.items;
+      case "solar":
+      case "surveillance":
+      case "av":
+        return projects.items.filter((item) => item.tags.some((tag) => tag === filter));
+      default: {
+        const _exhaustive: never = filter;
+        return _exhaustive;
+      }
+    }
   }, [filter]);
 
   return (
