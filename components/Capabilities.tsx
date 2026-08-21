@@ -37,7 +37,7 @@ export function Capabilities() {
                 <div className="absolute inset-0 bg-ink/45 transition-colors duration-500 group-hover:bg-ink/35" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-transparent" />
                 <div className="relative z-10 mt-auto flex w-full flex-col p-7 xl:p-8">
-                  <p className="font-display text-lg leading-none text-amber-bright">{capability.number}</p>
+                  <p className="font-num text-lg leading-none text-amber-bright">{capability.number}</p>
                   <p className="mt-3 h-4 text-[0.75rem] tracking-[0.16em] text-paper/70 uppercase">
                     {capability.category}
                   </p>

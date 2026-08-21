@@ -99,7 +99,7 @@ export function Impact() {
                 className="overflow-hidden border-l border-line-dark px-4 first:border-l-0 first:pl-0 sm:px-6 lg:px-8"
               >
                 <p
-                  className="font-display text-4xl leading-none tracking-tight text-amber-bright sm:text-5xl lg:text-6xl"
+                  className="font-num text-4xl leading-none tracking-tight text-amber-bright sm:text-5xl lg:text-6xl"
                   aria-label={`${item.value}${item.suffix} ${item.label}`}
                 >
                   <CountUp value={item.value} suffix={item.suffix} active={active} delay={index * 160} />

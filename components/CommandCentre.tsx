@@ -37,7 +37,7 @@ export function CommandCentre() {
             {commandCentre.points.map((point, index) => (
               <Reveal key={point} delay={index * 60}>
                 <li className="flex items-start gap-4">
-                  <span className="font-display text-base leading-none text-amber">0{index + 1}</span>
+                  <span className="font-num text-base leading-none text-amber">0{index + 1}</span>
                   <span className="text-base leading-snug text-ink">{point}</span>
                 </li>
               </Reveal>

@@ -28,7 +28,7 @@ export function GlobalTech() {
             <div className="mt-8 grid gap-10 sm:grid-cols-2">
               {sources.map((node, index) => (
                 <div key={node.region}>
-                  <p className="font-display text-base text-amber">0{index + 1}</p>
+                  <p className="font-num text-base text-amber">0{index + 1}</p>
                   <h3 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">{node.region}</h3>
                   <p className="mt-4 text-base leading-relaxed text-paper/65">{node.lines[0]}</p>
                 </div>
@@ -45,7 +45,7 @@ export function GlobalTech() {
           {operations ? (
             <Reveal delay={120} className="bg-paper p-8 text-ink sm:p-10 lg:col-span-5">
               <p className="text-[0.75rem] tracking-[0.18em] text-amber uppercase">{globalTech.operationsLabel}</p>
-              <p className="mt-6 font-display text-base text-amber">03</p>
+              <p className="mt-6 font-num text-base text-amber">03</p>
               <h3 className="mt-4 font-display text-5xl tracking-tight sm:text-6xl">{operations.region}</h3>
               <ul className="mt-8 grid grid-cols-2 gap-3">
                 {operations.lines.map((line) => (

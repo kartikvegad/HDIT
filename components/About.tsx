@@ -76,7 +76,7 @@ export function AboutPageContent() {
             <ol className="mt-12 grid border-t border-l border-line sm:grid-cols-2 lg:grid-cols-3">
               {about.service.steps.map((step, index) => (
                 <li key={step} className="flex min-h-[168px] flex-col border-r border-b border-line px-7 py-8">
-                  <p className="font-display text-lg text-amber">0{index + 1}</p>
+                  <p className="font-num text-lg text-amber">0{index + 1}</p>
                   <p className="mt-4 font-display text-[1.45rem] leading-snug tracking-tight sm:text-[1.55rem]">
                     {step}
                   </p>

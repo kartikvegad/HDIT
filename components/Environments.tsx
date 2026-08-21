@@ -24,9 +24,9 @@ export function Environments() {
               className="flex min-h-[220px] flex-col border-r border-b border-white/10 px-8 py-10 sm:px-10 sm:py-12"
             >
               <Reveal delay={index * 70} className="flex h-full flex-col">
-                <p className="font-display text-lg text-amber">0{index + 1}</p>
+                <p className="font-num text-lg text-amber">0{index + 1}</p>
                 <h3 className="type-title mt-6">{item.title}</h3>
-                <p className="mt-5 max-w-md text-base leading-relaxed text-paper/70">{item.body}</p>
+                <p className="mt-5 min-h-[4.875rem] max-w-md text-base leading-relaxed text-paper/70">{item.body}</p>
               </Reveal>
             </article>
           ))}

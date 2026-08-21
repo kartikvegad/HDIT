@@ -217,22 +217,22 @@ export const environments = {
   items: [
     {
       title: "Enterprise",
-      body: "Integrated technology infrastructure for modern organisations.",
+      body: "Integrated technology infrastructure for modern organisations, specified around operations, scale and long-term support.",
       gem: false,
     },
     {
       title: "Government",
-      body: "Solutions aligned with public sector requirements and procurement frameworks, including delivery through the Government e-Marketplace (GeM) portal.",
+      body: "Public sector solutions aligned with departmental requirements, procurement frameworks and delivery through GeM.",
       gem: true,
     },
     {
       title: "Institutions",
-      body: "Reliable infrastructure for high usage environments.",
+      body: "Reliable infrastructure for high-usage environments where uptime, access and ongoing support have to hold together.",
       gem: false,
     },
     {
       title: "Channel Partners",
-      body: "Technology and execution support for system integrators and partners.",
+      body: "Technology, sourcing and execution support for system integrators and partners delivering projects nationwide.",
       gem: false,
     },
   ],

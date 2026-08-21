@@ -24,7 +24,7 @@ export function Philosophy({ numbered = true }: { numbered?: boolean }) {
           {philosophy.values.map((value, index) => (
             <Reveal key={value.number} delay={index * 80}>
               <article>
-                <p className="font-display text-lg text-amber">{value.number}</p>
+                <p className="font-num text-lg text-amber">{value.number}</p>
                 <h3 className="type-title mt-5">{value.title}</h3>
                 <p className="mt-4 font-display text-xl italic text-ink">{value.meaning}</p>
                 <p className="mt-5 text-base leading-relaxed text-muted">{value.description}</p>

@@ -56,11 +56,11 @@ export function SectionLabel({
   label: string;
 }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-baseline gap-3 sm:gap-4">
       {index ? (
-        <span className="font-display text-base tracking-[0.12em] text-amber">{index}</span>
+        <span className="font-num text-2xl tracking-[0.08em] text-amber sm:text-3xl">{index}</span>
       ) : null}
-      <span className="eyebrow">{label}</span>
+      <span className="text-2xl font-medium tracking-[0.14em] text-amber uppercase sm:text-3xl">{label}</span>
     </div>
   );
 }

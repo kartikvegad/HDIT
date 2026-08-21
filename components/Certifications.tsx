@@ -30,7 +30,7 @@ export function Certifications({ numbered = true }: { numbered?: boolean }) {
                     className="mt-0.5 h-10 w-auto shrink-0 sm:h-11"
                   />
                   <div className="flex min-w-0 flex-col gap-4">
-                    <p className="font-display text-4xl leading-none tracking-tight sm:text-5xl">{item.code}</p>
+                    <p className="font-num text-4xl leading-none tracking-tight sm:text-5xl">{item.code}</p>
                     <p className="text-lg leading-snug text-muted">{item.title}</p>
                     <p className="text-[0.75rem] tracking-[0.16em] text-amber uppercase">
                       How this standard works

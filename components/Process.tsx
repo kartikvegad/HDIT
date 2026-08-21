@@ -89,7 +89,7 @@ export function Process() {
                   active === index ? "border-amber" : "border-line",
                 )}
               >
-                <p className="font-display text-5xl text-amber">{step.number}</p>
+                <p className="font-num text-5xl tracking-tight text-amber">{step.number}</p>
                 <h3 className="type-title mt-5">{step.title}</h3>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-muted">{step.description}</p>
               </li>
@@ -102,7 +102,7 @@ export function Process() {
             <li key={step.number} className="relative pb-14">
               <span className="absolute top-0 -left-[37px] h-3 w-3 rounded-full border border-amber bg-paper" />
               <Reveal delay={index * 60}>
-                <p className="font-display text-2xl text-amber">{step.number}</p>
+                <p className="font-num text-2xl tracking-tight text-amber">{step.number}</p>
                 <h3 className="type-title mt-3">{step.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-muted">{step.description}</p>
                 <div className="relative mt-6 aspect-[16/10] overflow-hidden">
