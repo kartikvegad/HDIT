@@ -85,6 +85,22 @@ export function Footer() {
               Capabilities
             </Link>
           </div>
+          <a
+            href={site.designedBy.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Designed by ${site.designedBy.name}`}
+            className="group mt-7 inline-flex items-center gap-2.5 text-muted transition-colors duration-300 hover:text-ink"
+          >
+            <span className="text-[0.65rem] tracking-[0.18em] uppercase">Designed by</span>
+            <img
+              src={site.designedBy.logo}
+              alt=""
+              width={113}
+              height={44}
+              className="h-[1.15rem] w-auto opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </a>
         </div>
       </Container>
     </footer>

@@ -38,6 +38,11 @@ export const site = {
   phone: "+91 98732 42407",
   phoneTel: "+919873242407",
   whatsapp: "919873242407",
+  designedBy: {
+    name: "DOT",
+    href: "https://dot-site.vercel.app",
+    logo: "/images/dot.svg",
+  },
 } as const;
 
 export const gem = {
