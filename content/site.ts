@@ -327,8 +327,8 @@ export const projects = {
       title: "Real-time information at the bus stop",
       excerpt:
         "Passenger-facing displays for bus shelters and high-traffic public spaces.",
-      image: "/images/work-bus-pids.jpg",
-      imageAlt: "Digital passenger information screen inside a bus stop shelter",
+      image: "/images/work-bus-shelter.jpg",
+      imageAlt: "Bus stop shelter with real-time digital passenger information displays",
     },
     {
       id: "led-interiors",
