@@ -22,7 +22,11 @@ export function GlobalTech() {
             <p className="text-[0.75rem] tracking-[0.18em] text-amber-bright uppercase">
               {globalTech.sourcesLabel}
             </p>
-            <p className="mt-6 text-lg leading-relaxed text-paper/90">{globalTech.sourcesCopy}</p>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-paper/85 sm:text-lg">
+              {globalTech.sourcesCopy.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </Reveal>
 
           <Reveal delay={80} className="flex items-center justify-center lg:col-span-2">
@@ -35,7 +39,11 @@ export function GlobalTech() {
             <p className="text-[0.75rem] tracking-[0.18em] text-amber-bright uppercase">
               {globalTech.operationsLabel}
             </p>
-            <p className="mt-6 text-lg leading-relaxed text-paper/90">{globalTech.operationsCopy}</p>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-paper/85 sm:text-lg">
+              {globalTech.operationsCopy.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </Reveal>
         </div>
       </Container>
