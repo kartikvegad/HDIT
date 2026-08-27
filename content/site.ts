@@ -142,21 +142,6 @@ export const capabilities: Capability[] = [
   },
 ];
 
-export const avCommandCentre = {
-  kicker: "Part of Advanced AV / IT Systems",
-  headline: "Command and control, in one room.",
-  body: "Command centres sit inside the AV / IT capability — specified as one working environment, not a separate product line.",
-  points: [
-    "Large-format video walls",
-    "Operator consoles and workstations",
-    "Live operational dashboards",
-    "Integrated surveillance and communications",
-  ],
-  image: "/images/command-centre.png",
-  imageAlt:
-    "Integrated command and control centre with video wall, operational dashboard and operator workstations",
-} as const;
-
 export const globalTech = {
   index: "04",
   label: "Sourcing",

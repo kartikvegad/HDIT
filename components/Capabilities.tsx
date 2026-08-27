@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { avCommandCentre, capabilities } from "@/content/site";
+import { capabilities } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Container, SectionLabel } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
@@ -57,36 +57,6 @@ export function Capabilities() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={120} className="mt-4">
-          <article className="grid overflow-hidden border border-white/10 lg:grid-cols-2">
-            <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
-              <p className="text-[0.75rem] tracking-[0.16em] text-amber-bright uppercase">
-                {avCommandCentre.kicker}
-              </p>
-              <h3 className="mt-4 font-display text-[1.85rem] leading-tight tracking-tight xl:text-[2.05rem]">
-                {avCommandCentre.headline}
-              </h3>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-paper/80">{avCommandCentre.body}</p>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {avCommandCentre.points.map((point) => (
-                  <li key={point} className="border border-white/15 px-4 py-3 text-sm text-paper/85">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative min-h-[280px] lg:min-h-full">
-              <Image
-                src={avCommandCentre.image}
-                alt={avCommandCentre.imageAlt}
-                fill
-                sizes="(min-width:1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </article>
-        </Reveal>
       </Container>
     </section>
   );
