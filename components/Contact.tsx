@@ -21,41 +21,41 @@ export function Contact({
   const dark = tone === "ink";
 
   const fieldClass = dark
-    ? "mt-2 w-full border-b border-white/20 bg-transparent py-3 text-paper outline-none placeholder:text-stone focus:border-amber"
-    : "mt-2 w-full border-b border-line bg-transparent py-3 outline-none focus:border-amber";
+    ? "mt-1.5 w-full border-b border-white/20 bg-transparent py-2 text-paper outline-none placeholder:text-stone focus:border-amber"
+    : "mt-1.5 w-full border-b border-line bg-transparent py-2 outline-none focus:border-amber";
   const labelClass = dark
-    ? "text-[0.75rem] tracking-[0.14em] text-stone uppercase"
-    : "text-[0.75rem] tracking-[0.14em] text-muted uppercase";
+    ? "text-[0.7rem] tracking-[0.14em] text-stone uppercase"
+    : "text-[0.7rem] tracking-[0.14em] text-muted uppercase";
 
   const Wrapper = compact ? "div" : "section";
 
   return (
     <Wrapper
       id={compact ? "quote" : "contact"}
-      className={cn(dark ? "bg-ink text-paper" : "bg-paper", compact ? "pt-6 pb-16 sm:pb-20" : "py-16 sm:py-20 lg:py-24")}
+      className={cn(dark ? "bg-ink text-paper" : "bg-paper", compact ? "pt-6 pb-12 sm:pb-14" : "py-12 sm:py-14 lg:py-16")}
     >
       <Container>
-        <div className="grid gap-16 lg:grid-cols-12">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5">
             {compact ? (
               <>
                 <p className="eyebrow">Enquire</p>
-                <h2 className="type-display mt-6">Let’s specify the requirement.</h2>
-                <p className={cn("mt-6 max-w-md text-lg leading-relaxed", dark ? "text-paper/70" : "text-muted")}>
+                <h2 className="type-display mt-5">Let’s specify the requirement.</h2>
+                <p className={cn("mt-4 max-w-md text-base leading-relaxed", dark ? "text-paper/70" : "text-muted")}>
                   Tell us about the environment and the outcome. We will look at the right capability with you.
                 </p>
               </>
             ) : (
               <>
                 <SectionLabel label="Contact" />
-                <h2 className="type-display mt-8">Talk to our team.</h2>
-                <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+                <h2 className="type-display mt-5">Talk to our team.</h2>
+                <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
                   Enterprise, government and institutional enquiries can begin here.
                 </p>
-                <dl className="mt-14 space-y-7 text-base">
+                <dl className="mt-8 space-y-4 text-base">
                   <div>
                     <dt className="eyebrow">Email</dt>
-                    <dd className="mt-2">
+                    <dd className="mt-1.5">
                       <a href={`mailto:${site.email}`} className="text-muted transition-colors duration-300 hover:text-ink">
                         {site.email}
                       </a>
@@ -63,7 +63,7 @@ export function Contact({
                   </div>
                   <div>
                     <dt className="eyebrow">Telephone</dt>
-                    <dd className="mt-2">
+                    <dd className="mt-1.5">
                       <a href={`tel:${site.phoneTel}`} className="text-muted transition-colors duration-300 hover:text-ink">
                         {site.phone}
                       </a>
@@ -76,7 +76,7 @@ export function Contact({
 
           <Reveal delay={80} className="lg:col-span-7">
             {state.ok ? (
-              <div className={cn("border p-10", dark ? "border-white/15" : "border-line bg-cream")}>
+              <div className={cn("border p-8", dark ? "border-white/15" : "border-line bg-cream")}>
                 <p className="eyebrow">Received</p>
                 <h3 className="type-title mt-4">Thank you. We have your request.</h3>
                 <p className={cn("mt-4 max-w-md text-base leading-relaxed", dark ? "text-paper/70" : "text-muted")}>
@@ -84,7 +84,7 @@ export function Contact({
                 </p>
               </div>
             ) : (
-              <form action={action} className="grid gap-7 sm:grid-cols-2">
+              <form action={action} className="grid gap-4 sm:grid-cols-2">
                 <Field label="Name" name="name" required autoComplete="name" className={fieldClass} labelClass={labelClass} />
                 <Field label="Organisation" name="company" autoComplete="organization" className={fieldClass} labelClass={labelClass} />
                 <Field label="Email" name="email" type="email" required autoComplete="email" className={fieldClass} labelClass={labelClass} />
@@ -106,7 +106,7 @@ export function Contact({
                   <span className={labelClass}>Message</span>
                   <textarea
                     name="message"
-                    rows={3}
+                    rows={2}
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     className={fieldClass}
@@ -123,7 +123,7 @@ export function Contact({
                     type="submit"
                     disabled={pending}
                     className={cn(
-                      "group inline-flex items-center gap-3 px-8 py-4 text-[0.78rem] tracking-[0.16em] uppercase transition-colors duration-300",
+                      "group mt-1 inline-flex items-center gap-3 px-7 py-3 text-[0.75rem] tracking-[0.16em] uppercase transition-colors duration-300",
                       dark
                         ? "bg-amber text-paper hover:bg-amber-bright hover:text-ink"
                         : "bg-ink text-paper hover:bg-amber",
