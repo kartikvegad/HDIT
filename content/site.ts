@@ -68,7 +68,7 @@ export const social = [
   },
   {
     label: "X",
-    href: "https://x.com/HDIT_India",
+    href: "https://x.com/HDITDisplay",
     icon: "x" as const,
   },
   {
