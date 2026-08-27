@@ -168,7 +168,7 @@ export const globalTech = {
     "Selected components — not complete product lines — are sourced from multiple markets, including Korea, Japan, America, Europe and Taiwan. Engineering, procurement and delivery remain in India.",
   sourcesLabel: "Selected components",
   sourcesCopy:
-    "Display, surveillance and energy components are selected from markets that make them well — including Korea, Japan, America, Europe, Taiwan and others. The specification comes first; HDIT does not import a complete catalogue, so the technology fits the site rather than locking the project to a single origin.",
+    "Display, surveillance and energy components are selected from markets that make them well — including Korea, Japan, America, Europe, Taiwan and others.",
   operationsLabel: "Built and delivered in India",
   operationsCopy:
     "Engineering, procurement, installation and handover stay in India — one accountable team from layout through commissioning. After handover, support and AMC remain with the same organisation.",
