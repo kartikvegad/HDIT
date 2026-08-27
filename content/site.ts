@@ -135,7 +135,7 @@ export const capabilities: Capability[] = [
     category: "AV / IT",
     title: "Advanced AV / IT Systems",
     description:
-      "Display, communication and integrated technology for corporate, institutional and public spaces — including command and control centres that bring video walls, live dashboards and surveillance into one room.",
+      "Display, communication and command-and-control environments for corporate, institutional and public spaces — video walls, operator consoles, live dashboards and surveillance specified as one working room.",
     image: "/images/command-centre.png",
     imageAlt:
       "Integrated command and control centre with video wall, operational dashboard and operator workstations",
