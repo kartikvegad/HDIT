@@ -167,17 +167,11 @@ export const globalTech = {
   supporting:
     "Selected components — not complete product lines — are sourced from multiple markets, including Korea, Japan, America, Europe and Taiwan. Engineering, procurement and delivery remain in India.",
   sourcesLabel: "Selected components",
-  sourcesCopy: [
-    "Display, surveillance and energy components are selected from markets that make them well — including Korea, Japan, America, Europe, Taiwan and others.",
-    "HDIT does not import a complete catalogue and resell it. The specification comes first: the environment, the duty cycle, the procurement framework and the support life. Components are then chosen to meet that requirement.",
-    "That keeps the technology current without locking a project to a single origin, or to a product line that does not fit the site.",
-  ],
+  sourcesCopy:
+    "Display, surveillance and energy components are selected from markets that make them well — including Korea, Japan, America, Europe, Taiwan and others. HDIT does not import a complete catalogue and resell it: the specification comes first, then components are chosen for the environment, duty cycle, procurement framework and support life, so the technology stays current without locking a project to a single origin or a product line that does not fit the site.",
   operationsLabel: "Built and delivered in India",
-  operationsCopy: [
-    "Once the specification is set, engineering, procurement and delivery stay in India — with one accountable team from layout through commissioning.",
-    "Site surveys, compliance, installation and handover are handled locally, so the system is built for the room, the campus or the public environment it has to serve.",
-    "After handover, support and AMC remain with the same organisation. The people who specified the work stay responsible for how it runs.",
-  ],
+  operationsCopy:
+    "Once the specification is set, engineering, procurement and delivery stay in India — with one accountable team from layout through commissioning. Site surveys, compliance, installation and handover are handled locally, so the system is built for the room, the campus or the public environment it has to serve, and after handover support and AMC remain with the same organisation.",
 } as const;
 
 export const approach = {
