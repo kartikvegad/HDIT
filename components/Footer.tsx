@@ -84,7 +84,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Designed by ${site.designedBy.name}`}
-            className="group mt-7 inline-flex items-center gap-2.5 text-muted transition-colors duration-300 hover:text-ink"
+            className="mt-7 inline-flex items-center gap-2.5 text-ink"
           >
             <span className="text-[0.65rem] tracking-[0.18em] uppercase">Designed by</span>
             <img
@@ -92,7 +92,7 @@ export function Footer() {
               alt=""
               width={113}
               height={44}
-              className="h-[1.15rem] w-auto opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+              className="h-[1.15rem] w-auto"
             />
           </a>
         </div>
