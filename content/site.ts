@@ -43,7 +43,7 @@ export const site = {
 export const gem = {
   name: "Government e-Marketplace (GeM)",
   href: "https://gem.gov.in/",
-  logo: "/images/gem-logo.png",
+  logo: "/images/gem-logo.jpg",
   tagline: "All products and solutions are available on GeM",
   eyebrow: "Government e-Marketplace",
   headline: "All HDIT products and solutions are available on GeM.",
@@ -141,6 +141,21 @@ export const capabilities: Capability[] = [
       "Integrated command and control centre with video wall, operational dashboard and operator workstations",
   },
 ];
+
+export const avCommandCentre = {
+  kicker: "Part of Advanced AV / IT Systems",
+  headline: "Command and control, in one room.",
+  body: "Command centres sit inside the AV / IT capability — specified as one working environment, not a separate product line.",
+  points: [
+    "Large-format video walls",
+    "Operator consoles and workstations",
+    "Live operational dashboards",
+    "Integrated surveillance and communications",
+  ],
+  image: "/images/command-centre.png",
+  imageAlt:
+    "Integrated command and control centre with video wall, operational dashboard and operator workstations",
+} as const;
 
 export const globalTech = {
   index: "04",
@@ -281,8 +296,9 @@ export const projects = {
       title: "Solar-assisted passenger information, off the grid",
       excerpt:
         "Outdoor displays that can run on adaptive power — including solar and battery where cabling is thin.",
-      image: "/images/work-bus-stop.jpg",
-      imageAlt: "Solar-powered passenger information display at a transit stop",
+      image: "/images/work-pids.png",
+      imageAlt: "Outdoor solar-assisted e-paper passenger information display",
+      imagePosition: "top",
     },
     {
       id: "wayfinding",
@@ -311,8 +327,8 @@ export const projects = {
       title: "Large-format LED for retail and public interiors",
       excerpt:
         "Seamless video walls and architectural displays specified into the room, not added afterwards.",
-      image: "/images/work-led.jpg",
-      imageAlt: "Curved LED video wall and digital pillar in a premium retail interior",
+      image: "/images/work-led-ooh.jpg",
+      imageAlt: "Large-format LED display wrapping a public urban facade",
     },
   ] satisfies ProjectItem[],
   cta: { label: "Request a briefing", href: "/contact" },

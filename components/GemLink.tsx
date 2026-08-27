@@ -14,29 +14,31 @@ export function GemLink({
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        backgroundColor: "#0a1628",
+        backgroundColor: "#ffffff",
         display: "inline-flex",
         alignItems: "center",
         gap: "1rem",
-        padding: compact ? "0.5rem 0.75rem" : "0.85rem 1.15rem",
+        padding: compact ? "0.6rem 0.85rem" : "0.85rem 1.15rem",
       }}
       className={className}
     >
-      {/* Native img so Next/Image cannot paint a white frame around the file */}
       <img
-        src="/images/gem-logo.png"
+        src={gem.logo}
         alt={`${gem.name} logo`}
         width={640}
-        height={200}
+        height={220}
         style={{
-          height: compact ? "3.25rem" : "4.25rem",
+          height: compact ? "3.5rem" : "4.75rem",
           width: "auto",
           display: "block",
-          backgroundColor: "transparent",
+          backgroundColor: "#ffffff",
         }}
       />
       <span
-        className={cn("shrink-0 tracking-[0.14em] text-white uppercase", compact ? "text-[0.7rem]" : "text-sm")}
+        className={cn(
+          "shrink-0 tracking-[0.14em] text-[#0a1628] uppercase",
+          compact ? "text-[0.7rem]" : "text-sm",
+        )}
       >
         gem.gov.in →
       </span>
