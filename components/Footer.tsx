@@ -1,13 +1,7 @@
 import Link from "next/link";
-import { gem, nav, site, social } from "@/content/site";
+import { footerLinks, gem, site, social } from "@/content/site";
 import { Container, Logo } from "@/components/ui";
 import { GemLink } from "@/components/GemLink";
-
-const resourceLinks = [
-  ...nav.filter((item) => item.href !== "/"),
-  { label: "People", href: "/about#people" },
-  { label: "Command Centre", href: "/#av-it" },
-];
 
 export function Footer() {
   return (
@@ -21,7 +15,7 @@ export function Footer() {
         <div className="mt-12 grid gap-12 border-t border-line pt-12 text-center md:grid-cols-3 lg:mt-14 lg:gap-8 lg:pt-14">
           <FooterBlock title="Resources">
             <ul className="space-y-3 text-base text-muted">
-              {resourceLinks.map((item) => (
+              {footerLinks.map((item) => (
                 <li key={`${item.href}-${item.label}`}>
                   <Link href={item.href} className="transition-colors duration-300 hover:text-ink">
                     {item.label}
@@ -77,12 +71,12 @@ export function Footer() {
               Legal
             </Link>
             <span className="text-stone">|</span>
-            <Link href="/contact" className="transition-colors hover:text-ink">
-              Contact
+            <Link href="/careers" className="transition-colors hover:text-ink">
+              Careers
             </Link>
             <span className="text-stone">|</span>
-            <Link href="/#capabilities" className="transition-colors hover:text-ink">
-              Capabilities
+            <Link href="/contact" className="transition-colors hover:text-ink">
+              Contact
             </Link>
           </div>
           <a

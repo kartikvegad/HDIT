@@ -93,6 +93,17 @@ export const nav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
+export const footerLinks = [
+  { label: "About", href: "/about" },
+  { label: "Capabilities", href: "/#capabilities" },
+  { label: "Work", href: "/#projects" },
+  { label: "Sourcing", href: "/#sourcing" },
+  { label: "Approach", href: "/#approach" },
+  { label: "Careers", href: "/careers" },
+  { label: "People", href: "/about#people" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
 export const hero = {
   eyebrow: "Technology · Infrastructure · Execution",
   headlineLead: "Engineering the infrastructure",
@@ -264,8 +275,8 @@ export const projects = {
       excerpt:
         "Site-wide systems where structure, output and lifecycle support have to be specified together.",
       image: "/images/work-solar-ground.jpg",
-      imageAlt: "Ground-mounted solar array across an open industrial site",
-      imagePosition: "bottom",
+      imageAlt: "Ground-mounted solar panels across a green field",
+      imagePosition: "center",
     },
     {
       id: "cctv-building",
@@ -295,9 +306,9 @@ export const projects = {
       title: "Solar-assisted passenger information, off the grid",
       excerpt:
         "Outdoor displays that can run on adaptive power — including solar and battery where cabling is thin.",
-      image: "/images/work-pids.png",
-      imageAlt: "Outdoor solar-assisted e-paper passenger information display",
-      imagePosition: "top",
+      image: "/images/work-bus-stop.jpg",
+      imageAlt: "Solar-powered passenger information screen at an outdoor stop",
+      imagePosition: "center",
     },
     {
       id: "wayfinding",
@@ -313,11 +324,11 @@ export const projects = {
       id: "transit-info",
       tags: ["av"],
       category: "AV / IT",
-      title: "Real-time information at the stop",
+      title: "Real-time information at the bus stop",
       excerpt:
-        "Passenger-facing displays for transit shelters and high-traffic public spaces.",
+        "Passenger-facing displays for bus shelters and high-traffic public spaces.",
       image: "/images/work-transit.jpg",
-      imageAlt: "Bus shelter with a real-time passenger information display",
+      imageAlt: "Digital passenger information screen at a bus stop",
     },
     {
       id: "led-interiors",
