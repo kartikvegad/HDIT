@@ -155,9 +155,10 @@ export const globalTech = {
   supporting:
     "Selected components — not complete product lines — are sourced from multiple markets, including Korea, Japan, America, Europe and Taiwan. Engineering, procurement and delivery remain in India.",
   sourcesLabel: "Selected components",
-  sourcesMarkets: ["Korea", "Japan", "America", "Europe", "Taiwan", "and more"],
+  sourcesCopy:
+    "Korea, Japan, America, Europe, Taiwan and more — selected for the requirement, not as complete product lines.",
   operationsLabel: "Built and delivered in India",
-  operationsLines: ["Engineering", "Procurement", "Execution", "Support"],
+  operationsCopy: "Engineering, procurement, execution and support remain in India.",
 } as const;
 
 export const approach = {
