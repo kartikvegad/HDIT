@@ -306,9 +306,9 @@ export const projects = {
       title: "Solar-assisted passenger information, off the grid",
       excerpt:
         "Outdoor displays that can run on adaptive power — including solar and battery where cabling is thin.",
-      image: "/images/work-bus-stop.jpg",
-      imageAlt: "Solar-powered passenger information screen at an outdoor stop",
-      imagePosition: "center",
+      image: "/images/work-solar-pids.jpg",
+      imageAlt: "Solar-powered digital display at a bus stop, with panels mounted above the screen",
+      imagePosition: "top",
     },
     {
       id: "wayfinding",
