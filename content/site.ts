@@ -89,6 +89,7 @@ export const nav = [
   { label: "Capabilities", href: "/#capabilities" },
   { label: "Work", href: "/#projects" },
   { label: "Approach", href: "/#approach" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -452,11 +453,26 @@ export const people = {
     },
     {
       title: "Talk to us",
-      body: "Open roles are briefed directly. If you want to work with HDIT, write to the team with your background and the kind of infrastructure you want to build.",
+      body: "Open roles are briefed directly. If you want to work with HDIT, use the careers form with your background and the kind of infrastructure you want to build.",
     },
   ],
-  cta: { label: "Get in touch", href: "/contact" },
+  cta: { label: "Apply to HDIT", href: "/careers" },
 } as const;
+
+export const careers = {
+  label: "Careers",
+  headline: "Work on infrastructure that has to hold.",
+  body: "Open roles are briefed against the work — engineering, procurement, execution and support. Send your background through this form and the team will be in touch.",
+} as const;
+
+export const careerInterests = [
+  "Engineering",
+  "Procurement",
+  "Project execution",
+  "Support / AMC",
+  "Sales and partnerships",
+  "Other",
+] as const;
 
 export const cta = {
   headlineLead: "Infrastructure, specified",

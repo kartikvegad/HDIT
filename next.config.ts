@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   agentRules: false,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "6mb",
+    },
+  },
   async redirects() {
     return [
       { source: "/solutions", destination: "/#capabilities", permanent: false },
