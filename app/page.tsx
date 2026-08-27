@@ -9,6 +9,7 @@ import { VisualBreak } from "@/components/VisualBreak";
 import { Impact } from "@/components/Impact";
 import { Certifications } from "@/components/Certifications";
 import { Philosophy } from "@/components/Philosophy";
+import { CareersHome } from "@/components/CareersHome";
 import { CTA } from "@/components/CTA";
 
 export default function HomePage() {
@@ -25,6 +26,7 @@ export default function HomePage() {
       <Impact />
       <Certifications numbered={false} />
       <Philosophy numbered={false} />
+      <CareersHome />
       <CTA />
     </main>
   );

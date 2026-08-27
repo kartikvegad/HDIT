@@ -470,6 +470,9 @@ export const careers = {
   label: "Careers",
   headline: "Work on infrastructure that has to hold.",
   body: "Open roles are briefed against the work — engineering, procurement, execution and support. Send your background through this form and the team will be in touch.",
+  homeBody:
+    "HDIT is organised around projects, not around internal silos. Engineering, execution, procurement and support work as one team — so people see the full lifecycle of the infrastructure they help specify and deliver. Open roles are briefed against that work.",
+  cta: { label: "Apply to HDIT", href: "/careers" },
 } as const;
 
 export const careerInterests = [
