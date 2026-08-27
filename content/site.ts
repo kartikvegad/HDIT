@@ -274,8 +274,8 @@ export const projects = {
       title: "Ground-mount solar for industrial energy programmes",
       excerpt:
         "Site-wide systems where structure, output and lifecycle support have to be specified together.",
-      image: "/images/work-solar-ground.jpg",
-      imageAlt: "Ground-mounted solar panels across a green field",
+      image: "/images/work-solar-green.jpg",
+      imageAlt: "Ground-mounted solar panels across a lush green field",
       imagePosition: "center",
     },
     {
@@ -327,8 +327,8 @@ export const projects = {
       title: "Real-time information at the bus stop",
       excerpt:
         "Passenger-facing displays for bus shelters and high-traffic public spaces.",
-      image: "/images/work-transit.jpg",
-      imageAlt: "Digital passenger information screen at a bus stop",
+      image: "/images/work-bus-pids.jpg",
+      imageAlt: "Digital passenger information screen inside a bus stop shelter",
     },
     {
       id: "led-interiors",
