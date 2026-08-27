@@ -1,5 +1,8 @@
 "use server";
 
+import { Resend } from "resend";
+import { site } from "@/content/site";
+
 export type QuoteState = {
   ok: boolean;
   error?: string;
@@ -21,6 +24,37 @@ export async function submitQuote(_prev: QuoteState, formData: FormData): Promis
     return { ok: false, error: "Please enter a valid email address." };
   }
 
-  void { company, phone, projectType, message };
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return {
+      ok: false,
+      error: `Email is not configured yet. Please write to ${site.email}.`,
+    };
+  }
+
+  const resend = new Resend(apiKey);
+  const from = process.env.CONTACT_FROM_EMAIL ?? "HDIT Website <beth.t@example.com>";
+  const lines = [
+    `Name: ${name}`,
+    `Organisation: ${company || "—"}`,
+    `Email: ${email}`,
+    `Phone: ${phone || "—"}`,
+    `Capability: ${projectType || "—"}`,
+    "",
+    message || "No message provided.",
+  ];
+
+  const { error } = await resend.emails.send({
+    from,
+    to: site.email,
+    replyTo: email,
+    subject: `Website enquiry from ${name}`,
+    text: lines.join("\n"),
+  });
+
+  if (error) {
+    return { ok: false, error: "The enquiry could not be sent. Please try again or email us directly." };
+  }
+
   return { ok: true };
 }

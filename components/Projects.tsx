@@ -32,7 +32,7 @@ export function Projects() {
       <Container>
         <div className="grid items-end gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-6">
-            <SectionLabel index={projects.index} label={projects.label} />
+            <SectionLabel label={projects.label} />
             <h2 className="type-display mt-8">{projects.headline}</h2>
           </Reveal>
           <Reveal delay={80} className="lg:col-span-6">

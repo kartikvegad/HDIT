@@ -13,7 +13,9 @@ export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const solid = pathname !== "/" || (scrolled && !open);
+  const onHome = pathname === "/";
+  const solid = !open && (!onHome || scrolled);
+  const light = open || (onHome && !scrolled);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -44,22 +46,24 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500",
-        solid
-          ? "border-b border-line/80 bg-paper/90 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
+        "fixed inset-x-0 top-0 z-50",
+        open
+          ? "border-b border-white/10 bg-ink"
+          : solid
+            ? "border-b border-line/80 bg-paper/90 backdrop-blur-md"
+            : "border-b border-transparent bg-transparent",
       )}
     >
       <Container className="relative z-[60] flex h-16 items-center justify-between lg:h-[4.35rem]">
-        <Logo light={!solid} size="lg" />
+        <Logo light={light} size="lg" />
 
-        <nav className="hidden items-center gap-6 xl:gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary">
           {desktopNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "nav-link text-[0.78rem] tracking-[0.14em] uppercase transition-colors duration-300",
+                "nav-link text-[0.78rem] tracking-[0.14em] uppercase transition-colors duration-200",
                 solid ? "text-ink/70 hover:text-ink" : "text-paper/80 hover:text-paper",
               )}
             >
@@ -80,7 +84,7 @@ export function Navbar() {
             type="button"
             className={cn(
               "relative z-[60] flex h-11 w-11 items-center justify-center lg:hidden",
-              open || !solid ? "text-paper" : "text-ink",
+              light ? "text-paper" : "text-ink",
             )}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -88,52 +92,38 @@ export function Navbar() {
           >
             <span className="sr-only">{open ? "Close" : "Menu"}</span>
             <span
-              className={cn(
-                "absolute h-px w-6 bg-current transition-transform duration-500",
-                open ? "rotate-45" : "-translate-y-1.5",
-              )}
+              className={cn("absolute h-px w-6 bg-current", open ? "rotate-45" : "-translate-y-1.5")}
             />
             <span
-              className={cn(
-                "absolute h-px w-6 bg-current transition-transform duration-500",
-                open ? "-rotate-45" : "translate-y-1.5",
-              )}
+              className={cn("absolute h-px w-6 bg-current", open ? "-rotate-45" : "translate-y-1.5")}
             />
           </button>
         </div>
       </Container>
 
-      <div
-        className={cn(
-          "fixed inset-0 z-40 bg-ink text-paper transition-[opacity,visibility,transform] duration-500 lg:hidden",
-          open ? "visible opacity-100" : "invisible opacity-0",
-        )}
-        aria-hidden={!open}
-      >
-        <nav className="flex h-full flex-col justify-between px-6 pb-10 pt-24 sm:px-10" aria-label="Mobile">
-          <div className="space-y-1">
-            {nav.map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "block font-display text-4xl tracking-tight text-paper transition-[color,transform,opacity] duration-500 hover:text-amber sm:text-5xl",
-                  open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
-                )}
-                style={{ transitionDelay: open ? `${120 + index * 60}ms` : "0ms" }}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-          <div className="border-t border-white/10 pt-8">
-            <Button href="/contact" className="w-full">
-              Talk to Our Team
-            </Button>
-          </div>
-        </nav>
-      </div>
+      {open ? (
+        <div className="fixed inset-0 z-40 bg-ink text-paper lg:hidden">
+          <nav className="flex h-full flex-col justify-between px-6 pb-10 pt-24 sm:px-10" aria-label="Mobile">
+            <div className="space-y-1">
+              {nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-[1.05rem] tracking-[0.14em] text-paper uppercase hover:text-amber-bright"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <div className="border-t border-white/10 pt-8">
+              <Button href="/contact" className="w-full">
+                Talk to Our Team
+              </Button>
+            </div>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }

@@ -1,7 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { Intro } from "@/components/Intro";
 import { Capabilities } from "@/components/Capabilities";
-import { CommandCentre } from "@/components/CommandCentre";
 import { GlobalTech } from "@/components/GlobalTech";
 import { Process } from "@/components/Process";
 import { Environments } from "@/components/Environments";
@@ -18,15 +17,14 @@ export default function HomePage() {
       <Hero />
       <Intro />
       <Capabilities />
-      <CommandCentre />
       <GlobalTech />
       <Process />
       <Environments />
       <Projects />
       <VisualBreak />
       <Impact />
-      <Certifications />
-      <Philosophy />
+      <Certifications numbered={false} />
+      <Philosophy numbered={false} />
       <CTA />
     </main>
   );

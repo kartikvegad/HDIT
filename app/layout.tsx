@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@HDIT_India",
     title: "HDIT | Technology and Smart Infrastructure",
     description: site.description,
     images: ["/images/visual.jpg"],

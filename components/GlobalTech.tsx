@@ -2,16 +2,25 @@ import { globalTech } from "@/content/site";
 import { Container, SectionLabel } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 
-export function GlobalTech() {
-  const sources = globalTech.nodes.filter((node) => !node.emphasis);
-  const operations = globalTech.nodes.find((node) => node.emphasis);
+function ChipList({ items }: { items: readonly string[] }) {
+  return (
+    <ul className="mt-8 flex flex-wrap gap-3">
+      {items.map((item) => (
+        <li key={item} className="border border-white/15 px-4 py-2 text-base text-paper/85">
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
+export function GlobalTech() {
   return (
     <section id="sourcing" className="overflow-hidden bg-ink py-16 text-paper sm:py-20 lg:py-24">
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <SectionLabel index={globalTech.index} label={globalTech.label} />
+            <SectionLabel label={globalTech.label} />
             <h2 className="type-display mt-8">{globalTech.headline}</h2>
           </Reveal>
           <Reveal delay={80} className="flex flex-col justify-end gap-5 lg:col-span-7">
@@ -25,15 +34,10 @@ export function GlobalTech() {
             <p className="text-[0.75rem] tracking-[0.18em] text-amber-bright uppercase">
               {globalTech.sourcesLabel}
             </p>
-            <div className="mt-8 grid gap-10 sm:grid-cols-2">
-              {sources.map((node, index) => (
-                <div key={node.region}>
-                  <p className="font-num text-base text-amber">0{index + 1}</p>
-                  <h3 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">{node.region}</h3>
-                  <p className="mt-4 text-base leading-relaxed text-paper/65">{node.lines[0]}</p>
-                </div>
-              ))}
-            </div>
+            <ChipList items={globalTech.sourcesMarkets} />
+            <p className="mt-8 text-base leading-relaxed text-paper/65">
+              Technology and components, selected for the requirement.
+            </p>
           </Reveal>
 
           <Reveal delay={80} className="flex items-center justify-center lg:col-span-2">
@@ -42,20 +46,15 @@ export function GlobalTech() {
             </p>
           </Reveal>
 
-          {operations ? (
-            <Reveal delay={120} className="bg-paper p-8 text-ink sm:p-10 lg:col-span-5">
-              <p className="text-[0.75rem] tracking-[0.18em] text-amber uppercase">{globalTech.operationsLabel}</p>
-              <p className="mt-6 font-num text-base text-amber">03</p>
-              <h3 className="mt-4 font-display text-5xl tracking-tight sm:text-6xl">{operations.region}</h3>
-              <ul className="mt-8 grid grid-cols-2 gap-3">
-                {operations.lines.map((line) => (
-                  <li key={line} className="text-base leading-relaxed text-muted">
-                    {line}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ) : null}
+          <Reveal delay={120} className="border border-white/10 p-8 sm:p-10 lg:col-span-5">
+            <p className="text-[0.75rem] tracking-[0.18em] text-amber-bright uppercase">
+              {globalTech.operationsLabel}
+            </p>
+            <ChipList items={globalTech.operationsLines} />
+            <p className="mt-8 text-base leading-relaxed text-paper/65">
+              Engineering, procurement and delivery remain in India.
+            </p>
+          </Reveal>
         </div>
       </Container>
     </section>

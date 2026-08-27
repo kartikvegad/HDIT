@@ -87,7 +87,7 @@ export function Impact() {
       <Container>
         <div className="grid items-end gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
-            <SectionLabel index={impact.index} label={impact.label} />
+            <SectionLabel label={impact.label} />
             <h2 className="mt-4 font-display text-2xl leading-tight tracking-tight sm:text-3xl">
               {impact.headline}
             </h2>

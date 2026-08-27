@@ -8,7 +8,7 @@ export function Intro() {
     <section id="intro" className="bg-paper py-16 sm:py-20 lg:py-24">
       <Container>
         <Reveal>
-          <SectionLabel index={intro.index} label={intro.label} />
+          <SectionLabel label={intro.label} />
           <h2 className="type-display mt-8 max-w-4xl">{intro.headline}</h2>
         </Reveal>
         <div className="mt-12 grid gap-8 lg:grid-cols-12">

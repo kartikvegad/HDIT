@@ -43,25 +43,39 @@ export const site = {
 export const gem = {
   name: "Government e-Marketplace (GeM)",
   href: "https://gem.gov.in/",
-  logo: "/images/gem-logo.jpg",
+  logo: "/images/gem-logo.png",
   tagline: "All products and solutions are available on GeM",
   eyebrow: "Government e-Marketplace",
   headline: "All HDIT products and solutions are available on GeM.",
   body: "Government and public-sector requirements are specified, procured and delivered through the official GeM portal — so the work stays inside the framework departments already use.",
 } as const;
 
-export const makeInIndia = {
-  name: "Make in India",
-  href: "https://www.makeinindia.com/",
-  logo: "/images/make-in-india.png",
-  tagline: "Proudly Make in India Brand",
-} as const;
-
 export const social = [
-  { label: "LinkedIn", href: "#", icon: "linkedin" as const },
-  { label: "Facebook", href: "#", icon: "facebook" as const },
-  { label: "Instagram", href: "#", icon: "instagram" as const },
-  { label: "X", href: "#", icon: "x" as const },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@HDITDisplaySolutions",
+    icon: "youtube" as const,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/hdit-display-solutions",
+    icon: "linkedin" as const,
+  },
+  {
+    label: "X",
+    href: "https://x.com/HDIT_India",
+    icon: "x" as const,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/HDITDisplaySolutions",
+    icon: "facebook" as const,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/hdit_display/",
+    icon: "instagram" as const,
+  },
 ];
 
 export const nav = [
@@ -87,7 +101,7 @@ export const intro = {
   label: "Who we are",
   headline: "Technology. Infrastructure. Progress.",
   paragraphs: [
-    "HDIT Display Solutions Pvt. Ltd. is a pan India technology and smart infrastructure organisation delivering integrated solutions across sustainable solar solutions, smart surveillance infrastructure and advanced AV/IT systems.",
+    "HDIT Display Solutions Pvt. Ltd. is a technology and smart infrastructure organisation delivering integrated solutions across sustainable solar solutions, smart surveillance infrastructure and advanced AV/IT systems.",
     "With more than 25 years of industry experience at its leadership level, HDIT combines international technology sourcing with local engineering, procurement and execution capabilities.",
     "Through a robust ecosystem of channel partners and system integrators, alongside direct enterprise and government engagements, HDIT delivers reliable infrastructure designed for long term performance — including integrated command and control centres where display, communication and surveillance come together.",
   ],
@@ -101,7 +115,7 @@ export const capabilities: Capability[] = [
     category: "Energy",
     title: "Sustainable Solar Solutions",
     description:
-      "Delivering precision engineered commercial and industrial solar systems designed for long term energy performance.",
+      "Commercial and industrial solar, rooftop and site-wide arrays, and solar-assisted infrastructure specified for long-term energy performance.",
     image: "/images/solar-farm.jpg",
     imageAlt: "Commercial solar array installed across an open site",
   },
@@ -121,30 +135,12 @@ export const capabilities: Capability[] = [
     category: "AV / IT",
     title: "Advanced AV / IT Systems",
     description:
-      "Transforming corporate, institutional and public spaces through next generation display, communication and integrated technology systems.",
-    image: "/images/project-03.jpg",
-    imageAlt: "Technology briefing for an integrated AV and IT environment",
+      "Display, communication and integrated technology for corporate, institutional and public spaces — including command and control centres that bring video walls, live dashboards and surveillance into one room.",
+    image: "/images/command-centre.png",
+    imageAlt:
+      "Integrated command and control centre with video wall, operational dashboard and operator workstations",
   },
 ];
-
-export const commandCentre = {
-  index: "03",
-  label: "Command centre",
-  headline: "Command and control, in one room.",
-  body: "HDIT delivers integrated command and control centres that bring large-format display, live operational dashboards and surveillance into a single working environment.",
-  supporting:
-    "These rooms are specified for cities, campuses and enterprises that need a clear operational picture — from video walls and operator consoles through to the systems that feed them.",
-  points: [
-    "Large-format video walls",
-    "Operator consoles and workstations",
-    "Live operational dashboards",
-    "Integrated surveillance and communications",
-  ],
-  image: "/images/command-centre.png",
-  imageAlt:
-    "Integrated command and control centre with video wall, city dashboard, map view and operator workstations",
-  cta: { label: "Discuss a Command Centre", href: "/contact" },
-} as const;
 
 export const globalTech = {
   index: "04",
@@ -152,29 +148,11 @@ export const globalTech = {
   headline: "Global technology. Local precision.",
   body: "HDIT combines international technology partnerships and sourcing with Indian engineering, procurement and project execution.",
   supporting:
-    "Selected components — not complete product lines — are sourced from Korea and Japan. Engineering, procurement and delivery remain in India.",
+    "Selected components — not complete product lines — are sourced from multiple markets, including Korea, Japan, America, Europe and Taiwan. Engineering, procurement and delivery remain in India.",
   sourcesLabel: "Selected components",
+  sourcesMarkets: ["Korea", "Japan", "America", "Europe", "Taiwan", "and more"],
   operationsLabel: "Built and delivered in India",
-  nodes: [
-    {
-      region: "Korea",
-      role: "Selected sourcing",
-      lines: ["Technology & components"],
-      emphasis: false,
-    },
-    {
-      region: "Japan",
-      role: "Selected sourcing",
-      lines: ["Technology & components"],
-      emphasis: false,
-    },
-    {
-      region: "India",
-      role: "Operations",
-      lines: ["Engineering", "Procurement", "Execution", "Support"],
-      emphasis: true,
-    },
-  ],
+  operationsLines: ["Engineering", "Procurement", "Execution", "Support"],
 } as const;
 
 export const approach = {
@@ -190,7 +168,7 @@ export const process: ProcessStep[] = [
     number: "01",
     title: "Strategic Sourcing & Compliance",
     description:
-      "Leveraging global technology partnerships alongside strict adherence to local procurement requirements and Make in India considerations.",
+      "Leveraging global technology partnerships alongside strict adherence to local procurement requirements.",
     image: "/images/hero.jpg",
     imageAlt: "Technical consultation around specified system components",
   },
@@ -260,8 +238,8 @@ export const projects = {
       title: "Commercial rooftops specified for long-term solar output",
       excerpt:
         "Precision engineered arrays for factories, warehouses and campuses — structured for performance over the life of the asset.",
-      image: "/images/work-solar-roof.jpg",
-      imageAlt: "Industrial rooftop solar array across a commercial facility",
+      image: "/images/project-05.jpg",
+      imageAlt: "Commercial rooftop solar array across an industrial warehouse",
       imagePosition: "bottom",
     },
     {
@@ -283,7 +261,7 @@ export const projects = {
       excerpt:
         "Camera layouts specified for coverage, lighting and recording — not a box of devices left for someone else to aim.",
       image: "/images/work-cctv-building.jpg",
-      imageAlt: "Dome and bullet cameras mounted on a commercial building facade",
+      imageAlt: "PTZ and bullet cameras covering a commercial campus against city buildings",
       imagePosition: "top",
     },
     {
@@ -303,8 +281,8 @@ export const projects = {
       title: "Solar-assisted passenger information, off the grid",
       excerpt:
         "Outdoor displays that can run on adaptive power — including solar and battery where cabling is thin.",
-      image: "/images/work-bus.jpg",
-      imageAlt: "Solar-powered outdoor passenger information display at a transit stop",
+      image: "/images/work-bus-stop.jpg",
+      imageAlt: "Solar-powered passenger information display at a transit stop",
     },
     {
       id: "wayfinding",
@@ -313,8 +291,8 @@ export const projects = {
       title: "Wayfinding displays for civic and campus environments",
       excerpt:
         "Public information systems specified for weather, readability and long hours outdoors.",
-      image: "/images/work-zurich.jpg",
-      imageAlt: "Outdoor wayfinding pylons and digital information display in a civic landscape",
+      image: "/images/work-wayfinding.png",
+      imageAlt: "Interactive digital wayfinding kiosk on a civic campus",
     },
     {
       id: "transit-info",
@@ -323,8 +301,8 @@ export const projects = {
       title: "Real-time information at the stop",
       excerpt:
         "Passenger-facing displays for transit shelters and high-traffic public spaces.",
-      image: "/images/work-riga.jpg",
-      imageAlt: "Digital passenger information display integrated into a transit shelter",
+      image: "/images/work-transit.jpg",
+      imageAlt: "Bus shelter with a real-time passenger information display",
     },
     {
       id: "led-interiors",
@@ -359,13 +337,17 @@ export const certifications = {
     {
       code: "ISO 9001",
       title: "Quality Management System",
-      href: "https://www.iso.org/home/insights-news/resources/iso-9001-explained.html",
+      how: "ISO 9001 sets a repeatable way of working: requirements are recorded, work is checked, and the same standard is applied from specification through commissioning and support.",
+      value:
+        "For the customer that means fewer surprises, clearer accountability and infrastructure that is delivered the way it was specified — not as a one-off improvisation.",
       logo: "/images/iso-logo.svg",
     },
     {
       code: "ISO 41001",
       title: "Facility Management System",
-      href: "https://www.iso.org/standard/68021.html",
+      how: "ISO 41001 is about the operational life of the facility: roles, maintenance, and how people and systems keep the environment working after handover.",
+      value:
+        "For the customer that means the installation is designed to be run and supported — not only installed — so uptime and service remain part of the engagement.",
       logo: "/images/iso-logo.svg",
     },
   ],
@@ -414,11 +396,11 @@ export const philosophy = {
 
 export const about = {
   eyebrow: "About HDIT",
-  headline: "A pan India technology and smart infrastructure organisation.",
+  headline: "A technology and smart infrastructure organisation.",
   who: {
     title: "Who we are",
     paragraphs: [
-      "HDIT Display Solutions Pvt. Ltd. is a premier pan India technology and smart infrastructure provider.",
+      "HDIT Display Solutions Pvt. Ltd. is a technology and smart infrastructure provider.",
       "Operating through a robust hybrid ecosystem, HDIT works alongside trusted channel partners and system integrators while directly executing enterprise projects and government requirements through the Government e-Marketplace (GeM) portal — including integrated command and control centres that bring display, communication and surveillance into one operational environment.",
       "By combining global technology sourcing with high quality local procurement, engineering and execution, HDIT delivers tailored infrastructure solutions built around the specific requirements of every project.",
       "With more than 25 years of experience at founder level, HDIT brings international sourcing together with Indian engineering — serving enterprise clients, government organisations, institutions and a network of channel partners and system integrators across the country.",
@@ -446,6 +428,27 @@ export const about = {
     headline: "Experience that spans generations of technology.",
     body: "With more than 25 years of experience in the field, HDIT's founder brings deep industry knowledge across technology, infrastructure, sourcing and project execution.",
   },
+} as const;
+
+export const people = {
+  label: "People",
+  headline: "Built for people who want to grow with the work.",
+  body: "HDIT is organised around projects, not around internal silos. Engineering, execution, procurement and support work as one team — so people see the full lifecycle of the infrastructure they help specify and deliver.",
+  items: [
+    {
+      title: "Learning on live infrastructure",
+      body: "The work is real environments: solar, surveillance, AV/IT and command centres. People develop by specifying, installing and supporting systems — not by sitting outside the project.",
+    },
+    {
+      title: "One team, end to end",
+      body: "Career growth here follows the project. The same people stay close to the requirement from consultation through commissioning and AMC, so responsibility and skill compound together.",
+    },
+    {
+      title: "Talk to us",
+      body: "Open roles are briefed directly. If you want to work with HDIT, write to the team with your background and the kind of infrastructure you want to build.",
+    },
+  ],
+  cta: { label: "Get in touch", href: "/contact" },
 } as const;
 
 export const cta = {

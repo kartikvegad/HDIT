@@ -22,10 +22,9 @@ export function Philosophy({ numbered = true }: { numbered?: boolean }) {
 
         <div className="mt-24 grid gap-12 lg:grid-cols-3">
           {philosophy.values.map((value, index) => (
-            <Reveal key={value.number} delay={index * 80}>
+            <Reveal key={value.title} delay={index * 80}>
               <article>
-                <p className="font-num text-lg text-amber">{value.number}</p>
-                <h3 className="type-title mt-5">{value.title}</h3>
+                <h3 className="type-title">{value.title}</h3>
                 <p className="mt-4 font-display text-xl italic text-ink">{value.meaning}</p>
                 <p className="mt-5 text-base leading-relaxed text-muted">{value.description}</p>
               </article>
