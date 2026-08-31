@@ -90,9 +90,9 @@ export function Footer() {
             <img
               src={site.designedBy.logo}
               alt=""
-              width={113}
-              height={44}
-              className="h-[1.15rem] w-auto"
+              width={60}
+              height={60}
+              className="h-[1.15rem] w-[1.15rem]"
             />
           </a>
         </div>
