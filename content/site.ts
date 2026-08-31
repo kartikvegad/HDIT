@@ -41,7 +41,7 @@ export const site = {
   designedBy: {
     name: "DOT",
     href: "https://dot-site.vercel.app",
-    logo: "/images/dot.png",
+    logo: "/images/dot.svg",
   },
 } as const;
 
