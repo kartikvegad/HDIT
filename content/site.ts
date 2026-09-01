@@ -159,6 +159,15 @@ export const capabilities: Capability[] = [
   },
 ];
 
+export const catalogue = {
+  href: "/catalogue/hdit-catalogue.pdf",
+  fileName: "HDIT-Product-Catalogue.pdf",
+  title: "Product catalogue",
+  description: "Browse HDIT solutions across solar, surveillance and AV/IT.",
+  viewLabel: "View catalogue",
+  downloadLabel: "Download PDF",
+} as const;
+
 export const globalTech = {
   index: "04",
   label: "Sourcing",
@@ -331,8 +340,28 @@ export const projects = {
       title: "Large-format LED for retail and public interiors",
       excerpt:
         "Seamless video walls and architectural displays specified into the room, not added afterwards.",
-      image: "/images/work-led-ooh.jpg",
-      imageAlt: "Large-format LED display wrapping a public urban facade",
+      image: "/images/work-led-interiors.jpg",
+      imageAlt: "Large-format LED displays integrated into a retail storefront in a public mall interior",
+    },
+    {
+      id: "control-room-led",
+      tags: ["av"],
+      category: "AV / IT",
+      title: "Control room with LED video wall",
+      excerpt:
+        "Operator workstations and a curved LED wall specified as one environment — live feeds, dashboards and surveillance on a single operational canvas.",
+      image: "/images/work-control-room-led.jpg",
+      imageAlt: "Control room with curved LED video wall and operator workstations",
+    },
+    {
+      id: "command-centre-lcd",
+      tags: ["av"],
+      category: "AV / IT",
+      title: "Command centre with LCD video wall",
+      excerpt:
+        "Integrated command centre with panoramic LCD display, operator consoles and room infrastructure delivered as a single specification.",
+      image: "/images/work-command-centre-lcd.jpg",
+      imageAlt: "Command centre with curved LCD video wall and operator desks",
     },
   ] satisfies ProjectItem[],
   cta: { label: "Request a briefing", href: "/contact" },

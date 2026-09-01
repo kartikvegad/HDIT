@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { capabilities } from "@/content/site";
+import { capabilities, catalogue } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Container, SectionLabel } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
@@ -57,7 +57,53 @@ export function Capabilities() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={220} className="mt-12 sm:mt-14">
+          <div className="border border-white/15 bg-white/[0.04] p-6 sm:p-8 lg:p-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="eyebrow !text-paper/70">{catalogue.title}</p>
+                <p className="mt-3 text-base leading-relaxed text-paper/75">{catalogue.description}</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={catalogue.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 border border-white/25 bg-white/5 px-6 py-3.5 text-[0.78rem] font-medium tracking-[0.16em] text-paper uppercase transition-colors duration-300 hover:border-white hover:bg-white/10"
+                >
+                  <PdfIcon />
+                  <span>{catalogue.viewLabel}</span>
+                </a>
+                <a
+                  href={catalogue.href}
+                  download={catalogue.fileName}
+                  className="group inline-flex items-center gap-3 bg-amber px-6 py-3.5 text-[0.78rem] font-medium tracking-[0.16em] text-paper uppercase transition-colors duration-300 hover:bg-amber-bright hover:text-ink"
+                >
+                  <DownloadIcon />
+                  <span>{catalogue.downloadLabel}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
+  );
+}
+
+function PdfIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6Zm7 1.5L18.5 9H13V3.5ZM8 13h2v5H8v-5Zm4-2h2c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-2v-5Zm2 5c.6 0 1-.4 1-1v-3c0-.6-.4-1-1-1h-1v5h1Z" />
+    </svg>
+  );
+}
+
+function DownloadIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+      <path d="M12 3a1 1 0 0 1 1 1v9.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L11 13.59V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z" />
+    </svg>
   );
 }

@@ -4,9 +4,11 @@ import { cn } from "@/lib/cn";
 export function GemLink({
   className,
   compact = false,
+  withHint = false,
 }: {
   className?: string;
   compact?: boolean;
+  withHint?: boolean;
 }) {
   return (
     <a
@@ -17,9 +19,13 @@ export function GemLink({
         backgroundColor: "#ffffff",
         display: "inline-flex",
         alignItems: "center",
-        padding: compact ? "0.5rem 0.65rem" : "0.75rem 0.9rem",
+        padding: compact ? "0.5rem 0.65rem" : withHint ? "0.75rem 0.9rem 0.65rem" : "0.75rem 0.9rem",
       }}
-      className={className}
+      className={cn(
+        "group cursor-pointer transition-shadow duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber",
+        withHint && "flex-col gap-2 hover:shadow-[0_10px_28px_rgba(0,0,0,0.28)]",
+        className,
+      )}
     >
       <img
         src={gem.logo}
@@ -33,11 +39,25 @@ export function GemLink({
           backgroundColor: "#ffffff",
         }}
       />
+      {withHint ? (
+        <span className="text-[0.68rem] font-medium tracking-[0.16em] text-neutral-500 uppercase transition-colors duration-300 group-hover:text-neutral-800">
+          Visit GeM
+          <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
+        </span>
+      ) : null}
     </a>
   );
 }
 
-export function GemBanner({ tone = "light" }: { tone?: "light" | "dark" }) {
+export function GemBanner({
+  tone = "light",
+  showLinkHint = false,
+}: {
+  tone?: "light" | "dark";
+  showLinkHint?: boolean;
+}) {
   const dark = tone === "dark";
 
   return (
@@ -62,7 +82,7 @@ export function GemBanner({ tone = "light" }: { tone?: "light" | "dark" }) {
           {gem.body}
         </p>
       </div>
-      <GemLink />
+      <GemLink withHint={showLinkHint} />
     </div>
   );
 }
