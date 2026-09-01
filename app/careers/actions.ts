@@ -1,6 +1,6 @@
 "use server";
 
-import { sendSiteEmail } from "@/lib/mail";
+import { buildCareersAutoReply, sendSiteEmail } from "@/lib/mail";
 
 export type CareerState = {
   ok: boolean;
@@ -76,6 +76,7 @@ export async function submitCareer(_prev: CareerState, formData: FormData): Prom
       message || "No covering note provided.",
     ].join("\n"),
     attachments: attachment ? [attachment] : undefined,
+    autoReply: buildCareersAutoReply(name, email),
   });
 
   return result.ok ? { ok: true } : { ok: false, error: result.error };

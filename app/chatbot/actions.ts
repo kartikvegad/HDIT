@@ -1,6 +1,6 @@
 "use server";
 
-import { sendSiteEmail } from "@/lib/mail";
+import { buildChatbotAutoReply, sendSiteEmail } from "@/lib/mail";
 
 export type ChatbotEnquiryState = {
   ok: boolean;
@@ -35,6 +35,7 @@ export async function submitChatbotEnquiry(
       `Phone: ${phone || "—"}`,
       `Topic: ${topic || "General enquiry"}`,
     ].join("\n"),
+    autoReply: buildChatbotAutoReply(name, email),
   });
 
   return result.ok ? { ok: true } : { ok: false, error: result.error };

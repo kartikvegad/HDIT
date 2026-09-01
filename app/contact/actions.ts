@@ -1,6 +1,6 @@
 "use server";
 
-import { sendSiteEmail } from "@/lib/mail";
+import { buildContactAutoReply, sendSiteEmail } from "@/lib/mail";
 
 export type QuoteState = {
   ok: boolean;
@@ -35,6 +35,7 @@ export async function submitQuote(_prev: QuoteState, formData: FormData): Promis
       "",
       message || "No message provided.",
     ].join("\n"),
+    autoReply: buildContactAutoReply(name, email),
   });
 
   return result.ok ? { ok: true } : { ok: false, error: result.error };
