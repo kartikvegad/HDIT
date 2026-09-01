@@ -17,8 +17,7 @@ export function GemLink({
         backgroundColor: "#ffffff",
         display: "inline-flex",
         alignItems: "center",
-        gap: "1rem",
-        padding: compact ? "0.6rem 0.85rem" : "0.85rem 1.15rem",
+        padding: compact ? "0.5rem 0.65rem" : "0.75rem 0.9rem",
       }}
       className={className}
     >
@@ -34,14 +33,6 @@ export function GemLink({
           backgroundColor: "#ffffff",
         }}
       />
-      <span
-        className={cn(
-          "shrink-0 tracking-[0.14em] text-[#0a1628] uppercase",
-          compact ? "text-[0.7rem]" : "text-sm",
-        )}
-      >
-        gem.gov.in →
-      </span>
     </a>
   );
 }
