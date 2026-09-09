@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { Resend } from "resend";
+import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import { site } from "@/content/site";
 
 export type MailAttachment = {
@@ -94,88 +94,119 @@ async function sendAutoReply(
       subject: autoReply.subject,
       text: autoReply.text,
     });
-  } catch {
-    // The enquiry was received; a failed auto-reply should not block the submission.
+  } catch (error) {
+    console.error("HDIT auto-reply failed:", error);
   }
 }
 
-export async function sendSiteEmail(
-  input: SendSiteEmailInput,
-): Promise<{ ok: true } | { ok: false; error: string }> {
-  const gmailUser = process.env.GMAIL_USER?.trim();
-  const gmailPass = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, "");
+function smtpErrorMessage(error: unknown): string {
+  if (error && typeof error === "object") {
+    const code = "code" in error ? String(error.code) : "";
+    const responseCode = "responseCode" in error ? Number(error.responseCode) : undefined;
 
-  if (gmailUser && gmailPass) {
-    try {
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-          user: gmailUser,
-          pass: gmailPass,
-        },
-      });
-
-      await transporter.sendMail({
-        from: `HDIT Website <${gmailUser}>`,
-        to: gmailUser,
-        replyTo: input.replyTo,
-        subject: input.subject,
-        text: input.text,
-        attachments: input.attachments?.map((file) => ({
-          filename: file.filename,
-          content: file.content,
-          contentType: file.contentType,
-        })),
-      });
-
-      if (input.autoReply) {
-        await sendAutoReply(transporter, gmailUser, input.autoReply);
-      }
-
-      return { ok: true };
-    } catch {
-      return {
-        ok: false,
-        error: "The message could not be sent. Please try again or email us directly.",
-      };
+    if (code === "EAUTH" || responseCode === 535) {
+      return "Email login failed. Check SMTP_USER and SMTP_PASSWORD in your hosting settings.";
     }
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (apiKey) {
-    const resend = new Resend(apiKey);
-    const from = process.env.CONTACT_FROM_EMAIL ?? "HDIT Website <beth.t@example.com>";
-    const { error } = await resend.emails.send({
-      from,
-      to: site.email,
+  return "The message could not be sent. Please try again or email us directly.";
+}
+
+function getSmtpConfig():
+  | { ok: true; options: SMTPTransport.Options; user: string; mailTo: string }
+  | { ok: false } {
+  const user = process.env.SMTP_USER?.trim();
+  const pass = process.env.SMTP_PASSWORD?.trim();
+
+  if (!user || !pass) {
+    return { ok: false };
+  }
+
+  const host = process.env.SMTP_HOST?.trim() || "smtpout.secureserver.net";
+  const port = Number(process.env.SMTP_PORT ?? "465");
+  const secure =
+    process.env.SMTP_SECURE === "true" ||
+    (process.env.SMTP_SECURE !== "false" && port === 465);
+  const mailTo = process.env.MAIL_TO?.trim() || user;
+
+  return {
+    ok: true,
+    user,
+    mailTo,
+    options: {
+      host,
+      port,
+      secure,
+      auth: { user, pass },
+      ...(port === 587 && !secure ? { requireTLS: true } : {}),
+    },
+  };
+}
+
+async function sendViaSmtp(
+  smtp: { options: SMTPTransport.Options; user: string; mailTo: string },
+  input: SendSiteEmailInput,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  try {
+    const transporter = nodemailer.createTransport(smtp.options);
+
+    await transporter.sendMail({
+      from: `HDIT Website <${smtp.user}>`,
+      to: smtp.mailTo,
       replyTo: input.replyTo,
       subject: input.subject,
       text: input.text,
       attachments: input.attachments?.map((file) => ({
         filename: file.filename,
         content: file.content,
+        contentType: file.contentType,
       })),
     });
 
-    if (error) {
-      return {
-        ok: false,
-        error: "The message could not be sent. Please try again or email us directly.",
-      };
-    }
-
     if (input.autoReply) {
-      await resend.emails.send({
-        from,
-        to: input.autoReply.to,
-        subject: input.autoReply.subject,
-        text: input.autoReply.text,
-      });
+      await sendAutoReply(transporter, smtp.user, input.autoReply);
     }
 
     return { ok: true };
+  } catch (error) {
+    console.error("HDIT enquiry email failed:", error);
+    return {
+      ok: false,
+      error: smtpErrorMessage(error),
+    };
+  }
+}
+
+export async function sendSiteEmail(
+  input: SendSiteEmailInput,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const smtp = getSmtpConfig();
+  if (smtp.ok) {
+    return sendViaSmtp(smtp, input);
+  }
+
+  const gmailUser = process.env.GMAIL_USER?.trim();
+  const gmailPass = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, "");
+
+  if (gmailUser && gmailPass) {
+    const mailTo = process.env.MAIL_TO?.trim() || gmailUser;
+
+    return sendViaSmtp(
+      {
+        user: gmailUser,
+        mailTo,
+        options: {
+          host: "smtp.gmail.com",
+          port: 465,
+          secure: true,
+          auth: {
+            user: gmailUser,
+            pass: gmailPass,
+          },
+        },
+      },
+      input,
+    );
   }
 
   return {
