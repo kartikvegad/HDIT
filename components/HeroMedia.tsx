@@ -22,14 +22,14 @@ export function HeroMedia() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[center_35%] contrast-[0.92]"
+        className="object-cover object-[center_28%] contrast-[0.92] sm:object-[center_35%]"
       />
     );
   }
 
   return (
     <video
-      className="absolute inset-0 h-full w-full object-cover object-[center_35%] contrast-[0.92]"
+      className="absolute inset-0 h-full w-full object-cover object-[center_28%] contrast-[0.92] sm:object-[center_35%]"
       autoPlay
       muted
       loop

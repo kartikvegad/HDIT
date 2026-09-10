@@ -85,19 +85,45 @@ body {
 .hero-headline {
   font-family: var(--font-display);
   font-variant-numeric: lining-nums tabular-nums;
-  font-size: clamp(2.42rem, 7.14vw, 6.16rem);
-  line-height: 0.9;
+  font-size: clamp(2.15rem, 7.4vw, 6.16rem);
+  line-height: 0.94;
   letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@media (min-width: 640px) {
+  .hero-headline {
+    line-height: 0.9;
+  }
 }
 
 .hero-overlay {
-  background: linear-gradient(
-    90deg,
-    rgba(10, 22, 40, 0.82) 0%,
-    rgba(10, 22, 40, 0.52) 38%,
-    rgba(10, 22, 40, 0.2) 68%,
-    rgba(10, 22, 40, 0.08) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 22, 40, 0.55) 0%,
+      rgba(10, 22, 40, 0.42) 32%,
+      rgba(10, 22, 40, 0.72) 72%,
+      rgba(10, 22, 40, 0.88) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(10, 22, 40, 0.78) 0%,
+      rgba(10, 22, 40, 0.42) 48%,
+      rgba(10, 22, 40, 0.16) 100%
+    );
+}
+
+@media (min-width: 1024px) {
+  .hero-overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(10, 22, 40, 0.82) 0%,
+      rgba(10, 22, 40, 0.52) 38%,
+      rgba(10, 22, 40, 0.2) 68%,
+      rgba(10, 22, 40, 0.08) 100%
+    );
+  }
 }
 
 .hero-image {
@@ -215,4 +241,56 @@ textarea {
 .nav-link:hover::after,
 .nav-link[data-active="true"]::after {
   transform: scaleX(1);
+}
+
+.tap-feedback {
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.tap-feedback:active {
+  transform: scale(0.97);
+}
+
+.fab-pulse {
+  animation: fab-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes fab-pulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 28px rgba(10, 22, 40, 0.28);
+  }
+  50% {
+    box-shadow:
+      0 10px 28px rgba(10, 22, 40, 0.28),
+      0 0 0 10px rgba(47, 95, 154, 0.12);
+  }
+}
+
+.scroll-cue {
+  animation: scroll-cue 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab-pulse,
+  .scroll-cue {
+    animation: none;
+  }
 }

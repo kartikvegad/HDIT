@@ -21,7 +21,7 @@ export function Button({ href, children, variant = "gold", className }: ButtonPr
     <Link
       href={href}
       className={cn(
-        "group inline-flex items-center justify-center gap-3 px-7 py-3.5 text-[0.78rem] font-medium tracking-[0.16em] uppercase transition-colors duration-300",
+        "group tap-feedback inline-flex items-center justify-center gap-3 px-6 py-3.5 text-[0.78rem] font-medium tracking-[0.16em] uppercase transition-colors duration-300 sm:px-7",
         styles[variant],
         className,
       )}
@@ -42,7 +42,7 @@ export function Container({
   className?: string;
 }) {
   return (
-    <div className={cn("mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12", className)}>
+    <div className={cn("mx-auto w-full max-w-[1440px] px-4 sm:px-8 lg:px-12", className)}>
       {children}
     </div>
   );
@@ -75,14 +75,14 @@ export function Logo({
   const large = size === "lg";
 
   return (
-    <Link href="/" className="inline-flex items-center" aria-label="HDIT home">
+    <Link href="/" className="inline-flex items-center py-1" aria-label="HDIT home">
       <Image
         src={light ? "/images/hdit-logo-light.png" : "/images/hdit-logo.png"}
         alt="HDIT — Connect. Innovate. Scale."
         width={978}
         height={395}
         priority
-        className={cn("w-auto", large ? "h-9 sm:h-10 lg:h-11" : "h-12 sm:h-[3.75rem]")}
+        className={cn("w-auto object-contain object-left", large ? "h-9 sm:h-10 lg:h-11" : "h-11 sm:h-[3.75rem]")}
       />
     </Link>
   );

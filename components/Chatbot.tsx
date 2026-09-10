@@ -111,7 +111,7 @@ export function Chatbot() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="chatbot-title"
-          className="mb-4 flex h-[min(72vh,32rem)] w-[min(100vw-2rem,24rem)] flex-col overflow-hidden rounded-[1.35rem] border border-white/10 bg-paper shadow-[0_24px_60px_rgba(10,22,40,0.28)] sm:w-[24rem]"
+          className="mb-3 flex h-[min(70svh,30rem)] w-[min(100vw-1.5rem,24rem)] flex-col overflow-hidden rounded-[1.25rem] border border-white/10 bg-paper shadow-[0_24px_60px_rgba(10,22,40,0.28)] sm:mb-4 sm:h-[min(72vh,32rem)] sm:w-[24rem] sm:rounded-[1.35rem]"
         >
           <header className="relative shrink-0 overflow-hidden bg-ink px-4 py-4 text-paper">
             <div
@@ -197,7 +197,7 @@ export function Chatbot() {
                           href={gem.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] leading-snug text-ink transition-all duration-300 hover:-translate-y-px hover:border-amber hover:bg-white hover:shadow-sm"
+                          className="tap-feedback rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] leading-snug text-ink hover:-translate-y-px hover:border-amber hover:bg-white hover:shadow-sm"
                         >
                           {option.label}
                         </a>
@@ -209,7 +209,7 @@ export function Chatbot() {
                         key={`${option.next}-${option.label}`}
                         type="button"
                         onClick={() => handleOption(option.label, option.next)}
-                        className="rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] leading-snug text-ink transition-all duration-300 hover:-translate-y-px hover:border-amber hover:bg-white hover:shadow-sm"
+                        className="tap-feedback rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] leading-snug text-ink hover:-translate-y-px hover:border-amber hover:bg-white hover:shadow-sm"
                       >
                         {option.label}
                       </button>
@@ -227,17 +227,17 @@ export function Chatbot() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={chatbot.launcherLabel}
-          className="group relative flex h-[3.65rem] items-center gap-3 overflow-hidden rounded-full bg-ink py-1.5 pr-5 pl-1.5 text-paper shadow-[0_14px_40px_rgba(10,22,40,0.28)] transition-transform duration-300 hover:scale-[1.02]"
+          className="group fab-pulse tap-feedback relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-amber text-paper shadow-[0_14px_40px_rgba(10,22,40,0.28)] hover:scale-[1.03] sm:h-[3.65rem] sm:w-auto sm:gap-3 sm:bg-ink sm:py-1.5 sm:pr-5 sm:pl-1.5"
         >
           <span
             aria-hidden
-            className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_20%,rgba(143,180,224,0.35),transparent_55%)] opacity-80"
+            className="absolute inset-0 hidden rounded-full bg-[radial-gradient(circle_at_30%_20%,rgba(143,180,224,0.35),transparent_55%)] opacity-80 sm:block"
           />
           <span
             aria-hidden
             className="absolute -inset-1 rounded-full bg-amber/20 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"
           />
-          <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-amber text-paper">
+          <span className="relative flex h-12 w-12 items-center justify-center sm:h-11 sm:w-11 sm:rounded-full sm:bg-amber">
             <ChatIcon />
           </span>
           <span className="relative hidden text-left sm:block">
@@ -343,7 +343,7 @@ function Field({
 
 function ChatIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-current">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-current sm:h-5 sm:w-5">
       <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2Zm2 3v9.17L7.17 14H18V6H6Z" />
     </svg>
   );
