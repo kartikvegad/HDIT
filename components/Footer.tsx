@@ -6,15 +6,15 @@ import { GemLink } from "@/components/GemLink";
 export function Footer() {
   return (
     <footer className="bg-[#eef1f4] text-ink">
-      <Container className="py-14 sm:py-16 lg:py-20">
+      <Container className="py-8 sm:py-10 lg:py-12">
         <div className="flex flex-col items-center text-center">
           <Logo />
-          <p className="mt-4 text-[0.75rem] tracking-[0.14em] text-muted uppercase">{site.legalName}</p>
+          <p className="mt-2 text-[0.7rem] tracking-[0.14em] text-muted uppercase">{site.legalName}</p>
         </div>
 
-        <div className="mt-12 grid gap-12 border-t border-line pt-12 text-center md:grid-cols-3 lg:mt-14 lg:gap-8 lg:pt-14">
+        <div className="mt-7 grid gap-8 border-t border-line pt-7 text-center md:grid-cols-3 md:gap-6 lg:mt-8 lg:pt-8">
           <FooterBlock title="Resources">
-            <ul className="space-y-3 text-base text-muted">
+            <ul className="space-y-2 text-[0.95rem] text-muted">
               {footerLinks.map((item) => (
                 <li key={`${item.href}-${item.label}`}>
                   <Link href={item.href} className="transition-colors duration-300 hover:text-ink">
@@ -26,7 +26,7 @@ export function Footer() {
           </FooterBlock>
 
           <FooterBlock title="Follow us">
-            <div className="flex max-w-[18rem] flex-wrap items-center justify-center gap-3">
+            <div className="flex max-w-[18rem] flex-wrap items-center justify-center gap-2.5">
               {social.map((item) => (
                 <a
                   key={item.label}
@@ -34,35 +34,34 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-paper transition-colors duration-300 hover:bg-amber"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-paper transition-colors duration-300 hover:bg-amber"
                 >
                   <SocialIcon name={item.icon} />
                 </a>
               ))}
             </div>
-            <p className="mt-4 max-w-[16rem] text-base text-muted">YouTube, LinkedIn, X, Facebook and Instagram</p>
           </FooterBlock>
 
           <FooterBlock title="Procurement">
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-3">
               <GemLink compact />
-              <span className="max-w-[18rem] text-base text-muted">{gem.tagline}</span>
+              <span className="max-w-[18rem] text-[0.95rem] text-muted">{gem.tagline}</span>
             </div>
           </FooterBlock>
         </div>
 
-        <div className="mt-14 border-t border-line pt-8 text-center text-sm text-muted">
+        <div className="mt-8 border-t border-line pt-5 text-center text-sm text-muted">
           <p>
             Copyright © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
-          <p className="mt-3">
+          <p className="mt-2">
             {site.email}
             <span className="mx-2 text-stone">|</span>
             <a href={`tel:${site.phoneTel}`} className="transition-colors hover:text-ink">
               {site.phone}
             </a>
           </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[0.8rem] tracking-[0.04em] uppercase">
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[0.75rem] tracking-[0.04em] uppercase">
             <Link href="/contact" className="transition-colors hover:text-ink">
               Privacy
             </Link>
@@ -84,7 +83,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Designed by ${site.designedBy.name}`}
-            className="mt-7 inline-flex items-center gap-2.5 text-ink"
+            className="mt-4 inline-flex items-center gap-2.5 text-ink"
           >
             <span className="text-[0.65rem] tracking-[0.18em] uppercase">Designed by</span>
             <img
@@ -92,7 +91,7 @@ export function Footer() {
               alt=""
               width={770}
               height={300}
-              className="h-[1.15rem] w-auto"
+              className="h-[1.05rem] w-auto"
             />
           </a>
         </div>
@@ -104,8 +103,8 @@ export function Footer() {
 function FooterBlock({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col items-center">
-      <p className="text-base font-semibold tracking-tight">{title}</p>
-      <div className="mt-5">{children}</div>
+      <p className="text-[0.95rem] font-semibold tracking-tight">{title}</p>
+      <div className="mt-3">{children}</div>
     </div>
   );
 }

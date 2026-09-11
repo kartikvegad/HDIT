@@ -40,7 +40,7 @@ export const site = {
   whatsapp: "919873242407",
   designedBy: {
     name: "DOT",
-    href: "https://dot-site.vercel.app",
+    href: "https://wearedot.in",
     logo: "/images/dot.svg",
   },
 } as const;
