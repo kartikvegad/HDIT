@@ -89,7 +89,8 @@ export function Contact({
                 <Field label="Organisation" name="company" autoComplete="organization" className={fieldClass} labelClass={labelClass} />
                 <Field label="Email" name="email" type="email" required autoComplete="email" className={fieldClass} labelClass={labelClass} />
                 <Field label="Phone" name="phone" type="tel" autoComplete="tel" className={fieldClass} labelClass={labelClass} />
-                <label className="block sm:col-span-2">
+                <Field label="Location" name="location" autoComplete="address-level2" className={fieldClass} labelClass={labelClass} />
+                <label className="block">
                   <span className={labelClass}>Capability</span>
                   <select name="projectType" defaultValue="" className={fieldClass}>
                     <option value="" disabled>

@@ -43,10 +43,10 @@ export function DatasheetRequest({ className }: { className?: string }) {
           <div className="flex items-start justify-between gap-3">
             <div>
               <p id={titleId} className="font-display text-xl tracking-tight">
-                Request a data sheet
+                Request the catalogue
               </p>
               <p className="mt-1 text-sm text-muted">
-                Share your details and we will email the data sheet to you.
+                Share your details and we will email the product catalogue to you.
               </p>
             </div>
             <button
@@ -74,7 +74,7 @@ function DatasheetForm({ onClose }: { onClose: () => void }) {
     return (
       <div className="space-y-4 py-2">
         <p className="text-base leading-relaxed text-ink">
-          Thank you. Your request is with our team — the data sheet will be emailed to you shortly.
+          Thank you. Your request is with our team — the product catalogue will be emailed to you shortly.
         </p>
         <button
           type="button"
@@ -117,7 +117,7 @@ function DatasheetForm({ onClose }: { onClose: () => void }) {
         disabled={pending}
         className="tap-feedback mt-1 w-full rounded-xl bg-ink px-4 py-3 text-[0.78rem] tracking-[0.14em] text-paper uppercase transition-colors duration-300 hover:bg-amber disabled:opacity-70"
       >
-        {pending ? "Sending…" : "Request data sheet"}
+        {pending ? "Sending…" : "Request catalogue"}
       </button>
     </form>
   );

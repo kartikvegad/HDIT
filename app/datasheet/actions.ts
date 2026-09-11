@@ -11,13 +11,13 @@ export type DatasheetState = {
 function datasheetAutoReply(name: string, domain: string, to: string) {
   return {
     to,
-    subject: "Your HDIT data sheet request",
+    subject: "Your HDIT product catalogue request",
     text: [
       `Hi ${name},`,
       "",
-      `Thank you for requesting the HDIT data sheet for ${domain}.`,
+      `Thank you for requesting the HDIT product catalogue for ${domain}.`,
       "",
-      "Our team will email the data sheet to this address shortly.",
+      "Our team will email the catalogue to this address shortly.",
       "",
       `If you need anything sooner, reach us at ${site.phone} or ${site.email}.`,
       "",
@@ -37,7 +37,7 @@ export async function submitDatasheetRequest(
   const domain = String(formData.get("domain") ?? "").trim();
 
   if (!name || !organisation || !phone || !email || !domain) {
-    return { ok: false, error: "Please complete all fields so we can send the data sheet." };
+    return { ok: false, error: "Please complete all fields so we can send the catalogue." };
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -46,10 +46,10 @@ export async function submitDatasheetRequest(
 
   const result = await sendSiteEmail({
     to: site.email,
-    subject: `Data sheet request — ${domain} — ${name}`,
+    subject: `Catalogue request — ${domain} — ${name}`,
     replyTo: email,
     text: [
-      "Submitted via website data sheet request",
+      "Submitted via website product catalogue request",
       "",
       `Domain: ${domain}`,
       `Name: ${name}`,
@@ -57,7 +57,7 @@ export async function submitDatasheetRequest(
       `Phone / WhatsApp: ${phone}`,
       `Email: ${email}`,
       "",
-      "Please email the relevant product data sheet to the requester.",
+      "Please email the relevant product catalogue to the requester.",
     ].join("\n"),
     autoReply: datasheetAutoReply(name, domain, email),
   });

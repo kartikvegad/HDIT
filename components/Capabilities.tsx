@@ -60,12 +60,11 @@ export function Capabilities() {
         </div>
 
         <Reveal delay={220} className="mt-12 sm:mt-14">
-          <div className="border border-white/15 bg-white/[0.04] p-6 sm:p-8 lg:p-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-2xl">
-                <p className="eyebrow !text-paper/70">{catalogue.title}</p>
-                <p className="mt-3 text-base leading-relaxed text-paper/75">{catalogue.description}</p>
-              </div>
+          <div className="border border-white/15 bg-white/[0.04] px-5 py-4 sm:px-6 sm:py-4">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+              <p className="text-[1.05rem] font-medium tracking-[0.18em] text-paper/80 uppercase sm:text-[1.2rem]">
+                {catalogue.title}
+              </p>
               <DatasheetRequest />
             </div>
           </div>

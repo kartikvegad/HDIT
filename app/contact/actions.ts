@@ -12,6 +12,7 @@ export async function submitQuote(_prev: QuoteState, formData: FormData): Promis
   const email = String(formData.get("email") ?? "").trim();
   const company = String(formData.get("company") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
+  const location = String(formData.get("location") ?? "").trim();
   const projectType = String(formData.get("projectType") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
 
@@ -31,6 +32,7 @@ export async function submitQuote(_prev: QuoteState, formData: FormData): Promis
       `Organisation: ${company || "—"}`,
       `Email: ${email}`,
       `Phone: ${phone || "—"}`,
+      `Location: ${location || "—"}`,
       `Capability: ${projectType || "—"}`,
       "",
       message || "No message provided.",

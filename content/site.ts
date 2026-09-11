@@ -160,10 +160,8 @@ export const capabilities: Capability[] = [
 ];
 
 export const catalogue = {
-  title: "Product data sheets",
-  description:
-    "Request data sheets across solar, surveillance and AV/IT. Share your details and we will email the relevant sheet to you.",
-  downloadLabel: "Download data sheet",
+  title: "Product catalogue",
+  downloadLabel: "Download",
   domains: [
     { id: "solar", label: "Sustainable Solar Solutions" },
     { id: "surveillance", label: "Smart Surveillance Infrastructure" },
@@ -505,7 +503,7 @@ export const people = {
 
 export const careers = {
   label: "Careers",
-  headline: "Work on infrastructure that has to hold.",
+  headline: "Work on infrastructure built to last.",
   body: "Open roles are briefed against the work — engineering, procurement, execution and support. Send your background through this form and the team will be in touch.",
   homeBody:
     "HDIT is organised around projects, not around internal silos. Engineering, execution, procurement and support work as one team — so people see the full lifecycle of the infrastructure they help specify and deliver. Open roles are briefed against that work.",
