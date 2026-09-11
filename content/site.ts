@@ -49,9 +49,9 @@ export const gem = {
   name: "Government e-Marketplace (GeM)",
   href: "https://gem.gov.in/",
   logo: "/images/gem-logo.jpg",
-  tagline: "All products and solutions are available on GeM",
+  tagline: "All products are available on GeM",
   eyebrow: "Government e-Marketplace",
-  headline: "All HDIT products and solutions are available on GeM.",
+  headline: "All HDIT products are available on GeM.",
   body: "Government and public-sector requirements are specified, procured and delivered through the official GeM portal — so the work stays inside the framework departments already use.",
 } as const;
 
@@ -160,12 +160,15 @@ export const capabilities: Capability[] = [
 ];
 
 export const catalogue = {
-  href: "/catalogue/hdit-catalogue.pdf",
-  fileName: "HDIT-Product-Catalogue.pdf",
-  title: "Product catalogue",
-  description: "Browse HDIT solutions across solar, surveillance and AV/IT.",
-  viewLabel: "View catalogue",
-  downloadLabel: "Download PDF",
+  title: "Product data sheets",
+  description:
+    "Request data sheets across solar, surveillance and AV/IT. Share your details and we will email the relevant sheet to you.",
+  downloadLabel: "Download data sheet",
+  domains: [
+    { id: "solar", label: "Sustainable Solar Solutions" },
+    { id: "surveillance", label: "Smart Surveillance Infrastructure" },
+    { id: "av-it", label: "Advanced AV / IT Systems" },
+  ],
 } as const;
 
 export const globalTech = {
@@ -405,7 +408,7 @@ export const certifications = {
 export const philosophy = {
   index: "10",
   label: "Purpose",
-  headline: "Driven by a clear purpose.",
+  headline: "Connecting people through transformative technology.",
   vision: {
     title: "Vision",
     body: "Scaling connectivity with innovative solutions.",
@@ -481,7 +484,7 @@ export const about = {
 
 export const people = {
   label: "People",
-  headline: "Built for people who want to grow with the work.",
+  headline: "Built for professionals who scale their impact as we scale infrastructure.",
   body: "HDIT is organised around projects, not around internal silos. Engineering, execution, procurement and support work as one team — so people see the full lifecycle of the infrastructure they help specify and deliver.",
   items: [
     {

@@ -1,9 +1,8 @@
 "use client";
 
-import { useActionState, useCallback, useEffect, useRef, useState } from "react";
-import { submitChatbotEnquiry, type ChatbotEnquiryState } from "@/app/chatbot/actions";
-import { chatbot, type ChatbotNodeId } from "@/content/chatbot";
-import { gem, site } from "@/content/site";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import { submitChatbotEnquiry } from "@/app/chatbot/actions";
+import { chatbot, type ChatbotInputField, type ChatbotNode, type ChatbotNodeId } from "@/content/chatbot";
 import { cn } from "@/lib/cn";
 
 type ChatMessage = {
@@ -11,46 +10,63 @@ type ChatMessage = {
   text: string;
 };
 
+type LeadAnswers = {
+  path: string;
+  capability: string;
+  segment: string;
+  amc: string;
+  issue: string;
+  nameCompany: string;
+  phone: string;
+  email: string;
+};
+
 const ROOT_ID = "root" as const;
-const ENQUIRY_ID = "enquiry" as const;
-const initialEnquiryState: ChatbotEnquiryState = { ok: false };
+
+const emptyAnswers = (): LeadAnswers => ({
+  path: "",
+  capability: "",
+  segment: "",
+  amc: "",
+  issue: "",
+  nameCompany: "",
+  phone: "",
+  email: "",
+});
 
 function isChatbotNodeId(id: string): id is ChatbotNodeId {
   return id in chatbot.nodes;
 }
 
-function resolveMessage(nodeId: string): string {
-  if (nodeId === "contact") {
-    return `Reach HDIT at ${site.email} or ${site.phone}. Use the Contact page for a structured enquiry, or WhatsApp for a direct message. For careers, visit the Careers page.`;
-  }
-
-  if (!isChatbotNodeId(nodeId)) {
-    return "Sorry — that option is not available. Please choose from the menu below.";
-  }
-
-  return chatbot.nodes[nodeId].message;
+function getNode(nodeId: string): ChatbotNode {
+  if (!isChatbotNodeId(nodeId)) return chatbot.nodes[ROOT_ID] as ChatbotNode;
+  return chatbot.nodes[nodeId] as ChatbotNode;
 }
 
-function getNode(nodeId: string) {
-  if (!isChatbotNodeId(nodeId)) return chatbot.nodes[ROOT_ID];
-  return chatbot.nodes[nodeId];
+function messageFor(nodeId: string) {
+  return getNode(nodeId).message;
 }
 
 export function Chatbot() {
   const [open, setOpen] = useState(false);
   const [currentNodeId, setCurrentNodeId] = useState<string>(ROOT_ID);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [topic, setTopic] = useState("General enquiry");
-  const [formSession, setFormSession] = useState(0);
+  const [answers, setAnswers] = useState<LeadAnswers>(emptyAnswers);
+  const [draft, setDraft] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, startTransition] = useTransition();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   const currentNode = getNode(currentNodeId);
-  const showForm = currentNodeId === ENQUIRY_ID;
+  const hasInput = Boolean(currentNode.input);
+  const hasOptions = Boolean(currentNode.options?.length);
 
   const resetChat = useCallback(() => {
     setCurrentNodeId(ROOT_ID);
-    setTopic("General enquiry");
-    setFormSession((value) => value + 1);
+    setAnswers(emptyAnswers());
+    setDraft("");
+    setError(null);
     setMessages([{ role: "bot", text: chatbot.nodes[ROOT_ID].message }]);
   }, []);
 
@@ -62,45 +78,140 @@ export function Chatbot() {
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-  }, [messages, currentNodeId, showForm]);
+  }, [messages, currentNodeId, error, pending]);
 
   useEffect(() => {
     if (!open) return;
-
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
-
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  const handleOption = (label: string, nextId: string) => {
-    if (nextId === ENQUIRY_ID) {
-      setFormSession((value) => value + 1);
+  useEffect(() => {
+    if (open && hasInput) {
+      inputRef.current?.focus();
     }
+  }, [open, hasInput, currentNodeId]);
 
-    if (nextId !== ENQUIRY_ID && nextId !== ROOT_ID && nextId !== "contact" && nextId !== "gem-link") {
-      setTopic(label);
-    }
-
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", text: label },
-      { role: "bot", text: resolveMessage(nextId) },
+  const goToAskName = (from: "sales" | "service", nextMessages: ChatMessage[]) => {
+    const introId = from === "service" ? "lead-intro-service" : "lead-intro-sales";
+    setMessages([
+      ...nextMessages,
+      { role: "bot", text: messageFor(introId) },
+      { role: "bot", text: messageFor("ask-name") },
     ]);
-    setCurrentNodeId(nextId);
+    setCurrentNodeId("ask-name");
+    setDraft("");
+    setError(null);
   };
 
-  const handleEnquirySuccess = useCallback(() => {
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: "bot",
-        text: "Thank you — we have your details. A member of the HDIT team will be in touch shortly.",
-      },
-    ]);
-  }, []);
+  const submitLead = (payload: LeadAnswers) => {
+    startTransition(async () => {
+      const formData = new FormData();
+      formData.set("path", payload.path);
+      formData.set("capability", payload.capability);
+      formData.set("segment", payload.segment);
+      formData.set("amc", payload.amc);
+      formData.set("issue", payload.issue);
+      formData.set("nameCompany", payload.nameCompany);
+      formData.set("phone", payload.phone);
+      formData.set("email", payload.email);
+
+      const result = await submitChatbotEnquiry({ ok: false }, formData);
+      if (!result.ok) {
+        setError(result.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setMessages((prev) => [...prev, { role: "bot", text: messageFor("done") }]);
+      setCurrentNodeId("done");
+      setDraft("");
+      setError(null);
+    });
+  };
+
+  const handleOption = (label: string, nextId: string) => {
+    const userAndBot: ChatMessage[] = [
+      ...messages,
+      { role: "user", text: label },
+      { role: "bot", text: messageFor(nextId) },
+    ];
+
+    const nextAnswers = { ...answers };
+
+    if (currentNodeId === ROOT_ID) {
+      nextAnswers.path = label;
+    } else if (currentNodeId === "sales") {
+      nextAnswers.capability = label;
+    } else if (currentNodeId === "sales-context") {
+      nextAnswers.segment = label;
+    } else if (currentNodeId === "service") {
+      nextAnswers.amc = label;
+    }
+
+    setAnswers(nextAnswers);
+
+    if (nextId === "ask-name") {
+      const from = nextAnswers.path.toLowerCase().includes("service") ? "service" : "sales";
+      // Drop the ask-name bot line from userAndBot — goToAskName adds intro + ask-name
+      goToAskName(from, [...messages, { role: "user", text: label }]);
+      return;
+    }
+
+    if (nextId === ROOT_ID) {
+      resetChat();
+      return;
+    }
+
+    setMessages(userAndBot);
+    setCurrentNodeId(nextId);
+    setDraft("");
+    setError(null);
+  };
+
+  const handleInputSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const value = draft.trim();
+    if (!value || !currentNode.input || pending) return;
+
+    const field = currentNode.input.field as ChatbotInputField;
+    const nextId = currentNode.input.next;
+
+    if (field === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (field === "phone" && value.replace(/\D/g, "").length < 8) {
+      setError("Please enter a valid mobile / WhatsApp number.");
+      return;
+    }
+
+    const nextAnswers = { ...answers, [field]: value };
+    setAnswers(nextAnswers);
+
+    const nextMessages: ChatMessage[] = [...messages, { role: "user", text: value }];
+
+    if (nextId === "ask-name") {
+      goToAskName("service", nextMessages);
+      return;
+    }
+
+    if (nextId === "done") {
+      setMessages(nextMessages);
+      setDraft("");
+      setError(null);
+      submitLead(nextAnswers);
+      return;
+    }
+
+    setMessages([...nextMessages, { role: "bot", text: messageFor(nextId) }]);
+    setCurrentNodeId(nextId);
+    setDraft("");
+    setError(null);
+  };
 
   const handleClose = () => setOpen(false);
 
@@ -173,50 +284,75 @@ export function Chatbot() {
                 </div>
               </div>
             ))}
+            {pending ? (
+              <p className="self-start text-[0.8rem] text-muted">Sending your details…</p>
+            ) : null}
           </div>
 
           <div className="shrink-0 border-t border-line bg-white px-4 py-3.5">
-            {showForm ? (
-              <div className="max-h-52 overflow-y-auto">
-                <EnquiryForm
-                  key={formSession}
-                  topic={topic}
-                  onBack={() => handleOption("Back to main menu", ROOT_ID)}
-                  onSuccess={handleEnquirySuccess}
-                />
-              </div>
-            ) : (
+            {hasInput && currentNode.input ? (
+              <form onSubmit={handleInputSubmit} className="space-y-2">
+                <p className="text-[0.68rem] tracking-[0.14em] text-muted uppercase">Your reply</p>
+                {currentNode.input.kind === "text" && currentNode.input.field === "issue" ? (
+                  <textarea
+                    ref={inputRef as React.RefObject<HTMLTextAreaElement>}
+                    value={draft}
+                    onChange={(event) => setDraft(event.target.value)}
+                    rows={3}
+                    placeholder={currentNode.input.placeholder}
+                    className="w-full rounded-lg border border-line bg-paper px-3 py-2 text-[0.88rem] text-ink outline-none transition-colors duration-300 placeholder:text-stone focus:border-amber"
+                  />
+                ) : (
+                  <input
+                    ref={inputRef as React.RefObject<HTMLInputElement>}
+                    type={currentNode.input.kind}
+                    value={draft}
+                    onChange={(event) => setDraft(event.target.value)}
+                    placeholder={currentNode.input.placeholder}
+                    autoComplete={
+                      currentNode.input.field === "email"
+                        ? "email"
+                        : currentNode.input.field === "phone"
+                          ? "tel"
+                          : "name"
+                    }
+                    className="w-full rounded-lg border border-line bg-paper px-3 py-2 text-[0.88rem] text-ink outline-none transition-colors duration-300 placeholder:text-stone focus:border-amber"
+                  />
+                )}
+                {error ? <p className="text-[0.8rem] leading-relaxed text-red-700">{error}</p> : null}
+                <button
+                  type="submit"
+                  disabled={pending || !draft.trim()}
+                  className="tap-feedback w-full rounded-xl bg-ink px-3 py-2.5 text-[0.8rem] tracking-[0.08em] text-paper uppercase transition-colors duration-300 hover:bg-amber disabled:opacity-70"
+                >
+                  {pending ? "Sending…" : "Continue"}
+                </button>
+              </form>
+            ) : hasOptions ? (
               <>
                 <p className="mb-2.5 text-[0.68rem] tracking-[0.14em] text-muted uppercase">Choose an option</p>
-                <div className="flex h-44 flex-col gap-2 overflow-y-auto pr-0.5">
-                  {currentNode.options.map((option) => {
-                    if (option.next === "gem-link") {
-                      return (
-                        <a
-                          key={option.next}
-                          href={gem.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="tap-feedback rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] leading-snug text-ink hover:-translate-y-px hover:border-amber hover:bg-white hover:shadow-sm"
-                        >
-                          {option.label}
-                        </a>
-                      );
-                    }
-
-                    return (
-                      <button
-                        key={`${option.next}-${option.label}`}
-                        type="button"
-                        onClick={() => handleOption(option.label, option.next)}
-                        className="tap-feedback rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] leading-snug text-ink hover:-translate-y-px hover:border-amber hover:bg-white hover:shadow-sm"
-                      >
-                        {option.label}
-                      </button>
-                    );
-                  })}
+                <div className="flex max-h-44 flex-col gap-2 overflow-y-auto pr-0.5">
+                  {currentNode.options?.map((option) => (
+                    <button
+                      key={`${option.next}-${option.label}`}
+                      type="button"
+                      disabled={pending}
+                      onClick={() => handleOption(option.label, option.next)}
+                      className="tap-feedback rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] leading-snug text-ink hover:-translate-y-px hover:border-amber hover:bg-white hover:shadow-sm disabled:opacity-60"
+                    >
+                      {option.label}
+                    </button>
+                  ))}
                 </div>
               </>
+            ) : (
+              <button
+                type="button"
+                onClick={resetChat}
+                className="tap-feedback w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] text-ink hover:border-amber hover:bg-white"
+              >
+                Start over
+              </button>
             )}
           </div>
         </div>
@@ -247,97 +383,6 @@ export function Chatbot() {
         </button>
       ) : null}
     </div>
-  );
-}
-
-function EnquiryForm({
-  topic,
-  onBack,
-  onSuccess,
-}: {
-  topic: string;
-  onBack: () => void;
-  onSuccess: () => void;
-}) {
-  const [state, action, pending] = useActionState(submitChatbotEnquiry, initialEnquiryState);
-  const notified = useRef(false);
-
-  useEffect(() => {
-    if (state.ok && !notified.current) {
-      notified.current = true;
-      onSuccess();
-    }
-  }, [state.ok, onSuccess]);
-
-  if (state.ok) {
-    return (
-      <div className="space-y-3">
-        <p className="text-[0.84rem] leading-relaxed text-muted">
-          Your details are with the team. You can keep browsing topics below.
-        </p>
-        <button
-          type="button"
-          onClick={onBack}
-          className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-left text-[0.84rem] text-ink transition-colors duration-300 hover:border-amber hover:bg-white"
-        >
-          Back to main menu
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <form action={action} className="space-y-3">
-      <p className="text-[0.68rem] tracking-[0.14em] text-muted uppercase">Your details</p>
-      <input type="hidden" name="topic" value={topic} />
-      <Field label="Name" name="name" type="text" autoComplete="name" required />
-      <Field label="Email" name="email" type="email" autoComplete="email" required />
-      <Field label="Phone" name="phone" type="tel" autoComplete="tel" />
-      {state.error ? <p className="text-[0.8rem] leading-relaxed text-red-700">{state.error}</p> : null}
-      <div className="flex gap-2 pt-1">
-        <button
-          type="button"
-          onClick={onBack}
-          className="rounded-xl border border-line px-3 py-2.5 text-[0.8rem] text-muted transition-colors duration-300 hover:border-amber hover:text-ink"
-        >
-          Back
-        </button>
-        <button
-          type="submit"
-          disabled={pending}
-          className="flex-1 rounded-xl bg-ink px-3 py-2.5 text-[0.8rem] tracking-[0.08em] text-paper uppercase transition-colors duration-300 hover:bg-amber disabled:opacity-70"
-        >
-          {pending ? "Sending…" : "Send to HDIT"}
-        </button>
-      </div>
-    </form>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type,
-  autoComplete,
-  required = false,
-}: {
-  label: string;
-  name: string;
-  type: string;
-  autoComplete?: string;
-  required?: boolean;
-}) {
-  return (
-    <label className="block">
-      <span className="text-[0.68rem] tracking-[0.12em] text-muted uppercase">{label}</span>
-      <input
-        name={name}
-        type={type}
-        autoComplete={autoComplete}
-        required={required}
-        className="mt-1 w-full rounded-lg border border-line bg-paper px-3 py-2 text-[0.88rem] text-ink outline-none transition-colors duration-300 placeholder:text-stone focus:border-amber"
-      />
-    </label>
   );
 }
 

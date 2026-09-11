@@ -18,6 +18,7 @@ export type SendSiteEmailInput = {
   subject: string;
   text: string;
   replyTo?: string;
+  to?: string;
   attachments?: MailAttachment[];
   autoReply?: AutoReplyInput;
 };
@@ -50,9 +51,11 @@ function chatbotAutoReply(name: string) {
   return [
     `Hi ${name},`,
     "",
-    "Thank you for reaching out through the HDIT website. We have received your details and will follow up on your enquiry shortly.",
+    "Thank you for reaching out through the HDIT website. Your details have been logged securely.",
     "",
-    `You can also contact us directly at ${site.email} or ${site.phone}.`,
+    "A representative from our team will reach out to you within the next 24 business hours.",
+    "",
+    `If your requirement is urgent, you can reach us at ${site.phone} or ${site.email}.`,
     "",
     site.legalName,
   ].join("\n");
@@ -152,7 +155,7 @@ async function sendViaSmtp(
 
     await transporter.sendMail({
       from: `HDIT Website <${smtp.user}>`,
-      to: smtp.mailTo,
+      to: input.to?.trim() || smtp.mailTo,
       replyTo: input.replyTo,
       subject: input.subject,
       text: input.text,

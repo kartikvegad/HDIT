@@ -50,7 +50,7 @@ export function Contact({
                 <SectionLabel label="Contact" />
                 <h2 className="type-display mt-5">Talk to our team.</h2>
                 <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
-                  Enterprise, government and institutional enquiries can begin here.
+                  For any enquiry, please reach out to our team.
                 </p>
                 <dl className="mt-8 space-y-4 text-base">
                   <div>

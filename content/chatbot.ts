@@ -3,108 +3,112 @@ export type ChatbotOption = {
   next: string;
 };
 
+export type ChatbotInputField = "issue" | "nameCompany" | "phone" | "email";
+
 export type ChatbotNode = {
   message: string;
-  options: ChatbotOption[];
-  form?: boolean;
+  options?: ChatbotOption[];
+  input?: {
+    field: ChatbotInputField;
+    kind: "text" | "tel" | "email";
+    placeholder: string;
+    next: string;
+  };
 };
 
-const menu = { label: "Back to main menu", next: "root" };
-const contact = { label: "Contact the team", next: "contact" };
-const enquiry = { label: "Share your details", next: "enquiry" };
-
 const chatbotNodes = {
-    root: {
-      message:
-        "Hello. I can help with quick answers about HDIT — capabilities, procurement, contact and more. Choose a topic below.",
-      options: [
-        { label: "What does HDIT do?", next: "about" },
-        { label: "Your capabilities", next: "capabilities" },
-        { label: "Solar solutions", next: "solar" },
-        { label: "CCTV & surveillance", next: "surveillance" },
-        { label: "AV/IT & command centres", next: "av-it" },
-        { label: "Government / GeM procurement", next: "gem" },
-        { label: "How do I get a quote?", next: "quote" },
-        { label: "Share your details", next: "enquiry" },
-        { label: "Careers at HDIT", next: "careers" },
-        { label: "Contact details", next: "contact" },
-      ],
+  root: {
+    message:
+      "Hi there! Welcome to HDIT. 👋 We engineer smart infrastructure for tomorrow. How can we help you today?",
+    options: [
+      { label: "💼 I want to discuss a New Project / Get a Quote (Sales)", next: "sales" },
+      { label: "🔧 I need Technical Support / Maintenance (Service)", next: "service" },
+    ],
+  },
+  sales: {
+    message:
+      "Great! We specialize in turnkey, high-performance digital deployments. Which capability fits your current requirements?",
+    options: [
+      { label: "☀️ Sustainable Solar Solutions", next: "sales-context" },
+      { label: "🛡️ Smart Surveillance Infrastructure", next: "sales-context" },
+      { label: "🖥️ Advanced AV / IT & Command Centres", next: "sales-context" },
+    ],
+  },
+  "sales-context": {
+    message:
+      "Got it. To help our engineering team prepare for the briefing, could you share a tiny bit more context?",
+    options: [
+      { label: "🏢 Enterprise / Corporate", next: "ask-name" },
+      { label: "🏛️ Government Public Sector (GeM)", next: "ask-name" },
+      { label: "🎓 Institutional Space", next: "ask-name" },
+      { label: "🤝 Channel Partner / System Integrator", next: "ask-name" },
+    ],
+  },
+  service: {
+    message:
+      "Let's get your systems sorted out. Are you currently covered under a valid Annual Maintenance Contract (AMC) with us?",
+    options: [
+      { label: "✅ Yes, we have an active AMC", next: "service-issue" },
+      { label: "❌ No / Not Sure", next: "service-issue" },
+    ],
+  },
+  "service-issue": {
+    message:
+      "Understood. Please briefly describe the issue or service request you are experiencing (e.g., video wall alignment, camera connectivity, solar output drop).",
+    input: {
+      field: "issue",
+      kind: "text",
+      placeholder: "Describe the issue or service request…",
+      next: "ask-name",
     },
-    about: {
-      message:
-        "HDIT Display Solutions Pvt. Ltd. is a technology and smart infrastructure organisation. We deliver integrated solutions across sustainable solar, smart surveillance and advanced AV/IT — including command and control centres where display, communication and surveillance work as one environment.",
-      options: [menu, { label: "See capabilities", next: "capabilities" }, enquiry, contact],
+  },
+  "lead-intro-sales": {
+    message:
+      "Perfect. Let’s get your contact details so our solution expert can reach out with the right technical information.",
+  },
+  "lead-intro-service": {
+    message:
+      "Thank you. Let's gather your contact details so our service team can look up your record and schedule an engineer.",
+  },
+  "ask-name": {
+    message: "What is your Full Name and the Company/Organization you represent?",
+    input: {
+      field: "nameCompany",
+      kind: "text",
+      placeholder: "Full name · Company / Organisation",
+      next: "ask-phone",
     },
-    capabilities: {
-      message:
-        "HDIT works across three core areas:\n\n• Sustainable solar — commercial rooftops, ground-mount arrays and solar-assisted infrastructure\n• Smart surveillance — CCTV specified for coverage, lighting and recording\n• Advanced AV/IT — video walls, passenger information, wayfinding and integrated command centres\n\nEngineering, procurement and execution stay with one accountable team.",
-      options: [
-        menu,
-        { label: "Solar", next: "solar" },
-        { label: "CCTV", next: "surveillance" },
-        { label: "AV/IT", next: "av-it" },
-        enquiry,
-        contact,
-      ],
+  },
+  "ask-phone": {
+    message: "What is the best Mobile / WhatsApp Number to reach you on?",
+    input: {
+      field: "phone",
+      kind: "tel",
+      placeholder: "Mobile / WhatsApp number",
+      next: "ask-email",
     },
-    solar: {
-      message:
-        "HDIT specifies solar for commercial rooftops, industrial ground-mount programmes and solar-assisted outdoor infrastructure — including passenger information displays where grid power is limited. Arrays are engineered for long-term output, not just installation.",
-      options: [menu, { label: "Get a quote", next: "quote" }, enquiry, contact],
+  },
+  "ask-email": {
+    message: "And finally, your Official Email Address?",
+    input: {
+      field: "email",
+      kind: "email",
+      placeholder: "name@company.com",
+      next: "done",
     },
-    surveillance: {
-      message:
-        "HDIT designs and deploys high-definition CCTV for campuses, commercial sites and outdoor perimeters. Camera layouts are specified for coverage, lighting and recording — wired into a single operational picture, not sold as disconnected devices.",
-      options: [menu, { label: "Get a quote", next: "quote" }, enquiry, contact],
-    },
-    "av-it": {
-      message:
-        "HDIT delivers display, communication and command-and-control environments — LED and LCD video walls, operator consoles, live dashboards, wayfinding, transit information and surveillance integrated into one working room.",
-      options: [menu, { label: "Get a quote", next: "quote" }, enquiry, contact],
-    },
-    gem: {
-      message:
-        "All HDIT products and solutions are available on the Government e-Marketplace (GeM). Government and public-sector requirements can be specified, procured and delivered through the official GeM portal — keeping procurement inside the framework departments already use.",
-      options: [
-        menu,
-        { label: "Visit GeM", next: "gem-link" },
-        contact,
-        enquiry,
-      ],
-    },
-    "gem-link": {
-      message:
-        "You can browse HDIT listings on the official GeM portal at gem.gov.in. For a specific requirement or briefing, our team can walk you through what is listed and how to procure.",
-      options: [menu, contact, enquiry],
-    },
-    quote: {
-      message:
-        "Share your requirement with the HDIT team — site type, scale, location and timeline. We will respond with a briefing on approach, specification and next steps.",
-      options: [menu, enquiry, { label: "Contact details", next: "contact" }, { label: "Careers", next: "careers" }],
-    },
-    careers: {
-      message:
-        "HDIT is organised around projects, not internal silos. Engineering, execution, procurement and support work as one team. Open roles are listed on the Careers page — apply there with a brief note on the kind of work you want to do.",
-      options: [menu, enquiry, contact],
-    },
-    contact: {
-      message:
-        "Reach HDIT at info@hdit.in or +91 98732 42407. Use the Contact page for a structured enquiry, or WhatsApp for a direct message. For careers, visit the Careers page.",
-      options: [menu, enquiry, { label: "Ask something else", next: "root" }],
-    },
-    enquiry: {
-      message:
-        "Leave your name, email and phone below. Our team will follow up on your enquiry — usually within one working day.",
-      options: [],
-      form: true,
-    },
-  } satisfies Record<string, ChatbotNode>;
+  },
+  done: {
+    message:
+      "Thank you! All your details have been logged securely. 📋 A representative from our team will reach out to you within the next 24 business hours. Have a great day ahead!",
+    options: [{ label: "Start over", next: "root" }],
+  },
+} satisfies Record<string, ChatbotNode>;
 
 export type ChatbotNodeId = keyof typeof chatbotNodes;
 
 export const chatbot = {
   title: "HDIT Assistant",
-  subtitle: "Quick answers · leave your details anytime",
+  subtitle: "Sales · Service · Quotes",
   launcherLabel: "Open help chat",
   closeLabel: "Close chat",
   nodes: chatbotNodes,

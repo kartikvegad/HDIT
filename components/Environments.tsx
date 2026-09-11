@@ -32,7 +32,7 @@ export function Environments() {
         </div>
 
         <Reveal delay={120} className="mt-8">
-          <GemBanner tone="dark" showLinkHint />
+          <GemBanner tone="dark" />
         </Reveal>
       </Container>
     </section>

@@ -43,7 +43,7 @@ export function Footer() {
             <p className="mt-4 max-w-[16rem] text-base text-muted">YouTube, LinkedIn, X, Facebook and Instagram</p>
           </FooterBlock>
 
-          <FooterBlock title="GeM">
+          <FooterBlock title="Procurement">
             <div className="flex flex-col items-center gap-4">
               <GemLink compact />
               <span className="max-w-[18rem] text-base text-muted">{gem.tagline}</span>

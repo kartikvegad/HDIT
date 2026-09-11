@@ -4,32 +4,30 @@ import { cn } from "@/lib/cn";
 export function GemLink({
   className,
   compact = false,
-  withHint = false,
 }: {
   className?: string;
   compact?: boolean;
-  withHint?: boolean;
 }) {
   return (
     <a
       href={gem.href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Open Government e-Marketplace"
       style={{
         backgroundColor: "#ffffff",
         display: "inline-flex",
         alignItems: "center",
-        padding: compact ? "0.5rem 0.65rem" : withHint ? "0.75rem 0.9rem 0.65rem" : "0.75rem 0.9rem",
+        padding: compact ? "0.5rem 0.65rem" : "0.75rem 0.9rem",
       }}
       className={cn(
-        "group cursor-pointer transition-shadow duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber",
-        withHint && "flex-col gap-2 hover:shadow-[0_10px_28px_rgba(0,0,0,0.28)]",
+        "cursor-pointer transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(0,0,0,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber",
         className,
       )}
     >
       <img
         src={gem.logo}
-        alt={`${gem.name} logo`}
+        alt="Government e-Marketplace logo"
         width={640}
         height={220}
         style={{
@@ -39,25 +37,11 @@ export function GemLink({
           backgroundColor: "#ffffff",
         }}
       />
-      {withHint ? (
-        <span className="text-[0.68rem] font-medium tracking-[0.16em] text-neutral-500 uppercase transition-colors duration-300 group-hover:text-neutral-800">
-          Visit GeM
-          <span aria-hidden className="ml-1.5 inline-block transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
-        </span>
-      ) : null}
     </a>
   );
 }
 
-export function GemBanner({
-  tone = "light",
-  showLinkHint = false,
-}: {
-  tone?: "light" | "dark";
-  showLinkHint?: boolean;
-}) {
+export function GemBanner({ tone = "light" }: { tone?: "light" | "dark" }) {
   const dark = tone === "dark";
 
   return (
@@ -82,7 +66,7 @@ export function GemBanner({
           {gem.body}
         </p>
       </div>
-      <GemLink withHint={showLinkHint} />
+      <GemLink />
     </div>
   );
 }
